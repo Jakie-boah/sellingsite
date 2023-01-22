@@ -14,7 +14,7 @@ class Item(models.Model):
     phone_number = PhoneNumberField()
     region = models.ForeignKey(Region, on_delete=models.PROTECT, verbose_name='Регион')
     city = models.CharField(verbose_name='Город', max_length=50)
-    street = models.CharField(verbose_name='Улицы', max_length=50)
+    street = models.CharField(verbose_name='Улица', max_length=50)
     floor = models.IntegerField(verbose_name='Этаж', null=True, blank=True)
     total_floors = models.IntegerField(verbose_name='Этажей всего', null=True, blank=True)
     material = models.CharField(verbose_name='Материал стен', choices=material_choices, max_length=100)

@@ -6,10 +6,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class UserProfile(AbstractUser):
-    phone_number = PhoneNumberField(unique=True)
+    phone_number = PhoneNumberField(unique=True, verbose_name='Номер телефона')
     username = models.CharField(verbose_name='Имя', max_length=50)
     usersurname = models.CharField(verbose_name='Фамилия', max_length=50)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, verbose_name='Почта')
     password = models.CharField(verbose_name='Пароль', max_length=100, blank=True, null=True)
 
     USERNAME_FIELD = 'phone_number'
