@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        [data-select-option] {
+            display: none;
+        }
+    </style>
+
+    <script>
+        // Ждем когда вся страница загрузится
+        document.addEventListener('DOMContentLoaded', function () {
+            const SELECT_ID = '#sampleSelect'; // айдишник селекта
+
+            // Получаем элемент селекта
+            const sampleSelect = document.querySelector(SELECT_ID);
+            // Получаем все инпуты, которые относятся к этому селекту:
+            const inputs = document.querySelectorAll(`[data-select="${SELECT_ID}"]`)
+
+            // Добавляем событие на изменение выбора в селекте
+            sampleSelect.addEventListener('change', function(e) {
+                const optionValue = e.currentTarget.value; // Получаем выбранное значение
+
+                /*
+                    Перебираем все связанные с селектом инпуты, если опция не выбрана в селекте,
+                    то скрываем инпут иначе отображаем
+                 */
+                inputs.forEach((input) => {
+                    if (input.dataset.option === optionValue) {
+                        input.removeAttribute('hidden')
+                    } else {
+                        input.setAttribute('hidden', '')
+                    }
+                })
+            })
+        })
+    </script>
+
+    <form class="form">
+        <fieldset>
+            <legend>Форма</legend>
+            <label for="sampleSelect">Выбор</label>
+            <select class="form__select" id="sampleSelect">
+                <option selected disabled>Выберите вариант</option>
+                <option value="fieldGroup1">Первая группа</option>
+                <option value="fieldGroup2">Вторая группа</option>
+                <option value="fieldGroup3">Третья группа</option>
+            </select>
+
+            <!-- data-select это параметр в котором мы пишем айдишник нашего селекта(связываем), data-option это опция, которая должна быть выбрана -->
+            <label>1 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup1" hidden></label>
+                       <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup3" hidden><br>
+
+
+            <label>1 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup1" hidden></label><br>
+            <label>2 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup2" hidden></label><br>
+            <label>3 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup3" hidden></label><br>
+        </fieldset>
+    </form>
+</body>
+</html>

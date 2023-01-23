@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form>
+<select>
+    <option>Form 2</option>
+    <option value="дом">дом</option>
+</select>
+    <h1 class=".nedv">Пашет</h1>
+</form>
+
+<script>
+    const select = document.querySelector('.select')
+    select.addEventListener('onchange', function (event) {
+    const eventSelect = event.target;
+    const selectedOption = eventSelect.options[eventSelect.selectedIndex].value
+     if (selectedOption === 'дом') {
+         document.querySelector('.nedv').style.color = "blue"; }
+    })
+
+
+</script>
+</body>
+</html>

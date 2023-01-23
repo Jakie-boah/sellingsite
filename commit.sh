@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-datetime_now=`date +'%Y-%m-%d %H:%M:%S'`
+#datetime_now=`date +'%Y-%m-%d %H:%M:%S'`
 git config --global user.name 'NAME'
 git config --global user.email 'VanoGalen@yandex.ru'
 git add *
-git commit -m "waitin' for front"
+git commit -m "95% of form, waiting for fornt and done"
 git branch -M main
 git remote add origin https://github.com/Jakie-boah/sellingsite.git
 git push -u origin main

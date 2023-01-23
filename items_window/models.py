@@ -25,7 +25,7 @@ class Item(models.Model):
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
 
     class Meta:
         verbose_name = 'Объявление'

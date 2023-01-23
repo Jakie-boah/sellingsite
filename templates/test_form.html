@@ -6,20 +6,47 @@
     <title>Add bird</title>
 </head>
 <body>
+ <style>
+        [data-select-option] {
+            display: none;
+        }
+    </style>
+
+
+
+<!--    <form class="form">-->
+<!--        <fieldset>-->
+<!--            <legend>Форма</legend>-->
+<!--            <label for="sampleSelect">Выбор</label>-->
+<!--            <select class="form__select" id="sampleSelect">-->
+<!--                <option selected disabled>Выберите вариант</option>-->
+<!--                <option value="fieldGroup1">Первая группа</option>-->
+<!--                <option value="fieldGroup2">Вторая группа</option>-->
+<!--                <option value="fieldGroup3">Третья группа</option>-->
+<!--            </select>-->
+
+<!--            &lt;!&ndash; data-select это параметр в котором мы пишем айдишник нашего селекта(связываем), data-option это опция, которая должна быть выбрана &ndash;&gt;-->
+<!--            <label>1 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup1" hidden></label><br>-->
+<!--            <label>1 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup1" hidden></label><br>-->
+<!--            <label>2 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup2" hidden></label><br>-->
+<!--            <label>3 группа: <input type="text" placeholder="FieldGroup1" data-select="#sampleSelect" data-option="fieldGroup3" hidden></label><br>-->
+<!--        </fieldset>-->
+<!--    </form>-->
     <h1>Add a new bird</h1>
-    <form id="form-container" method="POST">
+    <form id="form-container" method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in postForm %}
         {{ field }} <br />
         {% endfor %}
+
         {{formset.management_form}}
         {% for form in formset %}
         <div class="bird-form">
-        {{form.as_p}}
+        {{form}}
         </div>
         {% endfor %}
-        <button id="add-form" type="button">Add Another Bird</button>
-        <button type="submit">Create Birds</button>
+        <button id="add-form" type="button">Добавить изображение</button>
+        <button type="submit">Создать обьявление</button>
     </form>
 
 
@@ -43,7 +70,35 @@
             container.insertBefore(newForm, addButton)
 
             totalForms.setAttribute('value', `${formNum+1}`)
-        }
+        };
+        // Ждем когда вся страница загрузится
+        document.addEventListener('DOMContentLoaded', function () {
+            const SELECT_ID = '#sampleSelect'; // айдишник селекта
+
+            // Получаем элемент селекта
+            const sampleSelect = document.querySelector(SELECT_ID);
+            // Получаем все инпуты, которые относятся к этому селекту:
+            const inputs = document.querySelectorAll(`[data-select="${SELECT_ID}"]`)
+
+            // Добавляем событие на изменение выбора в селекте
+            sampleSelect.addEventListener('change', function(e) {
+                const optionValue = e.currentTarget.value; // Получаем выбранное значение
+
+                /*
+                    Перебираем все связанные с селектом инпуты, если опция не выбрана в селекте,
+                    то скрываем инпут иначе отображаем
+                 */
+                inputs.forEach((input) => {
+                    if (input.dataset.option === optionValue) {
+                        input.removeAttribute('hidden')
+                    } else {
+                        input.setAttribute('hidden', '')
+                    }
+                })
+            })
+        })
+
     </script>
+
     </body>
 </html>
