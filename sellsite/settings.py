@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'items_window.apps.ItemsWindowConfig',
     'handlers.apps.HandlersConfig',
     'users.apps.UsersConfig',
-    'render.apps.RenderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
