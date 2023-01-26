@@ -6,7 +6,6 @@ type_choices = (
 )
 
 item_type_choices = (
-    ('---', '---'),
     ("flat", "Квартира"),
     ("house", "Дом"),
     ("land", "Участок"),

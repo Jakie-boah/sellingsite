@@ -19,7 +19,7 @@ class Item(models.Model):
     total_floors = models.IntegerField(verbose_name='Этажей всего', null=True, blank=True)
     material = models.CharField(verbose_name='Материал стен', choices=material_choices, max_length=100)
     total_surface = models.IntegerField(verbose_name='Площадь общая', null=True, blank=True)
-    livin_surface = models.IntegerField(verbose_name='Площадь живая', null=True, blank=True)
+    livin_surface = models.IntegerField(verbose_name='Площадь жилая', null=True, blank=True)
     price = models.IntegerField(verbose_name='Стоимость', null=True, blank=True)
     trade = models.BooleanField(verbose_name='Возможность обмена', default=False)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
@@ -36,4 +36,11 @@ class Images(models.Model):
     post = models.ForeignKey(Item, default=None, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='items_img/',
                               verbose_name='Image')
+    active = models.BooleanField(editable=False, default=False, blank=True, null=True)
 
+    def __str__(self):
+        return str(self.post)
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'

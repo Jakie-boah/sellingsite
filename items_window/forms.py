@@ -1,104 +1,166 @@
 from django import forms
 from .models import Item, Images
-from phonenumber_field.formfields import PhoneNumberField
-from items_window.handler import type_choices, item_type_choices
-from geodata.models import Region
+from items_window.handler import material_choices
 
 
 class ItemForm(forms.ModelForm):
-    type = forms.CharField(max_length=50, label='Тип',
-                           widget=forms.Select(choices=type_choices))
-
-    item_type = forms.CharField(max_length=50, label='Тип объекта',
-                                widget=forms.Select(attrs={
-                                'id': 'sampleSelect'
-                                }, choices=item_type_choices))
     com_floor = forms.IntegerField(required=False, label='Этаж',
-                               widget=forms.NumberInput(attrs={
-                                   'placeholder': 'Этаж',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'com',
-                                   'attribute': 'hidden'
-                               }))
+
+                                   widget=forms.NumberInput(attrs={
+                                       'class': 'form-control',
+                                       'placeholder': 'Этаж',
+                                       'data-select': '#sampleSelect',
+                                       'data-option': 'com',
+                                       'attribute': 'hidden'
+                                   }))
     flat_floor = forms.IntegerField(required=False, label='Этаж',
-                               widget=forms.NumberInput(attrs={
-                                   'placeholder': 'Этаж',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'flat',
-                                   'attribute': 'hidden'
-                               }))
+                                    widget=forms.NumberInput(attrs={
+                                        'class': 'form-control',
+                                        'placeholder': 'Этаж',
+                                        'data-select': '#sampleSelect',
+                                        'data-option': 'flat',
+                                        'attribute': 'hidden'
+                                    }))
 
     house_total_floor = forms.IntegerField(required=False, label='Этажей всего',
-                                     widget=forms.NumberInput(attrs={
-                                         'placeholder': 'Этажей всего',
+                                           widget=forms.NumberInput(attrs={
+                                               'class': 'form-control',
+                                               'placeholder': 'Этажей всего',
+                                               'data-select': '#sampleSelect',
+                                               'data-option': 'house',
+                                               'attribute': 'hidden'
+                                           }))
+    com_total_floor = forms.IntegerField(required=False, label='Этажей всего',
+                                         widget=forms.NumberInput(attrs={
+                                             'class': 'form-control',
+                                             'placeholder': 'Этажей всего',
+                                             'data-select': '#sampleSelect',
+                                             'data-option': 'com',
+                                             'attribute': 'hidden'
+                                         }))
+    flat_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+                                    widget=forms.Select(attrs={
+                                        'class': 'form-select',
+                                        'placeholder': 'Материал стен',
+                                        'data-select': '#sampleSelect',
+                                        'data-option': 'flat',
+                                        'attribute': 'hidden'
+                                    }, choices=material_choices))
+    house_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+                                     widget=forms.Select(attrs={
+                                         'class': 'form-select',
+                                         'placeholder': 'Материал стен',
                                          'data-select': '#sampleSelect',
                                          'data-option': 'house',
                                          'attribute': 'hidden'
-                                     }))
-    com_total_floor = forms.IntegerField(required=False, label='Этажей всего',
-                                     widget=forms.NumberInput(attrs={
-                                         'placeholder': 'Этажей всего',
-                                         'data-select': '#sampleSelect',
-                                         'data-option': 'com',
-                                         'attribute': 'hidden'
-                                     }))
-    flat_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                               widget=forms.Select(attrs={
-                                   'placeholder': 'Материал стен',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'flat',
-                                   'attribute': 'hidden'
-                               }))
-    house_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                               widget=forms.Select(attrs={
-                                   'placeholder': 'Материал стен',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'house',
-                                   'attribute': 'hidden'
-                               }))
+                                     }, choices=material_choices))
     garage_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                               widget=forms.Select(attrs={
-                                   'placeholder': 'Материал стен',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'garage',
-                                   'attribute': 'hidden'
-                               }))
+                                      widget=forms.Select(attrs={
+                                          'class': 'form-select',
+                                          'placeholder': 'Материал стен',
+                                          'data-select': '#sampleSelect',
+                                          'data-option': 'garage',
+                                          'attribute': 'hidden'
+                                      }, choices=material_choices))
     com_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                               widget=forms.Select(attrs={
-                                   'placeholder': 'Материал стен',
-                                   'data-select': '#sampleSelect',
-                                   'data-option': 'com',
-                                   'attribute': 'hidden'
-                               }))
-    total_surface = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Общая площадь'}),
-                                       label='Общая площадь')
+                                   widget=forms.Select(attrs={
+                                       'class': 'form-select',
+                                       'placeholder': 'Материал стен',
+                                       'data-select': '#sampleSelect',
+                                       'data-option': 'com',
+                                       'attribute': 'hidden'
+                                   }, choices=material_choices))
     flat_livin_surface = forms.IntegerField(required=False, label='Жилая площадь',
-                                       widget=forms.NumberInput(attrs={
-                                           'placeholder': 'Жилая площадь',
-                                           'data-select': '#sampleSelect',
-                                           'data-option': 'flat',
-                                           'attribute': 'hidden'
-                                       }))
+                                            widget=forms.NumberInput(attrs={
+                                                'class': 'form-control',
+                                                'placeholder': 'Жилая площадь',
+                                                'data-select': '#sampleSelect',
+                                                'data-option': 'flat',
+                                                'attribute': 'hidden'
+                                            }))
     house_livin_surface = forms.IntegerField(required=False, label='Жилая площадь',
-                                       widget=forms.NumberInput(attrs={
-                                           'placeholder': 'Жилая площадь',
-                                           'data-select': '#sampleSelect',
-                                           'data-option': 'house',
-                                           'attribute': 'hidden'
-                                       }))
-    price = forms.IntegerField(label='Цена')
-
-    trade = forms.BooleanField(label='Возможность обмена',
-                               widget=forms.CheckboxInput)
-    description = forms.CharField(label='Описание', widget=forms.Textarea)
+                                             widget=forms.NumberInput(attrs={
+                                                 'class': 'form-control',
+                                                 'placeholder': 'Жилая площадь',
+                                                 'data-select': '#sampleSelect',
+                                                 'data-option': 'house',
+                                                 'attribute': 'hidden'
+                                             }))
 
     class Meta:
         model = Item
-        fields = ['phone_number', 'region', 'city', 'street']
+        fields = ['type', 'item_type', 'phone_number', 'region', 'city',
+                  'street', 'trade', 'price', 'description', 'total_surface']
+
+    def __init__(self, *args, **kwargs):
+        super(ItemForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'id': 'sampleSelect2'
+        })
+
+        self.fields['item_type'].widget.attrs \
+            .update({
+            'id': 'sampleSelect',
+            'class': 'form-select mb-3'
+        })
+
+        self.fields['region'].widget.attrs \
+            .update({
+            'class': 'form-select mb-3',
+
+        })
+
+        self.fields['city'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'placeholder': 'Город'
+        })
+
+        self.fields['street'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'placeholder': 'Улица'
+        })
+
+        self.fields['phone_number'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'value': '+7',
+            'placeholder': 'Номер телефона'
+
+        })
+
+        self.fields['trade'].widget.attrs \
+            .update({
+            'class': 'form-check-input',
+        })
+
+        self.fields['price'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'placeholder': 'Цена'
+        })
+
+        self.fields['description'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'style': 'height: 100px',
+            'placeholder': 'Описание'
+        })
+        self.fields['total_surface'].widget.attrs \
+            .update({
+            'placeholder': 'Общая площадь',
+            'class': 'form-control'
+        })
 
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(label='Image')
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        'class': 'bird-form form-control form-control-img'
+    }))
+
     class Meta:
         model = Images
-        fields = ('image', )
+        fields = ('image',)

@@ -9,7 +9,7 @@
         <p class="lead text-muted"></p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Краткое описание компании </font>
           <br>
           <div class="d-lg-block">
-          <a href=""class="btn btn-primary btn-lg buton"><font style="vertical-align: inherit;"><i class="fa-solid fa-plus"></i> Создать объявление</font></a>
+          <a href="{% url 'make_one' %}" class="btn btn-primary btn-lg buton"><font style="vertical-align: inherit;"><i class="fa-solid fa-plus"></i> Создать объявление</font></a>
           </div>
         </font>
       </div>
@@ -19,7 +19,9 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+        {% for i in items %}
         <div class="col">
+
           <div class="card shadow-sm">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
               <div class="carousel-indicators">
@@ -27,14 +29,25 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
+
               <div class="carousel-inner">
+                {% for j in images %}
+              {% if i.id == j.post.id %}
+                  {% if j.active %}
                 <div class="carousel-item active" >
-                  <img src='{% static "img/photo-2.jpg" %}' class="d-block w-100" alt="photo">
+                  <img src='{{ j.image.url }}' class="d-block w-100" alt="photo">
                 </div>
+                {% else %}
                 <div class="carousel-item">
-                  <img src="{% static 'img/photo-2.jpg' %}"  class="d-block w-100" alt="photo">
+                  <img src="{{ j.image.url }}" class="d-block w-100" alt="photo">
+                </div> {% endif %}
+              {% endif %}
+              {% endfor %}
                 </div>
-              </div>
+
+
+
+
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -46,15 +59,19 @@
             </div>
             <div class="card-body obj">
 
-              <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карточка со вспомогательным текстом ниже, как естественное введение в дополнительный контент. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
+              <p class="card-text"><font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">{{ i.description }}
+                </font>
+                <font style="vertical-align: inherit;"></font></font></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="" type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></a>
+                  <a href="{% url 'item' i.id %}" type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+
+        </div>{% endfor %}
       </div>
     </div>
   </div>

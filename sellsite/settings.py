@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3g9a4gbw=hkk!sg6*pkbqm8-+=j_ed6c8ueg$1&awznhz-gfwa'
-
+SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-3g9a4gbw=hkk!sg6*pkbqm8-+=j_ed6c8ueg$1&awznhz-gfwa')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', 'True'))
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, '127.0.0.1']
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 
 # Application definition

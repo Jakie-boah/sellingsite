@@ -15,14 +15,21 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
+
               <div class="carousel-inner" style="width: 35 rem; height: 40rem">
+                  {% for i in images %}
+                  {% if i.active %}
                 <div class="carousel-item active">
-                  <img src="{% static 'img/photo-2.jpg' %}" class="d-block w-100" alt="photo" style="width: 35 rem; height: 40rem">
+                  <img src="{{ i.image.url }}" class="d-block w-100" alt="photo" style="width: 35 rem; height: 40rem">
                 </div>
+
+
                 <div class="carousel-item">
-                  <img src="{% static 'img/photo-2.jpg' %}"  class="d-block w-100" alt="photo" style="width: 35 rem; height: 40rem">
-                </div>
+                  <img src="{{ i.image.url }}"  class="d-block w-100" alt="photo" style="width: 35 rem; height: 40rem">
+                </div>{% endif %}
+                 {% endfor %}
               </div>
+
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -34,33 +41,23 @@
             </div>
             <div class="card-body obj">
               <h4 class="card-title"><b>Описание: </b></h4>
-              <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">Лот: 064771.  Уникальное предложение в районе Золотой мили в историческом центре Москвы.
-
-В квартире (230 кв. м.) выполнена дизайнерская отделка с элементами лофт. Планировкой предусмотрено 4-5 спален, гостиная, 2 санузла. Высота потолка составляет 4,0 м. Высокий уровень инсоляции за счет остекления по периметру и больших окон, французские балкончики, мраморные широкие подоконники 1 м., дубовый пол.
-
- Трёхэтажный одноподъездный кирпичный дом, частично жилой.
-Возможность перевода помещений в апартаменты, так как потенциал применения помещения разнообразен: под жилье, офис, апарт-отель, галерея или другие различные варианты, есть возможность покупки всего третьего этажа (2 квартиры).
-
-Бывшая усадьба Нарышкиных  Воейковых после реконструкции сохранила свой исторический фасад. Всего в особняке 4 квартиры. Первые этажи занимают торговые помещения.
-Современные инженерные системы. Бесперебойная система энергоснабжения. Профессиональная управляющая компания. Круглосуточная охрана, электронная система доступа.
-
-В пешей доступности м. Боровицкая и Кропоткинская. Особняк расположен в 200-х м. от Кремля, 500 м. от Бульварного кольца.
-
-Окружение здания составляют: Храм Христа Спасителя, Государственный музей изобразительных искусств им. Пушкина, галерея Ильи Глазунова, Российская государственная библиотека им. Ленина, бизнес-центры Знаменка и Военторг. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
+              <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">{{ item.description }} </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
             </div>
             <div class="osn-c">
             <div class="container">
                 <div class="card" style="display: flex; flex-direction: row; justify-content: flex-start">
                     <div class="card-body">
-                        <h5 class="card-title">230m</h5>
+                        <h5 class="card-title">{{ item.total_surface }}m</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Общая площадь </h6>
                     </div>
+                    {% if item.floor %}
                     <div class="card-body">
-                        <h5 class="card-title">3 из 3</h5>
+                        <h5 class="card-title">{{item.floor}}</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Этаж</h6>
                     </div>
+                    {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">184 000 000</h5>
+                        <h5 class="card-title">{{item.price}}</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Стоимость</h6>
                     </div>
                 </div>
@@ -98,25 +95,25 @@
                                 <div class="card-subtitle">
                                     <th scope="row">Регион</th>
                                 </div>
-                                    <td>Россия</td>
+                                    <td>{{item.region}}</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Город</th>
                                 </div>
-                                    <td>Москва</td>
+                                    <td>{{item.city}}</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Улица</th>
                                 </div>
-                                    <td>ул. Тверского</td>
+                                    <td>{{item.street}}</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Стоимость</th>
                                 </div>
-                                    <td>184 000 000р.</td>
+                                    <td>{{item.price}}р.</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">
@@ -142,45 +139,53 @@
         <div class="container">
             <div class="card" style="width: 50rem; margin-left: 7rem">
                 <div class="card-body">
-                    <h3 class="card-title" style="margin-bottom: 3rem">О доме</h3>
+                    <h3 class="card-title" style="margin-bottom: 3rem">Подробная инфо</h3>
                     <table class="table">
                         <tbody>
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Тип</th>
                                 </div>
-                                    <td>Вторичка</td>
+                                    <td>{{item.item_type}}</td>
                             </tr>
+                            {% if item.material %}
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Материал стен</th>
                                 </div>
-                                    <td>Кирпичные</td>
+                                    <td>{{item.material}}</td>
                             </tr>
+                            {% endif %}
+                            {% if item.floor %}
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Этаж</th>
                                 </div>
-                                    <td>3</td>
+                                    <td>{{item.floor}}</td>
                             </tr>
+                            {% endif %}
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row"> Площадь общая</th>
                                 </div>
-                                    <td>230м квад.</td>
+                                    <td>{{item.total_surface}}м квад.</td>
                             </tr>
+                            {% if item.total_floors%}
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Всего этажей</th>
                                 </div>
-                                    <td>3</td>
+                                    <td>{{ item.total_floors }}</td>
                             </tr>
+                            {% endif %}
+                            {% if item.livin_surface %}
                             <tr>
                                 <div class="card-subtitle">
-                                    <th scope="row">Живая площадь</th>
+                                    <th scope="row">Жилая площадь</th>
                                 </div>
-                                    <td>210 м. квад.</td>
+                                    <td>{{item.livin_surface}} м. квад.</td>
                             </tr>
+                        {% endif %}
                         </tbody>
                     </table>
                     <div class="card" style="display: flex; flex-direction: row; justify-content: center">

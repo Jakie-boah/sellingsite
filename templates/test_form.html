@@ -41,15 +41,65 @@
 
         {{formset.management_form}}
         {% for form in formset %}
+
+
         <div class="bird-form">
         {{form}}
         </div>
         {% endfor %}
+
         <button id="add-form" type="button">Добавить изображение</button>
         <button type="submit">Создать обьявление</button>
     </form>
 
+<script>
+       let birdForm = document.querySelectorAll(".bird-form")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-form")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
 
+        let formNum = birdForm.length-1
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e){
+            e.preventDefault()
+
+            let newForm = birdForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, addButton)
+
+            totalForms.setAttribute('value', `${formNum+1}`)
+        };
+        // Ждем когда вся страница загрузится
+        document.addEventListener('DOMContentLoaded', function () {
+            const SELECT_ID = '#sampleSelect'; // айдишник селекта
+
+            // Получаем элемент селекта
+            const sampleSelect = document.querySelector(SELECT_ID);
+            // Получаем все инпуты, которые относятся к этому селекту:
+            const inputs = document.querySelectorAll(`[data-select="${SELECT_ID}"]`)
+
+            // Добавляем событие на изменение выбора в селекте
+            sampleSelect.addEventListener('change', function(e) {
+                const optionValue = e.currentTarget.value; // Получаем выбранное значение
+
+                /*
+                    Перебираем все связанные с селектом инпуты, если опция не выбрана в селекте,
+                    то скрываем инпут иначе отображаем
+                 */
+                inputs.forEach((input) => {
+                    if (input.dataset.option === optionValue) {
+                        input.removeAttribute('hidden')
+                    } else {
+                        input.setAttribute('hidden', '')
+                    }
+                })
+            })
+        })
+</script>
     <script>
         let birdForm = document.querySelectorAll(".bird-form")
         let container = document.querySelector("#form-container")

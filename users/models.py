@@ -13,7 +13,7 @@ class UserProfile(AbstractUser):
     password = models.CharField(verbose_name='Пароль', max_length=100, blank=True, null=True)
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'email']
 
     def __str__(self):
         return self.username
