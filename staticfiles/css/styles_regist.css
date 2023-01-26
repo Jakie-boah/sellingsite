@@ -1,0 +1,16 @@
+.container_1 {
+    width: 400px;
+    height: 400px;
+    margin: 100px 0px 0px 550px;
+}
+h1 {
+    position: relative;
+    text-align: center
+}
+.regist-input{
+    margin-bottom: 10px;
+    align-items: start;
+    text-align: left
+}
+
+

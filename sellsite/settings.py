@@ -26,7 +26,6 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', 'True'))
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
 ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, '127.0.0.1']
-FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 
 # Application definition
@@ -40,7 +39,7 @@ CITIES_LIGHT_INCLUDE_CITY_TYPES = ['ADMD']
 
 INSTALLED_APPS = [
     'cities_light',
-    'geodata',
+    'geodata.apps.GeodataConfig',
     'items_window.apps.ItemsWindowConfig',
     'handlers.apps.HandlersConfig',
     'users.apps.UsersConfig',
