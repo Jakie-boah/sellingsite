@@ -1,10 +1,6 @@
-from django.shortcuts import render, redirect
-from django.utils.crypto import get_random_string
-from .form import *
-from loguru import logger
-from django.contrib import messages
-from django.contrib.auth import login
-from .models import UserProfile
+
+from django.contrib.auth import logout
+from .account import *
 # Create your views here.
 
 
@@ -23,6 +19,7 @@ def register(request):
                 login(request, user)
                 logger.info('Зареган новый пользователь')
                 messages.success(request, 'Зареган новый пользователь')
+                return redirect('index')
             else:
                 logger.error('Ошибка')
 
@@ -33,7 +30,7 @@ def register(request):
         'form': form,
     }
 
-    return render(request, './register.html', params)
+    return render(request, './auth/register.html', params)
 
 
 def log_in(request):
@@ -46,8 +43,7 @@ def log_in(request):
                 user = UserProfile.objects.filter(phone_number=form.cleaned_data['login']).first()
                 if user is not None and user.password == form.cleaned_data['password']:
                     login(request, user)
-                    logger.success('нашел. зашел')
-                    messages.success(request, 'нашел. зашел')
+                    return redirect('index')
 
                 elif user.password != form.cleaned_data['password']:
                     messages.error(request, 'Ошибка в пароле')
@@ -60,6 +56,9 @@ def log_in(request):
         'form': form
     }
 
-    return render(request, './login.html', params)
+    return render(request, './auth/login.html', params)
 
 
+def log_out(request):
+    logout(request)
+    return redirect('index')

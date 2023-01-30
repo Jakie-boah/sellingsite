@@ -23,11 +23,14 @@ from users import views as auth_url
 from items_window import views as it_url
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('item<int:item_id>', item, name='item'),
     path('register', auth_url.register, name='register'),
     path('login', auth_url.log_in, name='login'),
+    path('logout', auth_url.log_out, name='logout'),
+    path('account', auth_url.account, name='account'),
     path('make_one', it_url.make_one, name='make_one'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,9 +2,28 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from .handler import *
 from geodata.models import Region
+from django.db.models import Q
 #from cities_light.models import Region
 
+
 # Create your models here.
+class PostManager(models.Manager):
+    def search(self, query=None):
+        qs = self.get_queryset()
+        if query is not None:
+            or_lookup = (Q(type__icontains=query) |
+                         Q(item_type__icontains=query) |
+                         Q(city__icontains=query) |
+                         Q(floor__icontains=query) |
+                         Q(total_floors__icontains=query) |
+                         Q(material__icontains=query) |
+                         Q(total_surface__icontains=query) |
+                         Q(livin_surface__icontains=query) |
+                         Q(price__icontains=query) |
+                         Q(trade__icontains=query) |
+                         Q(description__icontains=query))
+            qs = qs.filter(or_lookup).distinct()
+        return qs
 
 
 class Item(models.Model):
@@ -23,6 +42,10 @@ class Item(models.Model):
     price = models.IntegerField(verbose_name='Стоимость', null=True, blank=True)
     trade = models.BooleanField(verbose_name='Возможность обмена', default=False)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    public = models.BooleanField(verbose_name='Опубликовать?', default=False, null=True, blank=True)
+    banned = models.BooleanField(verbose_name='Заблокирован', default=False, null=True, blank=True, editable=False)
+
+    objects = PostManager()
 
     def __str__(self):
         return str(self.pk)

@@ -15,15 +15,27 @@
       </div>
     </div>
   </section>
+  <form method='GET' class='' action='.'>
+
+        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
+            <span class="input-group-addon cfe-nav" style='color:#000'>
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+        </div>
+
+    </form>
 
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
         {% for i in items %}
+          {% if i.public and not i.banned %}
+
         <div class="col">
 
           <div class="card shadow-sm">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+            <div id="carouselExampleIndicators{{i.id}}" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -42,17 +54,17 @@
                   <img src="{{ j.image.url }}" class="d-block w-100" alt="photo">
                 </div> {% endif %}
               {% endif %}
-              {% endfor %}
+{% endfor %}
                 </div>
 
 
 
 
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{i.id}}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{i.id}}" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
@@ -71,7 +83,9 @@
             </div>
           </div>
 
-        </div>{% endfor %}
+        </div>
+          {% endif %}
+          {% endfor %}
       </div>
     </div>
   </div>

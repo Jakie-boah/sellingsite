@@ -1,34 +1,60 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from items_window.models import Item, Images
 from loguru import logger
+from users.models import Favourites
+from django.contrib import messages
+from handlers.models import Report
 
 
 def index(request):
     items = Item.objects.all()
     images = Images.objects.all()
+
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query = request.GET.get('q')
+        if query is not None:
+            items = Item.objects.search(query)
+
     params = {
         'items': items,
         'images': images
     }
-    for i in items:
-        logger.info(i.id)
-        for j in images:
-            logger.info(j.post)
-            if int(i.id) == int(j.post.id):
-                logger.info(j.image.url)
-
     return render(request, './index.html', params)
 
 
 def item(request, item_id):
+
     item = Item.objects.filter(id=item_id).first()
-    images = Images.objects.filter(post=item).all()
-    # logger.info(item.description)
-    for i in images:
-        logger.info(i)
+    images = Images.objects.filter(post__id__contains=item.id).all()
+
+    check_on_fav = bool(Favourites.objects.filter(user=request.user,
+                                                  item=item).first())
+    check_on_rep = bool(Report.objects.filter(user=request.user,
+                                              item=item).first())
+    if request.method == 'POST':
+
+        if request.POST['action'] == 'Объявление в избранное':
+            new_fav = Favourites(user=request.user,
+                                 item=item)
+            new_fav.save()
+            messages.success(request, 'Объявление успешно добавлено в избранное')
+            logger.success('Объявление успешно добавлено в избранное')
+            return redirect('item', item_id)
+
+        elif request.POST['action'] == 'Пожаловаться':
+            new_rep = Report(user=request.user,
+                             item=item,
+                             report_text=request.POST['comment'])
+            new_rep.save()
+            messages.success(request, 'Репорт отправлен')
+            logger.success('Репорт отправлен')
+            return redirect('item', item_id)
+
     params = {
         'item': item,
-        'images': images
+        'images': images,
+        'check_on_fav': check_on_fav,
+        'check_on_rep': check_on_rep
     }
     return render(request, './object.html', params)
 

@@ -8,11 +8,8 @@ from loguru import logger
 
 
 def make_one(request):
-    # extra_questions = get_questions(request)
-    # ItemFormSet = formset_factory(ItemForm, extra=0)
 
     ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=3)
-    # 'extra' means the number of photos that you can upload   ^
     if request.method == 'POST':
 
         postForm = ItemForm(request.POST)
@@ -50,8 +47,7 @@ def make_one(request):
                 post_form.save()
                 koll = 0
                 for form in formset.cleaned_data:
-                    # this helps to not crash if the user
-                    # do not upload all the photos
+
                     if form:
                         image = form['image']
                         if koll == 0:
@@ -61,15 +57,19 @@ def make_one(request):
                             photo = Images(post=post_form, image=image)
 
                         photo.save()
-                # use django messages framework
+
                 messages.success(request,
-                                 "Yeeew, check it out on the home page!")
+                                 "")
+
+                # send_message() будет отправлять уведомление о создании нового объявления
+
                 return HttpResponseRedirect("/")
             else:
                 print(postForm.errors, formset.errors)
     else:
         postForm = ItemForm(request.POST, initial={'item_type': 1})
         formset = ImageFormSet(queryset=Images.objects.none())
+
     return render(request, './make.html',
                   {'postForm': postForm, 'formset': formset})
 

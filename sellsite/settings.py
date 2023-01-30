@@ -38,6 +38,7 @@ CITIES_LIGHT_INCLUDE_COUNTRIES = ['RU']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['ADMD']
 
 INSTALLED_APPS = [
+    'blacklist',
     'cities_light',
     'geodata.apps.GeodataConfig',
     'items_window.apps.ItemsWindowConfig',
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'blacklist.middleware.BlacklistMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

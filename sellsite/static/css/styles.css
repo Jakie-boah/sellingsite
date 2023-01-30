@@ -123,6 +123,9 @@ a:hover, a:focus {
 
 }
 
+.chk-lb {
+    margin-bottom: 1rem;
+}
 .type{
     width: 55px
 }
@@ -136,4 +139,74 @@ a:hover, a:focus {
 .txtFront{
     text-align: center;
 
+}
+
+
+.container-c{
+    margin-top: 109px;
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.clicker{
+     position: static;
+}
+.clk{
+    display: inline-block;
+    border-size: 1.8rem;
+    width: 13rem;
+    height: 3.9rem;
+    margin-bottom: 0.1rem;
+    background-color: #fff;
+    margin-left: 1.2rem;
+    text-align: center:
+
+}
+
+.clk:hover, .clk:focus{
+    border: 0.2rem solid;
+    background-color: white;
+    border-color: yellow;
+    transform: translate3d(20px,0,0);
+
+}
+
+#div1{
+    position: absolute;
+    margin-top: inherit;
+    margin-left: 100px;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#div2{
+    position: absolute;
+    margin-top: -64px;
+    margin-left: 100px;
+    width: 600px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#div3{
+    position: absolute;
+    margin-top: -128px;
+    margin-left: 100px;
+    width: 600px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.box, .clk{
+    display: none;
+}
+
+.clk:focus ~ .box{
+    display: inline-block;
 }
