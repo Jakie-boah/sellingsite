@@ -1,10 +1,10 @@
 {%include "header.html"%}
-
+<style></style>
 
     <div class="container-c">
         <h2>Личный кабинет</h2>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Анкетные данные" type="button">
+            <input class="btn knopka btn-sm knopka" value="Анкетные данные" type="button">
             <div class="box" id="div1">
                 <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 1rem">Личные данные пользователя</h5>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Избранное" type="button">
+            <input class="knopka btn btn-sm clk" value="Избранное" type="button">
             <div class="box" id="div2">
                 {% for i in favourites %}
                 <h1> {{ i.item.item_type }}</h1>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Другое" type="button">
+            <input class="knopka btn btn-sm clk" value="Другое" type="button">
             <div class="box" id="div3">
 
             </div>

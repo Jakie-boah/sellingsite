@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+def test(request):
+    return render(request, './index3.html')
+
 @login_required(login_url='login')
 def account(request):
     favourites = Favourites.objects.filter(user=request.user).all()
@@ -17,6 +20,6 @@ def account(request):
         'favourites': favourites,
     }
 
-    return render(request, './cabinet2.html', params)
+    return render(request, './cabinet1.html', params)
 
 

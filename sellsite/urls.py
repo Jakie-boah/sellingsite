@@ -31,6 +31,7 @@ urlpatterns = [
     path('login', auth_url.log_in, name='login'),
     path('logout', auth_url.log_out, name='logout'),
     path('account', auth_url.account, name='account'),
+    path('test', auth_url.test, name='tets'),
     path('make_one', it_url.make_one, name='make_one'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,26 @@
+<div class="input-group mt-5 form-group mx-auto searchId" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+                <div class="dropdown">
+                <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
+                    Фильтр
+                </a>
+                    <ul class="dropdown-menu filtrDrop" aria-labelledby="filtrDrop" style="height: 319px; width: 315px">
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <li class="list-item" style="margin-left: 8px; font-size: 14px">
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="flat">Тип недвижимости</label>
+                                        {{ item_filter.form.item_type }}
+
+                                    </div>
+                                </li>
+
+                                </div>
+                             <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            </div>
+                    </ul>
+                </div>
+                <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+
+            </div>

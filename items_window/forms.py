@@ -11,7 +11,8 @@ class ItemForm(forms.ModelForm):
                                        'placeholder': 'Этаж',
                                        'data-select': '#sampleSelect',
                                        'data-option': 'com',
-                                       'attribute': 'hidden'
+                                       'attribute': 'hidden',
+                                       'min': '0'
                                    }))
     flat_floor = forms.IntegerField(required=False, label='Этаж',
                                     widget=forms.NumberInput(attrs={
@@ -19,7 +20,8 @@ class ItemForm(forms.ModelForm):
                                         'placeholder': 'Этаж',
                                         'data-select': '#sampleSelect',
                                         'data-option': 'flat',
-                                        'attribute': 'hidden'
+                                        'attribute': 'hidden',
+                                        'min': '0'
                                     }))
 
     house_total_floor = forms.IntegerField(required=False, label='Этажей всего',
@@ -28,7 +30,8 @@ class ItemForm(forms.ModelForm):
                                                'placeholder': 'Этажей всего',
                                                'data-select': '#sampleSelect',
                                                'data-option': 'house',
-                                               'attribute': 'hidden'
+                                               'attribute': 'hidden',
+                                               'min': '0'
                                            }))
     com_total_floor = forms.IntegerField(required=False, label='Этажей всего',
                                          widget=forms.NumberInput(attrs={
@@ -36,7 +39,8 @@ class ItemForm(forms.ModelForm):
                                              'placeholder': 'Этажей всего',
                                              'data-select': '#sampleSelect',
                                              'data-option': 'com',
-                                             'attribute': 'hidden'
+                                             'attribute': 'hidden',
+                                             'min': '0'
                                          }))
     flat_material = forms.CharField(required=False, max_length=50, label='Материал стен',
                                     widget=forms.Select(attrs={
@@ -76,7 +80,9 @@ class ItemForm(forms.ModelForm):
                                                 'placeholder': 'Жилая площадь',
                                                 'data-select': '#sampleSelect',
                                                 'data-option': 'flat',
-                                                'attribute': 'hidden'
+                                                'attribute': 'hidden',
+                                                'min': '0',
+                                                'step': "0.01"
                                             }))
     house_livin_surface = forms.IntegerField(required=False, label='Жилая площадь',
                                              widget=forms.NumberInput(attrs={
@@ -84,7 +90,9 @@ class ItemForm(forms.ModelForm):
                                                  'placeholder': 'Жилая площадь',
                                                  'data-select': '#sampleSelect',
                                                  'data-option': 'house',
-                                                 'attribute': 'hidden'
+                                                 'attribute': 'hidden',
+                                                 'min': '0',
+                                                 'step': "0.01"
                                              }))
 
     class Meta:
@@ -140,7 +148,8 @@ class ItemForm(forms.ModelForm):
         self.fields['price'].widget.attrs \
             .update({
             'class': 'form-control',
-            'placeholder': 'Цена'
+            'placeholder': 'Цена',
+            'min': '0'
         })
 
         self.fields['description'].widget.attrs \
@@ -152,7 +161,9 @@ class ItemForm(forms.ModelForm):
         self.fields['total_surface'].widget.attrs \
             .update({
             'placeholder': 'Общая площадь',
-            'class': 'form-control'
+            'class': 'form-control',
+            'min': '0',
+            'step': "0.01"
         })
 
 

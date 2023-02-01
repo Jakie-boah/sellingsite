@@ -83,16 +83,6 @@
                 </div>
             </div>
             </div>
-            <div class="container">
-                <div class="card" style="display: flex; flex-direction: row; justify-content: flex-start">
-                    <div class="card-body">
-                        <a href=""><i class="fa fa-heart" style="color: #C21010"></i></a>
-                    </div>
-                    <div class="card-body">
-                        <a href=""><i class="fa-solid fa-triangle-exclamation" style="color: #FFEA20"></i></a>
-                    </div>
-                </div>
-            </div>
           </div>
         </div>
       </div>
@@ -208,7 +198,7 @@
                         {% endif %}
                         </tbody>
                     </table>
-                    <div class="card" style="display: flex; flex-direction: row; justify-content: center">
+                     <div class="card" style="display: flex; flex-direction: row; justify-content: start">
 
 
 
@@ -217,15 +207,15 @@
 
                         <form method="post" action="">
                             {% csrf_token %}
-                    <div class="container overflow-hidden text-center" style="margin: 5%">
+                    <div class="container overflow-hidden" style="margin: 5%">
 
-                        <div class="col-12" >
+                        <div class="col col-12 mb-3">
                         {% if check_on_fav %}
                         <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled><i class="fa fa-heart"></i>
                         {% else %}
                         <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary"><i class="fa fa-heart"></i>
                         {% endif %}</div>
-                          <div class="col-12">
+                          <div class="col col-12 mb-3">
                         {% if check_on_rep %}
                         <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
                                       Вы уже пожаловались на это объявление
@@ -251,6 +241,7 @@
                         </form>
                         {% endif %}
                 </div>
+
                 </div>
             </div>
         </div>

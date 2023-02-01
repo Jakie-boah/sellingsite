@@ -1,41 +1,29 @@
 {%include "header.html"%}
 
-    <div class="container">
-        <div class="couple">
-        <div class="card c-1">
-            <img id="avatar" src="" alt="your-photo">
 
-            <div class="card-body">
-                <a type="button" class="btn btn-outline-primary ank-c">Редактировать фото</a>
-                <a href="" type="button" class="btn btn-outline-dark ank-c">Избранное</a>
-                <a href="" type="button" class="btn btn-outline-dark ank-c">Создать объявление</a>
-
-            </div>
-        <br>
-        </div>
-            <div class="card c-2">
-            <div class="card-body">
-                <h5 class="card-title">Личные данные пользователя</h5>
+    <div class="container-c">
+        <h2>Личный кабинет</h2>
+        <div class="clicker">
+            <input class="btn btn-outline-secondary btn-sm clk" value="Анкетные данные" type="button">
+            <div class="box" id="div1">
+                <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 1rem">Личные данные пользователя</h5>
                     {% if user.is_authenticated %}
-                <table class="table">
+
+                    <table class="table">
                     <tbody>
                     <tr>
                             <th scope="row">Имя</th>
-                            <td>{{ user.name }}</td>
+                            <td>{{ user.username }}</td>
                         </tr>
                     <tr>
-                            <th scope="row">Фамилия</th>
+                        <th scope="row">Фамилия</th>
                             <td>{{ user.usersurname }}</td>
                         </tr>
-                    <tr>
+                        <tr>
                             <th scope="row">Номер телефона</th>
                             <td>{{ user.phone_number }}</td>
                         </tr>
-                     <tr>
-                            <th scope="row">Почта</th>
-                            <td>{{ user.email }}</td>
-                        </tr>
-
                         <tr>
                             <th scope="row">Текущий баланс</th>
                             <td>185.000</td>
@@ -44,18 +32,28 @@
                             <th scope="row">Тариф</th>
                             <td>тарифище</td>
                         </tr>
-                        <tr>
-                            <th scope="row"><a href="" type="button" class="btn btn-outline-primary">История операций</a></th>
-                        </tr>
                     </tbody>
                 </table>
-                {% endif %}
+                    {% endif %}
+
+            </div>
             </div>
         </div>
+        <div class="clicker">
+            <input class="btn btn-outline-secondary btn-sm clk" value="Избранное" type="button">
+            <div class="box" id="div2">
+                {% for i in favourites %}
+                <h1> {{ i.item.item_type }}</h1>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="clicker">
+            <input class="btn btn-outline-secondary btn-sm clk" value="Другое" type="button">
+            <div class="box" id="div3">
+
+            </div>
         </div>
     </div>
-
-
 
 
 {%include "footer.html"%}

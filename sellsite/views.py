@@ -4,19 +4,17 @@ from loguru import logger
 from users.models import Favourites
 from django.contrib import messages
 from handlers.models import Report
+from .filter import ListingFilter
 
 
 def index(request):
     items = Item.objects.all()
     images = Images.objects.all()
 
-    if ('q' in request.GET) and request.GET['q'].strip():
-        query = request.GET.get('q')
-        if query is not None:
-            items = Item.objects.search(query)
+    item_filter = ListingFilter(request.GET, queryset=items)
 
     params = {
-        'items': items,
+        'item_filter': item_filter,
         'images': images
     }
     return render(request, './index.html', params)
@@ -26,11 +24,15 @@ def item(request, item_id):
 
     item = Item.objects.filter(id=item_id).first()
     images = Images.objects.filter(post__id__contains=item.id).all()
-
-    check_on_fav = bool(Favourites.objects.filter(user=request.user,
+    try:
+        check_on_fav = bool(Favourites.objects.filter(user=request.user,
+                                                      item=item).first())
+        check_on_rep = bool(Report.objects.filter(user=request.user,
                                                   item=item).first())
-    check_on_rep = bool(Report.objects.filter(user=request.user,
-                                              item=item).first())
+    except TypeError:
+        check_on_fav = False
+        check_on_rep = False
+
     if request.method == 'POST':
 
         if request.POST['action'] == 'Объявление в избранное':

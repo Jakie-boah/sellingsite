@@ -1,35 +1,29 @@
 {% load static %}
+
 {% include "header.html" %}
 <main>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Название Компании</font></font></h1>
-        <p class="lead text-muted"></p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Краткое описание компании </font>
-          <br>
-          <div class="d-lg-block">
-          <a href="{% url 'make_one' %}" class="btn btn-primary btn-lg buton"><font style="vertical-align: inherit;"><i class="fa-solid fa-plus"></i> Создать объявление</font></a>
-          </div>
-        </font>
+  <div class=" py-5 container">
+    <div class="row py-5 label-com">
+      <div class="col-lg-6 col-md-8 mx-auto" >
+        <h1 class="fw-light mb-3">Название Компании</h1>
+
+        <form method='GET' class='' action='.'>
+            {% include "filter.html" %}
+        </form>
+
       </div>
-    </div>
-  </section>
-  <form method='GET' class='' action='.'>
+  </div>
+  </div>
 
-        <div class="input-group form-group-no-border mx-auto" style="margin-bottom: 0px; font-size: 32px;">
-            <span class="input-group-addon cfe-nav" style='color:#000'>
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </span>
-            <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
-        </div>
 
-    </form>
+
+
 
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-        {% for i in items %}
+        {% for i in item_filter.qs %}
           {% if i.public and not i.banned %}
 
         <div class="col">
@@ -85,7 +79,10 @@
 
         </div>
           {% endif %}
-          {% endfor %}
+         {% empty %}
+                <li>Извините, ничего не найдено</li>
+            {% endfor %}
+
       </div>
     </div>
   </div>
