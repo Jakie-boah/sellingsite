@@ -74,7 +74,7 @@ class ItemForm(forms.ModelForm):
                                        'data-option': 'com',
                                        'attribute': 'hidden'
                                    }, choices=material_choices))
-    flat_livin_surface = forms.IntegerField(required=False, label='Жилая площадь',
+    flat_livin_surface = forms.FloatField(required=False, label='Жилая площадь',
                                             widget=forms.NumberInput(attrs={
                                                 'class': 'form-control',
                                                 'placeholder': 'Жилая площадь',
@@ -84,7 +84,7 @@ class ItemForm(forms.ModelForm):
                                                 'min': '0',
                                                 'step': "0.01"
                                             }))
-    house_livin_surface = forms.IntegerField(required=False, label='Жилая площадь',
+    house_livin_surface = forms.FloatField(required=False, label='Жилая площадь',
                                              widget=forms.NumberInput(attrs={
                                                  'class': 'form-control',
                                                  'placeholder': 'Жилая площадь',

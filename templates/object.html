@@ -236,10 +236,10 @@
                                 <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
 
                             </div></div>
-                        </div>
+                        </div>{% endif %}
                     </div>
-                        </form>
-                        {% endif %}
+
+
                 </div>
 
                 </div>
@@ -250,7 +250,33 @@
 
 </section>
 <br>
+<article>
+    <div class="container-fluid" style="background-color: #FFFDF6">
+        <div class="row">
+            <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
+            <div class="col-lg-8 col-md-10 mx
+            -auto comment">
 
 
+
+ {% for i in comments %}
+              <ul class="commentList" style="margin-left: 15rem">
+                <li>
+                    <div class="commentText" >
+                      <p>{{ i.text }}</p>
+                      <span class="date sub-text">{{ i.username }}</span>
+                      <hr>
+                    </div>
+                </li>
+              </ul>
+                 {% endfor %}
+            </div>
+          </div>
+        <textarea style="width: 40rem; margin-left: 15rem" name="com_text" class="form-control" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
+        <input type="submit" name='action' value="Прокомментировать" class="btn btn-sm btn-outline-secondary" style="margin-left:15rem; margin-top: 1rem; margin-bottom: 1rem">
+
+    </div>
+</article>
+</form>
 {%include "footer.html"%}
 

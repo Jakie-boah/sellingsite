@@ -83,6 +83,39 @@ h1 {
     text-align: center
 }
 
+.comment {
+    padding-top: 20px;
+}
+
+
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+
+.commentText p {
+    margin:0;
+    font-size: 18px;
+
+}
+hr {
+    width: 217px
+}
+.sub-text {
+    color:#aaa;
+    font-family: "Open Sans", san-serif;
+    font-size:14px;
+}
+
 .regist-input{
     margin-bottom: 10px;
     align-items: start;

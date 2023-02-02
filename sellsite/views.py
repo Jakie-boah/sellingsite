@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
-from items_window.models import Item, Images
+from items_window.models import *
 from loguru import logger
 from users.models import Favourites
 from django.contrib import messages
 from handlers.models import Report
 from .filter import ListingFilter
-
-
 
 
 def index(request):
@@ -26,6 +24,7 @@ def item(request, item_id):
 
     item = Item.objects.filter(id=item_id).first()
     images = Images.objects.filter(post__id__contains=item.id).all()
+    comments = Comments.objects.filter(post__id__contains=item.id).all()
     try:
         check_on_fav = bool(Favourites.objects.filter(user=request.user,
                                                       item=item).first())
@@ -54,9 +53,18 @@ def item(request, item_id):
             logger.success('Репорт отправлен')
             return redirect('item', item_id)
 
+        elif request.POST['action'] == 'Прокомментировать':
+            new_com = Comments(post=item,
+                               username=request.user.username,
+                               text=request.POST['com_text'])
+            new_com.save()
+            messages.success(request, 'Репорт отправлен')
+            logger.success('Ком отправлен')
+            return redirect('item', item_id)
     params = {
         'item': item,
         'images': images,
+        'comments': comments,
         'check_on_fav': check_on_fav,
         'check_on_rep': check_on_rep
     }

@@ -30,7 +30,6 @@ class Item(models.Model):
     public = models.BooleanField(verbose_name='Опубликовать?', default=False, null=True, blank=True)
     banned = models.BooleanField(verbose_name='Заблокирован', default=False, null=True, blank=True, editable=False)
 
-
     def __str__(self):
         return str(self.pk)
 
@@ -51,3 +50,19 @@ class Images(models.Model):
     class Meta:
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения'
+
+
+class Comments(models.Model):
+    post = models.ForeignKey(Item, default=None, on_delete=models.PROTECT)
+    username = models.CharField(verbose_name='Имя', max_length=25, blank=True, null=True)
+    text = models.TextField(verbose_name='Текст комментария', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.post)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+
+
