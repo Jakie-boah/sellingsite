@@ -7,6 +7,8 @@ from handlers.models import Report
 from .filter import ListingFilter
 
 
+
+
 def index(request):
     items = Item.objects.all()
     images = Images.objects.all()

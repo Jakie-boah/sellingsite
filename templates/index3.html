@@ -1,157 +1,36 @@
 
-{%include "header.html"%}
-
-    <div class="product-area pt-30 pb-20">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="tabs">
-                        <input type="radio" id="tab1" name="tab-control" checked="">
-                        <input type="radio" id="tab2" name="tab-control">
-                        <input type="radio" id="tab3" name="tab-control">
-                        <ul>
-                            <li><label for="tab1" role="button"><span>Топ магазины</span></label></li>
-                            <li><label for="tab2" role="button"><span>Популярные товары</span></label></li>
-                            <li><label for="tab3" role="button"><span>Новые магазины</span></label></li>
-                        </ul>
-
-                        <div class="slider">
-                            <div class="indicator"></div>
-                        </div>
-
-                        <div class="content pt-30">
-                            <section>
-                                                                    <div id="topshops" class="tab-pane active show" role="tabpanel">
-                                        <div class="row">
 
 
+<form action="">
+        <div id="div1" hidden>1</div>
+        <div id="div2" hidden>2</div>
+        <div id="div3" hidden>3</div>
 
-                                            <div class="col-6 col-md-2 col-sm-4 mb-45">
-            <a href="">
-            <div class="single-product-wrap">
-                <div class="store-image">
-                    <img src="" alt="Store logo">
-                </div>
-                <div class="product_desc">
-                    <div class="product_desc_info">
-                        <div class="product-review">
-                            <h5 class="sells-count">
-                                продаж
-                            </h5>
-                            <div class="rating-box">
-                                <ul class="rating">
-                                    <span class="score"><span style="width: 94%"></span></span>
-                                    
-                                </ul>
-                            </div>
-                        </div>
-                        <h5 class="sells-count d-flex justify-content-between mt-1">
-                            <span>Депозит</span>
-                            <span>
-                                 <i class="fa fa-btc"></i>
-                            </span>
-                        </h5>
-                        <h4 class="product_name text-truncate text-center"></h4>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
+        <button id="btn1">1 див</button>
+        <button id="btn2">2 див</button>
+        <button id="btn3">3 див</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            btn1.addEventListener('click', function (event) {
+                event.preventDefault();
+                div1.hidden = !div1.hidden;
+                div2.hidden = true;
+                div3.hidden = true;
+            })
 
+            btn2.addEventListener('click', function (event) {
+                event.preventDefault();
+                div2.hidden = !div2.hidden;
+                div1.hidden = true;
+                div3.hidden = true;
+            })
 
-                                                          </section>
-
-                            <section>
-                                <div id="bestsellers" class="tab-pane" role="tabpanel">
-                                        <div class="row">
-
-
-
-                                            <div class="col-6 col-md-3 col-lg-2 col-sm-4 mb-30">
-
-                <a href=""></a><div class="single-product-wrap"><a href="">
-                        <div class="product-image">
-                            <img src="" alt="Product Image">
-                        </div>
-                        </a><div class="product_desc"><a href="">
-                            </a><div class="product_desc_info"><a href="">
-                                <h4 class="product_name text-truncate text-center" title="">
-                                </h4>
-                                </a><h4 class="product_name text-truncate text-center mt-0 pt-0"><a href="">
-                                    <img width="13px" src="static/Blacksprut_files/crown.svg" alt="">
-                                    </a><a href="{{ i.store }}"></a>
-                                </h4>
-                                <div class="price-box text-center">
-
-                                                                    <div class="price-line">
-                                            <span class="new-price">от <strong> ₽</strong> /
-
-                                            </span>
-                                        </div>
-                                        <span class="sub-price">
-                                            ~0.00017306
-                                            <i class="fa fa-btc" aria-hidden="true"></i>
-                                        </span>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-        
-    </div>
-
-
-                                                                                    </div>
-
-                                    </div>
-                                                            </section>
-
-                            <section>
-                                                                    <div id="new-shops" class="tab-pane" role="tabpanel">
-                                        <div class="row">
-
-                                      <div class="col-6 col-md-2 col-sm-4 mb-md-0 mb-4">
-    <a href="">
-        <div class="single-product-wrap">
-            <div class="store-image">
-                <img src="" alt="Store logo">
-                
-            </div>
-            <div class="product_desc">
-                <div class="product_desc_info">
-                    <div class="product-review">
-                        <h5 class="sells-count">
-                            продаж
-                        </h5>
-                        <div class="rating-box">
-                            <ul class="rating">
-                                <span class="score"><span style="width: 0%"></span></span>
-                            </ul>
-                        </div>
-                    </div>
-                    <h4 class="product_name text-truncate text-center"></h4>
-                </div>
-            </div>
-        </div>
-    </a>
-</div>
-
-
-
-                                                                                    </div>
-
-                                    </div>
-                                                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-    
-
-                </div>
-
+            btn3.addEventListener('click', function (event) {
+                event.preventDefault();
+                div3.hidden = !div3.hidden;
+                div1.hidden = true;
+                div2.hidden = true;
+            })
+        })
+</script>

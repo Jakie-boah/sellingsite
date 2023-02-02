@@ -1,14 +1,11 @@
 *{
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .header{
     position: static;
 }
 
-h1,h2,h3,h4,h5{
-    font-family: 'Ubuntu', sans-serif;
-}
 
 .label-com{
     vertical-align: inherit;
@@ -51,7 +48,7 @@ img{
 
 .filtrDrop{
     height: 319px;
-    width: 315px;
+    width: 235px;
 }
 
 .fltr{
@@ -212,8 +209,7 @@ h1 {
     text-align: center;
     border-color: #ced4da;
     border-radius: 4px;
-    font-family: 'Work Sans', sans-serif;
-
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -222,10 +218,11 @@ h1 {
     background-color: white;
     border-color: #FFF323;
     transform: translate3d(20px,0,0);
-
 }
 
+
 #div1{
+    display: inline-block;
     position: absolute;
     margin-top: inherit;
     margin-left: 100px;
@@ -237,29 +234,29 @@ h1 {
 }
 
 #div2{
+    display: inline-block;
     position: absolute;
     margin-top: -64px;
     margin-left: 100px;
     width: 800px;
     height: 450px;
+    background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
 #div3{
+    display: inline-block;
     position: absolute;
     margin-top: -128px;
     margin-left: 100px;
     width: 800px;
     height: 450px;
+    background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
-.box, .knopka{
-    display: none;
-}
 
-.knopka:focus ~ .box{
-    display: inline-block;
-}
+
+
