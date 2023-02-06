@@ -1,11 +1,27 @@
 {%include "header.html"%}
+<style>
 
+.knopka{
+    display: inline-block;
+    border-size: 1.8rem;
+    width: 13rem;
+    height: 3.9rem;
+    margin-bottom: 0.1rem;
+    background-color: #fff;
+    margin-left: 1.2rem;
+    text-align: center;
+    border-color: #ced4da;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+}
 
+</style>
+<form action="">
     <div class="container-c">
         <h2>Личный кабинет</h2>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Анкетные данные" type="button">
-            <div class="box" id="div1">
+            <input type="button" class="knopka" id="btn1" value="Анкетные данные">
+                <div class="box" id="div1" hidden>
                 <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 1rem">Личные данные пользователя</h5>
                     {% if user.is_authenticated %}
@@ -40,20 +56,46 @@
             </div>
         </div>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Избранное" type="button">
-            <div class="box" id="div2">
-                {% for i in favourites %}
-                <h1> {{ i.item.item_type }}</h1>
-                {% endfor %}
-            </div>
+            <input type="button" class="knopka" id="btn2" value="Избранное">
+            <div class="box" id="div2" hidden>
+                <div>
+                    <h5>Избранное</h5>
+                    {% for i in favourites %}
+                    <h1> {{ i.item.item_type }}</h1>
+                    {% endfor %}
+                </div>
         </div>
         <div class="clicker">
-            <input class="btn btn-outline-secondary btn-sm clk" value="Другое" type="button">
-            <div class="box" id="div3">
+            <input type="button" class="knopka" id="btn3" value="Другое">
+            <div class="box" id="div3" hidden>
 
             </div>
         </div>
     </div>
+</form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            btn1.addEventListener('click', function (event) {
+                event.preventDefault();
+                div1.hidden = !div1.hidden;
+                div2.hidden = true;
+                div3.hidden = true;
+            })
 
+            btn2.addEventListener('click', function (event) {
+                event.preventDefault();
+                div2.hidden = !div2.hidden;
+                div1.hidden = true;
+                div3.hidden = true;
+            })
+
+            btn3.addEventListener('click', function (event) {
+                event.preventDefault();
+                div3.hidden = !div3.hidden;
+                div1.hidden = true;
+                div2.hidden = true;
+            })
+        })
+    </script>
 
 {%include "footer.html"%}

@@ -6,7 +6,8 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>Недвижимость </title>
-
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 
@@ -49,7 +50,7 @@
           </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="">Контакты</a>
+            <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'make_one' %}" class="nav-link"><i class="fa-solid fa-plus"></i> Создать объявление</a>

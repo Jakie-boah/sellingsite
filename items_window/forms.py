@@ -94,11 +94,47 @@ class ItemForm(forms.ModelForm):
                                                  'min': '0',
                                                  'step': "0.01"
                                              }))
+    buy_price = forms.IntegerField(required=False, label='Жилая площадь',
+                                   widget=forms.NumberInput(attrs={
+                                        'class': 'form-control',
+                                        'placeholder': 'Цена',
+                                        'min': '0',
+                                        'data-select': '#sampleSelect2',
+                                        'data-option': 'buy',
+                                        'attribute': 'hidden',
+                                    }))
+    sell_price = forms.IntegerField(required=False, label='Жилая площадь',
+                                   widget=forms.NumberInput(attrs={
+                                       'class': 'form-control',
+                                       'placeholder': 'Цена',
+                                       'min': '0',
+                                       'data-select': '#sampleSelect2',
+                                       'data-option': 'sell',
+                                       'attribute': 'hidden',
+                                   }))
+    rent_price = forms.IntegerField(required=False, label='Жилая площадь',
+                                    widget=forms.NumberInput(attrs={
+                                        'class': 'form-control',
+                                        'placeholder': 'Цена',
+                                        'min': '0',
+                                        'data-select': '#sampleSelect2',
+                                        'data-option': 'rent',
+                                        'attribute': 'hidden',
+                                    }))
+    take_price = forms.IntegerField(required=False, label='Жилая площадь',
+                                    widget=forms.NumberInput(attrs={
+                                        'class': 'form-control',
+                                        'placeholder': 'Цена',
+                                        'min': '0',
+                                        'data-select': '#sampleSelect2',
+                                        'data-option': 'take',
+                                        'attribute': 'hidden',
+                                    }))
 
     class Meta:
         model = Item
         fields = ['type', 'item_type', 'phone_number', 'region', 'city',
-                  'street', 'trade', 'price', 'description', 'total_surface']
+                  'street', 'trade', 'description', 'total_surface']
 
     def __init__(self, *args, **kwargs):
         super(ItemForm, self).__init__(*args, **kwargs)
@@ -136,20 +172,14 @@ class ItemForm(forms.ModelForm):
             .update({
             'class': 'form-control',
             'value': '+7',
-            'placeholder': 'Номер телефона'
+            'placeholder': 'Номер телефона',
+            'maxlength': "12"
 
         })
 
         self.fields['trade'].widget.attrs \
             .update({
-            'class': 'form-check-input',
-        })
-
-        self.fields['price'].widget.attrs \
-            .update({
-            'class': 'form-control',
-            'placeholder': 'Цена',
-            'min': '0'
+            'class': 'form-checkbox-control',
         })
 
         self.fields['description'].widget.attrs \
@@ -169,7 +199,8 @@ class ItemForm(forms.ModelForm):
 
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={
-        'class': 'bird-form form-control form-control-img'
+        'class': 'bird-form form-control form-control-img',
+        'onchange': "showFile(this)",
     }))
 
     class Meta:

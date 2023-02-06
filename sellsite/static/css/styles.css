@@ -70,7 +70,7 @@ img{
 
 .search-submit{
     background-color: #fff;
-    border-left-color: #ced4da
+    border-left-color: #000;
 }
 .container_1 {
     width: 400px;
@@ -87,6 +87,13 @@ h1 {
     padding-top: 20px;
 }
 
+#krasna{
+
+    display: flex;
+    justify-content: center;
+    width: 360px;
+    margin-left: 36%
+}
 
 .commentList {
     padding:0;
@@ -107,6 +114,11 @@ h1 {
     font-size: 18px;
 
 }
+.add-ch{
+    display: inline;
+    margin-right: 36px
+
+}
 hr {
     width: 217px
 }
@@ -121,6 +133,20 @@ hr {
     align-items: start;
     text-align: left
 }
+
+
+#csbmtend{
+    width: 42.5rem;
+    margin-left: 25rem
+}
+
+
+#sbtend{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 25rem
+}
+
 
 .bd-placeholder-img {
         font-size: 1.125rem;
@@ -290,6 +316,84 @@ hr {
 
 }
 
+.card-contact{
+    margin-left: 90px;
+    margin-top: -10%
+}
+.cb-contact{
+    padding: 50px
+}
+
+.input-file-row {
+	display: inline-block;
+}
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file-btn {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #4592AF;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+
+.input-file-text {
+	padding: 0 10px;
+	line-height: 40px;
+	display: inline-block;
+}
+
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+.input-file input[type=file]:focus + .input-file-btn {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
 
 
+.input-file:hover .input-file-btn {
+	background-color: #366ED8;
+}
 
+.input-file:active .input-file-btn {
+	background-color: #366ED8;
+}
+
+.input-file input[type=file]:disabled + .input-file-btn {
+	background-color: #eee;
+}
+
+#input-file-text-remove {
+	color: red;
+	text-decoration: none;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+#input-file-text-remove2{
+    color: red;
+	text-decoration: none;
+	display: inline-block;
+	margin-left: 5px;
+}

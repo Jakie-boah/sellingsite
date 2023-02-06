@@ -5,6 +5,19 @@
 
   <div class=" py-5 container">
     <div class="row py-5 label-com">
+ {% if messages %}
+    {% for message in messages %}
+<ul class="messages">
+
+      <div class="alert alert-danger mb-2 mt-2" id="krasna">
+
+                <p class="mb-0">{{ message }}</p>
+
+      </div>
+
+</ul>
+{% endfor %}
+      {% endif %}
       <div class="col-lg-6 col-md-8 mx-auto" >
         <h1 class="fw-light mb-3">Название Компании</h1>
 

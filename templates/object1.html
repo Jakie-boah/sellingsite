@@ -67,7 +67,7 @@
             <div class="container">
                 <div class="card" style="display: flex; flex-direction: row; justify-content: flex-start">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.total_surface }} м²</h5>
+                        <h5 class="card-title">{{ item.total_surface }}m</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Общая площадь </h6>
                     </div>
                     {% if item.floor %}
@@ -77,7 +77,7 @@
                     </div>
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{item.price}} р.</h5>
+                        <h5 class="card-title">{{item.price}}</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Стоимость</h6>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row">Стоимость</th>
                                 </div>
-                                    <td>{{item.price}} р.</td>
+                                    <td>{{item.price}}р.</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">
@@ -178,7 +178,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row"> Площадь общая</th>
                                 </div>
-                                    <td>{{item.total_surface}} м²</td>
+                                    <td>{{item.total_surface}}м квад.</td>
                             </tr>
                             {% if item.total_floors%}
                             <tr>
@@ -193,7 +193,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row">Жилая площадь</th>
                                 </div>
-                                    <td>{{item.livin_surface}} м²</td>
+                                    <td>{{item.livin_surface}} м. квад.</td>
                             </tr>
                         {% endif %}
                         </tbody>
@@ -207,19 +207,19 @@
 
                         <form method="post" action="">
                             {% csrf_token %}
-                        <div class="container overflow-hidden" style="margin: 5%">
+                    <div class="container overflow-hidden" style="margin: 5%">
 
                         <div class="col col-12 mb-3">
                         {% if check_on_fav %}
-                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled>
+                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled><i class="fa fa-heart"></i>
                         {% else %}
-                        <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary">
+                        <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary"><i class="fa fa-heart"></i>
                         {% endif %}</div>
                           <div class="col col-12 mb-3">
                         {% if check_on_rep %}
                         <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
                                       Вы уже пожаловались на это объявление
-                        </button>
+                                </button>
                         {% else %}
                         <div class="accordion-header" id="flush-faq1">
 
@@ -235,11 +235,10 @@
                                 </div>
                                 <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
 
-                            </div>
-                          </div>
+                            </div></div>
                         </div>{% endif %}
-                        </div>
-                </div>
+                    </div>
+
 
                 </div>
 
@@ -251,10 +250,11 @@
 
 </section>
 <br>
+<article>
     <div class="container-fluid" style="background-color: #FFFDF6">
         <div class="row">
             <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
-            <div style="margin-left: 10rem" class="col-lg-8 col-md-10 mx
+            <div class="col-lg-8 col-md-10 mx
             -auto comment">
 
 
@@ -272,8 +272,10 @@
                  {% endfor %}
             </div>
           </div>
-        <textarea name="com_text" class="form-control" id="csbmtend" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
-        <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
+        <textarea style="width: 40rem; margin-left: 15rem" name="com_text" class="form-control" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
+        <input type="submit" name='action' value="Прокомментировать" class="btn btn-sm btn-outline-secondary" style="margin-left:15rem; margin-top: 1rem; margin-bottom: 1rem">
+
     </div>
+</article>
 </form>
 {%include "footer.html"%}

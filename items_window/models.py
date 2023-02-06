@@ -10,7 +10,7 @@ class Item(models.Model):
 
     type = models.CharField(max_length=15, choices=type_choices, verbose_name='Тип')
     item_type = models.CharField(max_length=50, choices=item_type_choices, verbose_name='Тип объекта')
-    phone_number = PhoneNumberField()
+    phone_number = PhoneNumberField(region='RU', verbose_name='Номер телефона')
     region = models.ForeignKey(Region, on_delete=models.PROTECT, verbose_name='Регион')
     city = models.CharField(verbose_name='Город', max_length=50)
     street = models.CharField(verbose_name='Улица', max_length=50)

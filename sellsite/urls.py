@@ -21,6 +21,8 @@ from django.urls import path
 from .views import *
 from users import views as auth_url
 from items_window import views as it_url
+from handlers import views as hand_url
+
 
 urlpatterns = [
 
@@ -31,7 +33,9 @@ urlpatterns = [
     path('login', auth_url.log_in, name='login'),
     path('logout', auth_url.log_out, name='logout'),
     path('account', auth_url.account, name='account'),
-    path('test', auth_url.test, name='tets'),
+    path('test', it_url.test, name='tets'),
     path('make_one', it_url.make_one, name='make_one'),
+    path('contacts', hand_url.contacts, name='contacts'),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
