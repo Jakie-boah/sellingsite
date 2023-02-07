@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load humanize %}
 {% include "header.html" %}
 
 
@@ -77,7 +77,7 @@
                     </div>
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{item.price}} р.</h5>
+                        <h5 class="card-title">{{ item.price|intcomma }} р.</h5>
                         <h6 class="card-subtitle" style="vertical-align: inherit">Стоимость</h6>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row">Стоимость</th>
                                 </div>
-                                    <td>{{item.price}} р.</td>
+                                    <td>{{ item.price|intcomma }} р.</td>
                             </tr>
                             <tr>
                                 <div class="card-subtitle">

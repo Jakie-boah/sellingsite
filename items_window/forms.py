@@ -198,7 +198,7 @@ class ItemForm(forms.ModelForm):
 
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(widget=forms.FileInput(attrs={
+    image = forms.ImageField(required=False, widget=forms.FileInput(attrs={
         'class': 'bird-form form-control form-control-img',
         'onchange': "showFile(this)",
     }))
@@ -206,3 +206,5 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Images
         fields = ('image',)
+
+

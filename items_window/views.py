@@ -78,12 +78,11 @@ def make_one(request):
     else:
         postForm = ItemForm(request.POST, initial={'item_type': 1})
         formset = ImageFormSet(queryset=Images.objects.none())
-        main_imageForm = ImageForm(request.POST)
+        main_imageForm = ImageForm()
 
     return render(request, './make.html',
                   {'postForm': postForm, 'formset': formset,
                    'main_imageForm': main_imageForm})
-
 
 
 

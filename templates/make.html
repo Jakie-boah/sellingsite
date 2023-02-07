@@ -160,7 +160,7 @@
 
                             </div>
                             <br>
-
+                            {{ formset.management_form }}
                             {% for form in formset %}
                             <div class="images_row bird-form" style="margin: 3%">
 
@@ -252,6 +252,7 @@
 
             totalForms.setAttribute('value', `${formNum+1}`)
         };
+
 
         function showFile(input) {
           const file = input.files[0].name
