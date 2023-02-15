@@ -25,7 +25,7 @@ class UserProfile(AbstractUser):
 
 
 class Favourites(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.PROTECT, verbose_name='Пользователь')
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='Пользователь')
     item = models.ForeignKey(Item, on_delete=models.PROTECT, verbose_name='Объявление')
 
     def __str__(self):
@@ -34,3 +34,16 @@ class Favourites(models.Model):
     class Meta:
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранное'
+
+
+class Comments(models.Model):
+    post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Объявление')
+    user = models.ForeignKey(UserProfile, default=None, on_delete=models.CASCADE, verbose_name='Пользователь')
+    text = models.TextField(verbose_name='Текст комментария', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.post)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

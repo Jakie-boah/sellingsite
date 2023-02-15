@@ -129,7 +129,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row"> Возможность обмена</th>
                                 </div>
-                                    <td>да</td>
+                                    <td>{{ item.trade }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -149,14 +149,14 @@
         <div class="container">
             <div class="card" style="width: 50rem; margin-left: 7rem">
                 <div class="card-body">
-                    <h3 class="card-title" style="margin-bottom: 3rem">Подробная инфо</h3>
+                    <h3 class="card-title" style="margin-bottom: 3rem">Подробная информация</h3>
                     <table class="table">
                         <tbody>
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Тип</th>
                                 </div>
-                                    <td>{{item.item_type}}</td>
+                                   {% validation_on_type %}
                             </tr>
                             {% if item.material %}
                             <tr>
@@ -251,6 +251,7 @@
 
 </section>
 <br>
+                        {% if user.is_authenticated %}
     <div class="container-fluid" style="background-color: #FFFDF6">
         <div class="row">
             <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
@@ -264,7 +265,6 @@
                 <li>
                     <div class="commentText" >
                       <p>{{ i.text }}</p>
-                      <span class="date sub-text">{{ i.username }}</span>
                       <hr>
                     </div>
                 </li>
@@ -275,5 +275,6 @@
         <textarea name="com_text" class="form-control" id="csbmtend" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
         <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
     </div>
+{% endif %}
 </form>
 {%include "footer.html"%}

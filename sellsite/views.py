@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from items_window.models import *
+from items_window.handler import item_type_choices
 from loguru import logger
 from users.models import Favourites
 from django.contrib import messages
@@ -23,14 +24,18 @@ def index(request):
 def item(request, item_id):
 
     item = Item.objects.filter(id=item_id).first()
-    images = Images.objects.filter(post__id__contains=item.id).all()
-    comments = Comments.objects.filter(post__id__contains=item.id).all()
-    try:
+    images = Images.objects.filter(post__id__exact=item_id).all()
+
+    if request.user.is_authenticated:
+
+        comments = Comments.objects.filter(post__id__exact=item_id,
+                                           user__id__exact=request.user.id).all()
         check_on_fav = bool(Favourites.objects.filter(user=request.user,
                                                       item=item).first())
         check_on_rep = bool(Report.objects.filter(user=request.user,
                                                   item=item).first())
-    except TypeError:
+    else:
+        comments = None
         check_on_fav = False
         check_on_rep = False
 

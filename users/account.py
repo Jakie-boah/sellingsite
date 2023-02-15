@@ -1,10 +1,5 @@
-from django.shortcuts import render, redirect
-from django.utils.crypto import get_random_string
-from .form import *
-from loguru import logger
-from django.contrib import messages
-from django.contrib.auth import login
-from .models import UserProfile, Favourites
+from django.shortcuts import render
+from .models import Favourites
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 

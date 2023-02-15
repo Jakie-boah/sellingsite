@@ -4,8 +4,23 @@
   <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-{% if form.errors %}
-    {% for field in form %}
+
+    <div class="container" style="margin-top: 5rem">
+
+        <div class="card-obj">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Создать объявление</h5>
+                     {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ message }}</p>
+            </div>
+    {% endfor %}
+      {% endif %}
+
+{% if postForm.errors %}
+    {% for field in postForm %}
         {% for error in field.errors %}
         <div class="alert alert-danger mb-2 mt-2">
                 <p class="mb-0">{{ error|escape }}</p>
@@ -13,18 +28,12 @@
 
         {% endfor %}
     {% endfor %}
-    {% for error in form.non_field_errors %}
+    {% for error in postForm.non_field_errors %}
         <div class="alert alert-danger mb-2 mt-2">
                 <p class="mb-0">{{ error|escape }}</p>
             </div>
     {% endfor %}
 {% endif %}
-
-    <div class="container" style="margin-top: 5rem">
-        <div class="card-obj">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Создать объявление</h5>
                 <div class="row mt-4" style="display: block; margin-left: 4rem; width: 35rem">
                     <div class="col col-sm-7">
                         <label class="form-label" for="selectReg">Регион</label>
@@ -44,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col col-sm-7">
-                        <label for="sampleSelect2" class="form-label">Тип</label>
+                        <label for="sampleSelect2" class="form-label">Тип объявления</label>
                         {{ postForm.type }}
 
                     </div>
@@ -139,6 +148,12 @@
                             {{ postForm.trade }}
                         </div>
 
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="phone-c mb-3">
+                            <label class="form-label">Основное название</label>
+                            {{ postForm.name }}
+                        </div>
                     </div>
                     <div class="col col-lg-12">
                         <div class="desc-c mb-3">

@@ -8,13 +8,16 @@ class UserForm(forms.ModelForm):
 
     phone_number = PhoneNumberField(required=False, label='Номер телефона',
                                     widget=forms.TextInput(attrs={'placeholder': '+7()..',
-                                                                  'class': 'form-control regist-input'}))
+                                                                  'class': 'form-control regist-input',
+                                                                  'maxlength': "12"}))
     username = forms.CharField(max_length=50, label='Имя', required=False,
                                widget=forms.TextInput(attrs={'placeholder': 'Имя',
-                                                             'class': 'form-control regist-input'}))
+                                                             'class': 'form-control regist-input',
+                                                             'maxlength': "50"}))
     usersurname = forms.CharField(max_length=50, label='Фамилия', required=False,
                                   widget=forms.TextInput(attrs={'placeholder': 'Фамилия',
-                                                                'class': 'form-control regist-input'}))
+                                                                'class': 'form-control regist-input',
+                                                                'maxlength': "50"}))
     email = forms.EmailField(error_messages={'invalid': "Допустили ошибку в email"},
                              widget=forms.EmailInput(attrs={'placeholder': 'Адрес почты',
                                                             'class': 'form-control regist-input'}))
@@ -53,10 +56,12 @@ class UserForm(forms.ModelForm):
 class LoginForm(forms.Form):
     login = forms.CharField(max_length=150, required=False, label='Логин',
                             widget=forms.TextInput(attrs={'placeholder': '+7()..',
-                                                          'class': 'form-control regist-input'}))
+                                                          'class': 'form-control regist-input',
+                                                          'maxlength': "12"}))
     password = forms.CharField(max_length=150, required=False,
                                widget=forms.PasswordInput(attrs={'placeholder': 'Пароль',
-                                                                 'class': 'form-control regist-input'}))
+                                                                 'class': 'form-control regist-input',
+                                                                 'maxlength': "7"}))
     def clean_login(self):
         login = self.cleaned_data.get('login')
         if not login:
