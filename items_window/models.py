@@ -37,6 +37,10 @@ class Images(models.Model):
     image = models.ImageField(upload_to='items_img/',
                               verbose_name='Image')
     active = models.BooleanField(editable=False, default=False, blank=True, null=True)
+    index_store = models.BooleanField(editable=False, default=False, blank=True, null=True)
+    index_store_2 = models.BooleanField(editable=False, default=False, blank=True, null=True)
+    index_store_3 = models.BooleanField(editable=False, default=False, blank=True, null=True)
+
 
     def __str__(self):
         return str(self.post)

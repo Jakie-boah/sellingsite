@@ -33,7 +33,7 @@ urlpatterns = [
     path('login', auth_url.log_in, name='login'),
     path('logout', auth_url.log_out, name='logout'),
     path('account', auth_url.account, name='account'),
-    path('test', it_url.test, name='tets'),
+    path('test', test, name='test'),
     path('make_one', it_url.make_one, name='make_one'),
     path('contacts', hand_url.contacts, name='contacts'),
 

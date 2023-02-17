@@ -76,5 +76,5 @@ def item(request, item_id):
     return render(request, './object.html', params)
 
 
-
-
+def test(request):
+    return render(request, './test.html')

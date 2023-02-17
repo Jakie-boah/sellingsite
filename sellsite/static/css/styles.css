@@ -397,3 +397,6 @@ hr {
 	display: inline-block;
 	margin-left: 5px;
 }
+.region-select{
+    width: 250px;
+}

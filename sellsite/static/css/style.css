@@ -1,0 +1,74 @@
+.sell-push {
+    display: flex;
+    justify-content: start;
+    margin: 8px 7px 10px 0 px;
+}
+/* это удалить*/
+.container_1{
+    margin-left: 500px;
+    margin-top: 10rem;
+    /* можешь поставить margin-top: 1.5rem;*/
+}
+/*....*/
+
+.block_img {
+    padding: 10px;
+    display: grid;
+    height: 26vh;
+    width: 28vh;
+    grid-gap: 5px;
+    grid-template-areas:
+    "box1 box1"
+    "box2 box3";
+
+}
+.img_box img{
+    height: 100%;
+    width: 100%;
+}
+.img_box_osnov img{
+    border-radius: 30px 0 30px 0;
+}
+.box1 {
+    grid-area: box1;
+}
+.box2 {
+    grid-area: box2;
+}
+.box3 {
+    grid-area: box3;
+}
+.col div a{
+    text-decoration: none;
+    padding: 0px 1px 2px;
+}
+.sub-text{
+    opacity: 0.6
+}
+
+.osnov{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.text{
+    margin-left: 25px;
+}
+.house-push{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5rem;
+}
+.center-push{
+    display: flex;
+    margin-bottom: 2px;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+}
+.sub-push{
+    margin-left: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}

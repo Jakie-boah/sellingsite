@@ -110,7 +110,7 @@ class ItemForm(forms.ModelForm):
     buy_price = forms.IntegerField(required=False, label='Жилая площадь',
                                    error_messages={'invalid': 'Вы пропустили это поле'},
                                    widget=forms.NumberInput(attrs={
-                                        'class': 'form-control',
+                                        'class': 'price form-control',
                                         'placeholder': 'Цена',
                                         'min': '0',
                                         'data-select': '#sampleSelect2',
@@ -120,7 +120,7 @@ class ItemForm(forms.ModelForm):
     sell_price = forms.IntegerField(required=False, label='Жилая площадь',
                                     error_messages={'invalid': 'Вы пропустили это поле'},
                                     widget=forms.NumberInput(attrs={
-                                       'class': 'form-control',
+                                       'class': 'price form-control',
                                        'placeholder': 'Цена',
                                        'min': '0',
                                        'data-select': '#sampleSelect2',
@@ -130,7 +130,7 @@ class ItemForm(forms.ModelForm):
     rent_price = forms.IntegerField(required=False, label='Жилая площадь',
                                     error_messages={'invalid': 'Вы пропустили это поле'},
                                     widget=forms.NumberInput(attrs={
-                                        'class': 'form-control',
+                                        'class': 'price form-control',
                                         'placeholder': 'Цена',
                                         'min': '0',
                                         'data-select': '#sampleSelect2',
@@ -140,7 +140,7 @@ class ItemForm(forms.ModelForm):
     take_price = forms.IntegerField(required=False, label='Жилая площадь',
                                     error_messages={'invalid': 'Вы пропустили это поле'},
                                     widget=forms.NumberInput(attrs={
-                                        'class': 'form-control',
+                                        'class': 'price form-control',
                                         'placeholder': 'Цена',
                                         'min': '0',
                                         'data-select': '#sampleSelect2',
@@ -162,6 +162,10 @@ class ItemForm(forms.ModelForm):
             else:
                 self.fields[f'{field}'].error_messages = {'invalid': 'Не заполненное поле'}
 
+        self.fields['region'].widget.attrs \
+            .update({
+            'class': 'form-control region-select',
+        })
         self.fields['type'].widget.attrs \
             .update({
             'class': 'form-control',
@@ -174,11 +178,6 @@ class ItemForm(forms.ModelForm):
             'class': 'form-select mb-3'
         })
 
-        self.fields['region'].widget.attrs \
-            .update({
-            'class': 'form-select mb-3',
-
-        })
 
         self.fields['city'].widget.attrs \
             .update({
