@@ -204,7 +204,17 @@
             </div>
         </div>
     </div>
-<script>
+
+       <script type="text/javascript">
+
+
+        $("body").on("click", ".DeleteRow", function () {
+            $(this).parents(".images_row").remove();
+        });
+
+
+    </script>
+      <script>
         document.addEventListener('DOMContentLoaded', function () {
             const SELECT_ID = '#sampleSelect'; // айдишник селекта
 
@@ -279,14 +289,4 @@
 
 
     </script>
-       <script type="text/javascript">
-
-
-        $("body").on("click", ".DeleteRow", function () {
-            $(this).parents(".images_row").remove();
-        });
-
-
-    </script>
-
 {%include "footer.html"%}

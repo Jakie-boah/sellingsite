@@ -41,7 +41,6 @@ class Images(models.Model):
     index_store_2 = models.BooleanField(editable=False, default=False, blank=True, null=True)
     index_store_3 = models.BooleanField(editable=False, default=False, blank=True, null=True)
 
-
     def __str__(self):
         return str(self.post)
 

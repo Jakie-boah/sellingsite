@@ -9,13 +9,21 @@
 
 .label-com{
     vertical-align: inherit;
+    margin-top: 74px;
 }
 
 .searchId{
-    margin-bottom: 100px;
+    display: flex;
+    flex-position: row;
+    margin-bottom: 50px;
+    width: 905px;
     font-size: 32px;
     border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.cfe-nav{
+    width:270px;
 }
 img{
     width: 100%;
@@ -57,7 +65,7 @@ img{
     padding: 14.5px;
     color-text: #000;
     background-color: #fff;
-    border-right-color: #ced4da"
+    border-right-color: #ced4da
 }
 
 .list-item {
@@ -88,11 +96,13 @@ h1 {
 }
 
 #krasna{
-
     display: flex;
     justify-content: center;
     width: 360px;
     margin-left: 36%
+}
+.russich{
+    margin-left: -7rem;
 }
 
 .commentList {
@@ -284,7 +294,7 @@ hr {
     display: inline-block;
     position: absolute;
     margin-top: inherit;
-    margin-left: 100px;
+    margin-left: 75px;
     width: 800px;
     height: 450px;
     background-color: #fff;
@@ -296,11 +306,12 @@ hr {
     display: inline-block;
     position: absolute;
     margin-top: -64px;
-    margin-left: 100px;
-    width: 800px;
+    margin-left: 75px;
+    width: 1050px;
     height: 450px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
 
 }
 
@@ -308,7 +319,7 @@ hr {
     display: inline-block;
     position: absolute;
     margin-top: -128px;
-    margin-left: 100px;
+    margin-left: 75px;
     width: 800px;
     height: 450px;
     background-color: #fff;
@@ -399,4 +410,15 @@ hr {
 }
 .region-select{
     width: 250px;
+}
+.izbr{
+    margin-left: 1.5rem;
+    border-radius: 3px;
+    padding: 5px;
+    display: inline;
+    font-size: 17px;
+    border-bottom: 3px solid;
+    background-position: 100%;
+
+
 }

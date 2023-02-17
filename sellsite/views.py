@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from items_window.models import *
 from items_window.handler import item_type_choices
 from loguru import logger
-from users.models import Favourites
+from users.models import Favourites, Comments
 from django.contrib import messages
 from handlers.models import Report
 from .filter import ListingFilter

@@ -14,13 +14,20 @@
 .block_img {
     padding: 10px;
     display: grid;
-    height: 26vh;
-    width: 28vh;
+    height: 20vh;
+    width: 23vh;
     grid-gap: 5px;
     grid-template-areas:
     "box1 box1"
     "box2 box3";
 
+}
+.hr-sell{
+    width: 100%
+}
+
+.block-sell:hover{
+    background-color: #EEEEEE;
 }
 .img_box img{
     height: 100%;
