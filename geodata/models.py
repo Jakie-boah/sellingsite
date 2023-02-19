@@ -20,7 +20,8 @@ class Region(AbstractRegion):
 connect_default_signals(Region)
 
 class SubRegion(AbstractSubRegion):
-    pass
+    def __str__(self):
+        return self.alternate_names
 
 connect_default_signals(SubRegion)
 
