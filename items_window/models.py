@@ -1,7 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from .handler import *
-from geodata.models import Region
+from geodata.models import Region, SubRegion
 
 
 class Item(models.Model):
@@ -10,6 +10,7 @@ class Item(models.Model):
     item_type = models.CharField(max_length=50, choices=item_type_choices, verbose_name='Тип объекта')
     phone_number = PhoneNumberField(region='RU', verbose_name='Номер телефона')
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион')
+    sub_region = models.ForeignKey(SubRegion, on_delete=models.CASCADE, verbose_name='Район', blank=True, null=True)
     city = models.CharField(verbose_name='Город', max_length=50)
     street = models.CharField(verbose_name='Улица', max_length=50)
     floor = models.IntegerField(verbose_name='Этаж', null=True, blank=True)

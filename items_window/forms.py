@@ -142,7 +142,7 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ['type', 'item_type', 'phone_number', 'region', 'city',
+        fields = ['type', 'item_type', 'phone_number', 'region', 'sub_region', 'city',
                   'street', 'trade', 'description', 'total_surface', 'name']
 
     def clean(self):
@@ -166,6 +166,10 @@ class ItemForm(forms.ModelForm):
                 self.fields[f'{field}'].error_messages = {'invalid': f'Вы не заполнили поле {label}'}
 
         self.fields['region'].widget.attrs \
+            .update({
+            'class': 'form-control region-select',
+        })
+        self.fields['sub_region'].widget.attrs \
             .update({
             'class': 'form-control region-select',
         })
