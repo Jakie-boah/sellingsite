@@ -3,4 +3,4 @@ from .models import *
 # Register your models here.
 admin.site.register(BlackList)
 admin.site.register(Report)
-admin.site.register(Contacts)
+admin.site.register(FeedBack)

@@ -15,31 +15,51 @@
 
 
 <div class="container">
+    {% include 'handlers/message_validation.html' %}
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ error|escape }}</p>
+            </div>
+
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ error|escape }}</p>
+            </div>
+    {% endfor %}
+{% endif %}
     <div class="card-obj">
             <div class="card card-contact">
                 <div class="card-body cb-cont">
                     <div class="row">
                         <div class="col col-lg-8 col-md-10 mx-auto">
-                            <form action="." class="">
+                            <form action="{% url 'contacts' %}" method="POST">
+                                {% csrf_token %}
                                 <div class="control-group">
                                   <div class="form-group floating-label-form-group controls">
                                     <label><b>Эл. адрес</b></label>
-                                    <input type="email" class="form-control" placeholder="Введите эл. адрес (включая @,.) " id="email" required data-validation-required-message="Пожалуйста введите почту">
+                                    {{ form.email }}
                                   </div>
                                 </div>
                                 <div class="control-group">
                                   <div class="form-group col-xs-12 floating-label-form-group controls">
                                       <label><b>Номер телефона</b></label>
-                                    <input type="tel" class="form-control" placeholder="Введите номер телефона (+7...)" id="phone" maxlength="50" required data-validation-required-message="Пожалуйста введите номер телефона">
+                                      {{ form.phone_number }}
                                   </div>
                                     <div class="control-group">
                                       <div class="form-group floating-label-form-group controls">
                                         <label><b>Обратная связь</b></label>
-                                        <textarea rows="5" class="form-control" placeholder="Введите текст" id="message" required data-validation-required-message="Пожалуйста введите сообщение"></textarea>
+                                          {{ form.text }}
                                       </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Отправить</button>
                                 </div>
+                                </form>
+
+
                                 <div class="row mt-5">
                                   <div class="col-lg-8 col-md-10 mx-auto">
                                       <ul class="list-inline text-center">
@@ -67,7 +87,7 @@
                                       </ul>
                                   </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>

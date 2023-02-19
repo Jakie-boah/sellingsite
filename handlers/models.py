@@ -43,14 +43,15 @@ class Report(models.Model):
         verbose_name_plural = 'Жалобы'
 
 
-class Contacts(models.Model):
+class FeedBack(models.Model):
 
-    phone_number = PhoneNumberField(region='RU', max_length=12, verbose_name='Номер телефона', blank=True, null=True)
-    email = models.EmailField(verbose_name="Почта", blank=True, null=True)
-    telegram = models.CharField(max_length=50, verbose_name='Телеграм', blank=True, null=True)
-    vk = models.CharField(max_length=50, verbose_name='Вконтакте', blank=True, null=True)
-    insta = models.CharField(max_length=50, verbose_name='Инстаграм', blank=True, null=True)
+    phone_number = PhoneNumberField(region='RU', max_length=12, verbose_name='Номер телефона')
+    email = models.EmailField(verbose_name="Почта")
+    text = models.TextField(verbose_name='Сообщение')
+
+    def __str__(self):
+        return f'Обратная связь от {self.phone_number}'
 
     class Meta:
-        verbose_name = 'Контакты'
-        verbose_name_plural = 'Контакты'
+        verbose_name = 'Обратная связь'
+        verbose_name_plural = 'Обратная связь'
