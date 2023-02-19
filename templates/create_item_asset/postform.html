@@ -1,0 +1,92 @@
+<div class="col col-sm-7">
+                        <label class="form-label">Регион</label>
+                        {{ postForm.region }}
+
+                    </div>
+                    <div class="col col-sm-7">
+                        <div class="city-c mb-3">
+                            <label class="form-label">Город</label>
+                            {{ postForm.city }}
+                        </div>
+                    </div>
+                    <div class="col col-sm-7">
+                        <div class="city-c mb-3">
+                            <label class="form-label">Улица</label>
+                            {{ postForm.street }}
+                        </div>
+                    </div>
+                    <div class="col col-sm-7">
+                        <label class="form-label">Тип объявления</label>
+                        {{ postForm.type }}
+
+                    </div>
+                    <div class="col col-sm-7">
+                        <label class="form-label">Тип объекта</label>
+                        {{ postForm.item_type }}
+                    </div>
+                    <div class="col col-sm-7">
+                        <div class="phone-c mb-3">
+                            <label class="form-label">Номер телефона</label>
+                            {{ postForm.phone_number }}
+                        </div>
+                    </div>
+
+                    <div class="col col-sm-7">
+
+                        <!--ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ ЦЕНЫ-->
+                        {% include 'create_item_asset/postform_handlers/postform_price.html' %}
+
+                    </div>
+
+                    <div class="col col-sm-7">
+
+                        <!--ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ ЭТАЖЕЙ-->
+                        {% include 'create_item_asset/postform_handlers/postform_floor.html' %}
+
+                    </div>
+                    <div class="col col-sm-7">
+
+                        <!--ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ ОБЩЕГО КОЛ-ВА ЭТАЖЕЙ-->
+                        {% include 'create_item_asset/postform_handlers/postform_total_floors.html' %}
+
+                    </div>
+                    <div class="col col-sm-7">
+
+                       <!--ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ МАТЕРИАЛОВ-->
+                        {% include 'create_item_asset/postform_handlers/postform_material.html' %}
+
+                    </div>
+                    <div class="col col-sm-7">
+                        <div class="a-all-c mb-3" >
+                            <label class="form-label">Площадь общая</label>
+                            {{ postForm.total_surface }}
+                        </div>
+
+                    </div>
+                    <div class="col col-sm-7">
+
+                        <!--ДИНАМИЧЕСКОЕ ИЗМЕНЕНИЕ ЖИЛОЙ ПЛОЩАДИ-->
+                        {% include 'create_item_asset/postform_handlers/postform_living_surface.html' %}
+
+                    </div>
+
+                    <div class="col col-sm-7">
+                        <div class="a-all-c mb-3">
+                            <label class="form-check-label add-ch">Возможность обмена</label>
+                            {{ postForm.trade }}
+                        </div>
+
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="phone-c mb-3">
+                            <label class="form-label">Основное название</label>
+                            {{ postForm.name }}
+                        </div>
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="desc-c mb-3">
+                            <label class="form-label">Описание</label>
+                            {{ postForm.description }}
+                        </div>
+
+                    </div>

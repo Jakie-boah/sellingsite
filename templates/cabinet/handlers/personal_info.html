@@ -1,0 +1,31 @@
+<div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 1rem">Личные данные пользователя</h5>
+                    {% if user.is_authenticated %}
+
+                    <table class="table">
+                    <tbody>
+                    <tr>
+                            <th scope="row">Имя</th>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                    <tr>
+                        <th scope="row">Фамилия</th>
+                            <td>{{ user.usersurname }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Номер телефона</th>
+                            <td>{{ user.phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Текущий баланс</th>
+                            <td>185.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Тариф</th>
+                            <td>тарифище</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    {% endif %}
+
+            </div>

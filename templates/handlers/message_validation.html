@@ -1,0 +1,7 @@
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ message }}</p>
+            </div>
+    {% endfor %}
+      {% endif %}

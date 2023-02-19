@@ -1,11 +1,11 @@
 from django import forms
 from .models import Item, Images
 from items_window.handler import material_choices
+from django.core.exceptions import ValidationError
 
 
 class ItemForm(forms.ModelForm):
     com_floor = forms.IntegerField(required=False, label='Этаж',
-                                   error_messages={'invalid': 'Вы пропустили это поле'},
                                    widget=forms.NumberInput(attrs={
                                        'class': 'form-control',
                                        'placeholder': 'Этаж',
@@ -16,7 +16,6 @@ class ItemForm(forms.ModelForm):
                                        'max': '99'
                                    }))
     flat_floor = forms.IntegerField(required=False, label='Этаж',
-                                    error_messages={'invalid': 'Вы пропустили это поле'},
                                     widget=forms.NumberInput(attrs={
                                         'class': 'form-control',
                                         'placeholder': 'Этаж',
@@ -26,9 +25,17 @@ class ItemForm(forms.ModelForm):
                                         'min': '0',
                                         'max': '99'
                                     }))
-
+    flat_total_floor = forms.IntegerField(required=False, label='Этажность дома',
+                                          widget=forms.NumberInput(attrs={
+                                              'class': 'form-control',
+                                              'placeholder': 'Этажность дома',
+                                              'data-select': '#sampleSelect',
+                                              'data-option': 'flat',
+                                              'attribute': 'hidden',
+                                              'min': '0',
+                                              'max': '99'
+                                          }))
     house_total_floor = forms.IntegerField(required=False, label='Этажей всего',
-                                           error_messages={'invalid': 'Вы пропустили это поле'},
                                            widget=forms.NumberInput(attrs={
                                                'class': 'form-control',
                                                'placeholder': 'Этажей всего',
@@ -39,7 +46,6 @@ class ItemForm(forms.ModelForm):
                                                'max': '99'
                                            }))
     com_total_floor = forms.IntegerField(required=False, label='Этажей всего',
-                                         error_messages={'invalid': 'Вы пропустили это поле'},
                                          widget=forms.NumberInput(attrs={
                                              'class': 'form-control',
                                              'placeholder': 'Этажей всего',
@@ -50,7 +56,6 @@ class ItemForm(forms.ModelForm):
                                              'max': '99'
                                          }))
     flat_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                                    error_messages={'invalid': 'Вы пропустили это поле'},
                                     widget=forms.Select(attrs={
                                         'class': 'form-select',
                                         'placeholder': 'Материал стен',
@@ -59,7 +64,6 @@ class ItemForm(forms.ModelForm):
                                         'attribute': 'hidden'
                                     }, choices=material_choices))
     house_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                                     error_messages={'invalid': 'Вы пропустили это поле'},
                                      widget=forms.Select(attrs={
                                          'class': 'form-select',
                                          'placeholder': 'Материал стен',
@@ -68,7 +72,6 @@ class ItemForm(forms.ModelForm):
                                          'attribute': 'hidden'
                                      }, choices=material_choices))
     garage_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                                      error_messages={'invalid': 'Вы пропустили это поле'},
                                       widget=forms.Select(attrs={
                                           'class': 'form-select',
                                           'placeholder': 'Материал стен',
@@ -77,7 +80,6 @@ class ItemForm(forms.ModelForm):
                                           'attribute': 'hidden'
                                       }, choices=material_choices))
     com_material = forms.CharField(required=False, max_length=50, label='Материал стен',
-                                   error_messages={'invalid': 'Вы пропустили это поле'},
                                    widget=forms.Select(attrs={
                                        'class': 'form-select',
                                        'placeholder': 'Материал стен',
@@ -86,72 +88,72 @@ class ItemForm(forms.ModelForm):
                                        'attribute': 'hidden'
                                    }, choices=material_choices))
     flat_livin_surface = forms.FloatField(required=False, label='Жилая площадь',
-                                          error_messages={'invalid': 'Вы пропустили это поле'},
                                           widget=forms.NumberInput(attrs={
-                                                'class': 'form-control',
-                                                'placeholder': 'Жилая площадь',
-                                                'data-select': '#sampleSelect',
-                                                'data-option': 'flat',
-                                                'attribute': 'hidden',
-                                                'min': '0',
-                                                'step': "0.01"
-                                            }))
+                                              'class': 'form-control',
+                                              'placeholder': 'Жилая площадь',
+                                              'data-select': '#sampleSelect',
+                                              'data-option': 'flat',
+                                              'attribute': 'hidden',
+                                              'min': '0',
+                                              'step': "0.01"
+                                          }))
     house_livin_surface = forms.FloatField(required=False, label='Жилая площадь',
-                                           error_messages={'invalid': 'Вы пропустили это поле'},
                                            widget=forms.NumberInput(attrs={
-                                                 'class': 'form-control',
-                                                 'placeholder': 'Жилая площадь',
-                                                 'data-select': '#sampleSelect',
-                                                 'data-option': 'house',
-                                                 'attribute': 'hidden',
-                                                 'min': '0',
-                                                 'step': "0.01"
-                                             }))
-    buy_price = forms.IntegerField(required=False, label='Жилая площадь',
-                                   error_messages={'invalid': 'Вы пропустили это поле'},
-                                   widget=forms.NumberInput(attrs={
-                                        'class': 'price form-control',
-                                        'placeholder': 'Цена',
-                                        'min': '0',
-                                        'data-select': '#sampleSelect2',
-                                        'data-option': 'buy',
-                                        'attribute': 'hidden',
-                                    }))
-    sell_price = forms.IntegerField(required=False, label='Жилая площадь',
-                                    error_messages={'invalid': 'Вы пропустили это поле'},
-                                    widget=forms.NumberInput(attrs={
-                                       'class': 'price form-control',
-                                       'placeholder': 'Цена',
-                                       'min': '0',
-                                       'data-select': '#sampleSelect2',
-                                       'data-option': 'sell',
-                                       'attribute': 'hidden',
-                                   }))
-    rent_price = forms.IntegerField(required=False, label='Жилая площадь',
-                                    error_messages={'invalid': 'Вы пропустили это поле'},
-                                    widget=forms.NumberInput(attrs={
-                                        'class': 'price form-control',
-                                        'placeholder': 'Цена',
-                                        'min': '0',
-                                        'data-select': '#sampleSelect2',
-                                        'data-option': 'rent',
-                                        'attribute': 'hidden',
-                                    }))
-    take_price = forms.IntegerField(required=False, label='Жилая площадь',
-                                    error_messages={'invalid': 'Вы пропустили это поле'},
-                                    widget=forms.NumberInput(attrs={
-                                        'class': 'price form-control',
-                                        'placeholder': 'Цена',
-                                        'min': '0',
-                                        'data-select': '#sampleSelect2',
-                                        'data-option': 'take',
-                                        'attribute': 'hidden',
-                                    }))
+                                               'class': 'form-control',
+                                               'placeholder': 'Жилая площадь',
+                                               'data-select': '#sampleSelect',
+                                               'data-option': 'house',
+                                               'attribute': 'hidden',
+                                               'min': '0',
+                                               'step': "0.01"
+                                           }))
+    buy_price = forms.CharField(required=False, label='Цена',
+                                widget=forms.TextInput(attrs={
+                                    'class': 'price form-control',
+                                    'placeholder': 'Цена',
+                                    'data-select': '#sampleSelect2',
+                                    'data-option': 'buy',
+                                    'attribute': 'hidden',
+                                }))
+    sell_price = forms.CharField(required=False, label='Жилая площадь',
+                                 widget=forms.TextInput(attrs={
+                                     'class': 'price form-control',
+                                     'placeholder': 'Цена',
+                                     'data-select': '#sampleSelect2',
+                                     'data-option': 'sell',
+                                     'attribute': 'hidden',
+                                 }))
+    rent_price = forms.CharField(required=False, label='Жилая площадь',
+                                 widget=forms.TextInput(attrs={
+                                     'class': 'price form-control',
+                                     'placeholder': 'Цена',
+                                     'data-select': '#sampleSelect2',
+                                     'data-option': 'rent',
+                                     'attribute': 'hidden',
+                                 }))
+    take_price = forms.CharField(required=False, label='Жилая площадь',
+                                 widget=forms.TextInput(attrs={
+                                     'class': 'price form-control',
+                                     'placeholder': 'Цена',
+                                     'data-select': '#sampleSelect2',
+                                     'data-option': 'take',
+                                     'attribute': 'hidden',
+                                 }))
 
     class Meta:
         model = Item
         fields = ['type', 'item_type', 'phone_number', 'region', 'city',
                   'street', 'trade', 'description', 'total_surface', 'name']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        type = self.cleaned_data['type']
+        data = self.cleaned_data[f'{type}_price'].replace(' ', '')
+
+        if not data.isdigit():
+            raise ValidationError("В строке стоимость должны быть только цифры")
+
+        return cleaned_data
 
     def __init__(self, *args, **kwargs):
         super(ItemForm, self).__init__(*args, **kwargs)
@@ -160,7 +162,8 @@ class ItemForm(forms.ModelForm):
             if field == 'phone_number':
                 self.fields[f'{field}'].error_messages = {'invalid': 'Телефон заполнен некорректно'}
             else:
-                self.fields[f'{field}'].error_messages = {'invalid': 'Не заполненное поле'}
+                label = self.fields[f'{field}'].label
+                self.fields[f'{field}'].error_messages = {'invalid': f'Вы не заполнили поле {label}'}
 
         self.fields['region'].widget.attrs \
             .update({
@@ -177,7 +180,6 @@ class ItemForm(forms.ModelForm):
             'id': 'sampleSelect',
             'class': 'form-select mb-3'
         })
-
 
         self.fields['city'].widget.attrs \
             .update({
@@ -234,5 +236,3 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Images
         fields = ('image',)
-
-

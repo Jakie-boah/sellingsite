@@ -4,19 +4,9 @@
 
   <div class=" py-5 container">
     <div class="row label-com">
- {% if messages %}
-    {% for message in messages %}
-    <ul class="messages">
 
-      <div class="alert alert-danger mb-2 mt-2" id="krasna">
+        {% include 'handlers/message_validation.html' %}
 
-                <p class="mb-0">{{ message }}</p>
-      </div>
-
-    </ul>
-    </div>
-{% endfor %}
-      {% endif %}
       <div class="col-lg-6 col-md-8 mx-auto" >
         <h1 class="fw-light mb-3">Название Компании</h1>
       <div class="russich">
@@ -60,8 +50,14 @@
                     <div class="text">
                         <a href="{% url 'item' i.id %}">{{ i.name }}</a>
                         <div class="describe">
+                            {% if i.floor and i.total_floors %}
                             <p>{{ i.city }}, ул. {{i.street}} {{ i.floor }}/{{ i.total_floors }} этаж</p>
-                            <span class="sub-text">{{ i.description }}</span>
+                            {% else %}
+                            <p>{{ i.city }}, ул. {{i.street}}</p>
+                            {% endif %}
+
+
+                            <span class="sub-text">{{ i.description | truncatechars:"80" }}</span>
                         </div>
                     </div>
                 </div>
@@ -71,16 +67,20 @@
                 <div class="house-push">
                     <div class="center-push">
                         <div class="area-push">
-                            <p>13м²</p>
+                            <p>{{ i.total_surface }}м²</p>
                         </div>
+                        {% if i.floor %}
                         <div class="floor-push">
-                            <span class="sub-text">1 этаж</span>
+                            <span class="sub-text">{{ i.floor }} этаж</span>
                         </div>
+                        {% endif %}
                     </div>
                 <div class="sub-push">
                     <h5>Стоимость</h5>
                         <div class="date-push">
-                            <span class="sub-text">Дата размещения объявления:</span>
+                            <span class="sub-text">Дата размещения объявления:
+                                <p style="color: black;">{{ i.date }}</p>
+                            </span>
                         </div>
                     <div class="diff">
                         <a href=""><i class="fa-regular fa-heart"></i></a>
@@ -95,5 +95,5 @@
 </section>
 
 </main>
-
+<script src="static/js/filter.js"></script>
 {%include "footer.html"%}

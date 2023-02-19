@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             container.insertBefore(newForm, addButton)
 
             totalForms.setAttribute('value', `${formNum+1}`)
-        };
+        }
 
 
         function showFile(input) {
@@ -63,9 +63,14 @@ document.addEventListener('DOMContentLoaded', function () {
           input.nextElementSibling.innerHTML = file
         };
 
-        function numberWithSpaces(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        const regex = new RegExp('(\\d)()(?=(\\d{3})+(?!\\d))', 'g');
+
+        function numberWithSpaces(e) {
+            const x = e.target.value;
+            e.target.value = x.replace(/\s/g, '').replace(regex, `$1 $2`);
         };
 
-        const input = document.querySelector('.price');
-        input.addEventListener('input', numberWithSpaces)
+        const input = document.querySelectorAll('.price');
+        input.forEach( inp => inp.addEventListener('input', numberWithSpaces));
+        console.log(input);
+//        input.addEventListener('input', numberWithSpaces);

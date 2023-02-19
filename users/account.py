@@ -16,6 +16,6 @@ def account(request):
         'favourites': favourites,
     }
 
-    return render(request, './cabinet.html', params)
+    return render(request, './cabinet/cabinet.html', params)
 
 

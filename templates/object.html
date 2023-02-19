@@ -1,11 +1,7 @@
 {% load static %}
 {% load humanize %}
 {% include "header.html" %}
-
-
-
 <br>
-
 <section class="description">
 
     <div class="echo">
@@ -156,7 +152,7 @@
                                 <div class="card-subtitle">
                                     <th scope="row">Тип</th>
                                 </div>
-                                   {% include 'validation_on_type.html' %}
+                                   {% include 'handlers/validation_on_type.html' %}
                             </tr>
                             {% if item.material %}
                             <tr>

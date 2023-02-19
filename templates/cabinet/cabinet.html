@@ -1,0 +1,55 @@
+{%include "header.html"%}
+<style>
+
+.knopka{
+    display: inline-block;
+    border-size: 1.8rem;
+    width: 13rem;
+    height: 3.9rem;
+    margin-bottom: 0.1rem;
+    background-color: #fff;
+    margin-left: 1.2rem;
+    text-align: center;
+    border-color: #ced4da;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+</style>
+<form action="">
+    <div class="container-c">
+        <h2>Личный кабинет</h2>
+        <div class="clicker">
+            <input type="button" class="knopka" id="btn1" value="Анкетные данные">
+                <div class="box" id="div1" hidden>
+
+                <!--ЛИЧНАЯ ИНФОРМАЦИЯ ПОЛЬЗОВАТЕЛЯ-->
+                    {% include 'cabinet/handlers/personal_info.html' %}
+
+            </div>
+        </div>
+        <div class="clicker">
+            <input type="button" class="knopka" id="btn2" value="Избранное">
+            <div class="box" id="div2" hidden>
+
+                <!--ИЗБРАННОЕ ПОЛЬЗОВАТЕЛЯ-->
+                {% include 'cabinet/handlers/favourites.html' %}
+
+            </div>
+        </div>
+        <div class="clicker">
+            <input type="button" class="knopka" id="btn3" value="Другое">
+            <div class="box" id="div3" hidden>
+
+                <!--ДРУГОЕ-->
+                {% include 'cabinet/handlers/other.html' %}
+
+            </div>
+        </div>
+    </div>
+</form>
+    <script src="static/js/cabinet.js">
+
+    </script>
+
+{%include "footer.html"%}

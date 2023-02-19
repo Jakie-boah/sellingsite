@@ -25,26 +25,25 @@ def make_one(request):
             post_form.user = request.user
             main_imageForm = main_imageForm.save(commit=False)
 
-            logger.info(post_form.item_type)
-
             if post_form.item_type == 'flat':
-                post_form.price = postForm.cleaned_data[f'{post_form.type}_price']
+                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
                 post_form.floor = postForm.cleaned_data['flat_floor']
+                post_form.total_floors = postForm.cleaned_data['flat_total_floor']
                 post_form.material = postForm.cleaned_data['flat_material']
                 post_form.livin_surface = postForm.cleaned_data['flat_livin_surface']
 
             if post_form.item_type == 'house':
-                post_form.price = postForm.cleaned_data[f'{post_form.type}_price']
+                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
                 post_form.total_floors = postForm.cleaned_data['house_total_floor']
                 post_form.material = postForm.cleaned_data['house_material']
                 post_form.livin_surface = postForm.cleaned_data['house_livin_surface']
 
             if post_form.item_type == 'garage':
-                post_form.price = postForm.cleaned_data[f'{post_form.type}_price']
+                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
                 post_form.material = postForm.cleaned_data['garage_material']
 
             if post_form.item_type == 'com':
-                post_form.price = postForm.cleaned_data[f'{post_form.type}_price']
+                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
                 post_form.floor = postForm.cleaned_data['com_floor']
                 post_form.total_floors = postForm.cleaned_data['com_total_floor']
                 post_form.material = postForm.cleaned_data['com_material']
@@ -89,7 +88,7 @@ def make_one(request):
         formset = ImageFormSet(queryset=Images.objects.none())
         main_imageForm = ImageForm()
 
-    return render(request, './make.html',
+    return render(request, './create_item_asset/make.html',
                   {'postForm': postForm, 'formset': formset,
                    'main_imageForm': main_imageForm})
 

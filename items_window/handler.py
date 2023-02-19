@@ -26,4 +26,3 @@ material_choices = (
 
 )
 
-
