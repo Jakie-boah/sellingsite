@@ -3,15 +3,15 @@
 <main>
 
   <div class=" py-5 container">
-    <div class="row label-com">
 
-        {% include 'handlers/message_validation.html' %}
+{% include 'handlers/message_validation.html' %}
+
 
       <div class="col-lg-6 col-md-8 mx-auto" >
         <h1 class="fw-light mb-3">Название Компании</h1>
       <div class="russich">
         <form method='GET' class='' action='.'>
-            {% include "filter.html" %}
+            {% include "index_handlers/filter.html" %}
         </form>
       </div>
       </div>
@@ -22,75 +22,13 @@
     <div class="container" style="margin-top: 10rem; margin-left: 250px">
     {% for i in item_filter.qs %}
           {% if i.public and not i.banned %}
-    <div class="row" style="margin-bottom: 75px">
-            <div class="col col-sm-6">
-                <div class="osnov">
-                    <div class="block_img">
-                        {% for j in images %}
-                        {% if i.id == j.post.id %}
-                        {% if j.index_store %}
-                        <div class="img_box box1">
-                            <div class="img_box_osnov">
-                                <img src="{{ j.image.url }}" alt="">
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if j.index_store_2 %}
-                        <div class="img_box box2">
-                            <img src="{{ j.image.url }}" alt="">
-                        </div>
-                        {% endif %}
-                        {% if j.index_store_3 %}
-                        <div class="img_box box3">
-                            <img src="{{ j.image.url }}" alt="">
-                        </div>
-                        {% endif %}
-                        {% endif %}{% endfor %}
-                    </div>
-                    <div class="text">
-                        <a href="{% url 'item' i.id %}">{{ i.name }}</a>
-                        <div class="describe">
-                            {% if i.floor and i.total_floors %}
-                            <p>{{ i.city }}, ул. {{i.street}} {{ i.floor }}/{{ i.total_floors }} этаж</p>
-                            {% else %}
-                            <p>{{ i.city }}, ул. {{i.street}}</p>
-                            {% endif %}
 
 
-                            <span class="sub-text">{{ i.description | truncatechars:"80" }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!--МАКЕТ КАРТОЧКИ-->
+        {% include 'index_handlers/index_card.html' %}
 
-            <div class="col col-sm-5">
-                <div class="house-push">
-                    <div class="center-push">
-                        <div class="area-push">
-                            <p>{{ i.total_surface }}м²</p>
-                        </div>
-                        {% if i.floor %}
-                        <div class="floor-push">
-                            <span class="sub-text">{{ i.floor }} этаж</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                <div class="sub-push">
-                    <h5>Стоимость</h5>
-                        <div class="date-push">
-                            <span class="sub-text">Дата размещения объявления:
-                                <p style="color: black;">{{ i.date }}</p>
-                            </span>
-                        </div>
-                    <div class="diff">
-                        <a href=""><i class="fa-regular fa-heart"></i></a>
-                        <a href=""><i class="fa-regular fa-circle-xmark"></i></a>
-                        <a href=""><i class="fa-regular fa-comment"></i></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>{% endif %}{% endfor %}
+
+    {% endif %}{% endfor %}
     </div>
 </section>
 

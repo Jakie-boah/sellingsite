@@ -1,19 +1,19 @@
-{% if item_type == flat %}
+{% if item.item_type == 'flat' %}
  <td>Квартира</td>
 {% endif %}
-{% if item_type == house %}
+{% if item.item_type == 'house' %}
  <td>Дом</td>
 {% endif %}
-{% if item_type == land %}
+{% if item.item_type == 'land' %}
  <td>Участок</td>
 {% endif %}
-{% if item_type == garage %}
+{% if item.item_type == 'garage' %}
  <td>Гараж</td>
 {% endif %}
-{% if item_type == carplace %}
- <td>Ма</td>
+{% if item.item_type == 'carplace' %}
+ <td>Машиноместо</td>
 {% endif %}
-{% if item_type == flat %}
+{% if item.item_type == 'flat' %}
  <td>Коммерческая недвижимость</td>
 {% endif %}
 
