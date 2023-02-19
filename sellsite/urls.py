@@ -22,7 +22,7 @@ from .views import *
 from users import views as auth_url
 from items_window import views as it_url
 from handlers import views as hand_url
-
+from advanced_admin import views as extend_rights
 
 urlpatterns = [
 
@@ -36,6 +36,8 @@ urlpatterns = [
     path('test', test, name='test'),
     path('make_one', it_url.make_one, name='make_one'),
     path('contacts', hand_url.contacts, name='contacts'),
+    path('extend_access', extend_rights.extended_page, name='extended_page'),
+
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

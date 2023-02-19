@@ -31,6 +31,11 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
+        permissions = (
+            ('can_change_item', "Может изменять объявление"),
+            ('can_delete_item', "Может удалить объявление"),
+            ('control_new_items', 'Контролирует новые объявления'),
+        )
 
 
 class Images(models.Model):

@@ -38,6 +38,7 @@ CITIES_LIGHT_INCLUDE_COUNTRIES = ['RU']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['ADMD']
 
 INSTALLED_APPS = [
+    'advanced_admin.apps.AdvancedAdminConfig',
     'django_filters',
     'blacklist',
     'cities_light',
