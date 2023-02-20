@@ -1,18 +1,8 @@
+from .control_panel.control_items import extended_page_regions, extended_item_list, extended_item
+from .control_panel.control_black_list import extended_black_list, extended_black_list_page, extended_black_list_add
+from .control_panel.control_reports import extended_reports, extended_report_page
 from django.shortcuts import render
-from django.contrib.auth.decorators import permission_required
-from .models import AdminsRegions, UserProfile
-from loguru import logger
-from items_window.models import Item
-# Create your views here.
 
 
-@permission_required('items_window.control_new_items', login_url='login')
-def extended_page(request):
-
-    region = AdminsRegions.objects.get(admin=request.user).region
-    items = Item.objects.filter(public=False, region=region)
-
-    return render(request, './advanced_admin/extended_page.html', {'items': items})
-
-
-
+def extend_access(request):
+    return render(request, './advanced_admin/extended_page.html')

@@ -1,6 +1,9 @@
 <div class="row" style="margin-bottom: 75px">
             <div class="col col-sm-6">
                 <div class="osnov">
+                    {% for j in images %}
+                        {% if i.id == j.post.id %}
+                    {% if j.image %}
                     <div class="block_img">
                         {% for j in images %}
                         {% if i.id == j.post.id %}
@@ -22,7 +25,8 @@
                         </div>
                         {% endif %}
                         {% endif %}{% endfor %}
-                    </div>
+                    </div>{% endif %}
+                        {% endif %}{% endfor %}
                     <div class="text">
                         <a href="{% url 'item' i.id %}">{{ i.name }}</a>
                         <div class="describe">

@@ -3,7 +3,7 @@
 git config --global user.name 'NAME'
 git config --global user.email 'VanoGalen@yandex.ru'
 git add *
-git commit -m "extended admin-page first step"
+git commit -m "advanced admin full"
 git branch -M main
 git remote add origin https://github.com/Jakie-boah/sellingsite.git
 git push -u origin main

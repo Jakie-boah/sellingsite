@@ -6,7 +6,7 @@ from geodata.models import Region
 
 class AdminsRegions(models.Model):
     admin = models.OneToOneField(UserProfile, verbose_name='Админ', on_delete=models.CASCADE)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион')
+    region = models.ManyToManyField(Region, verbose_name='Регион/ы')
 
     def __str__(self):
         return f'Админ {self.admin.username} в регионе {self.region}'

@@ -9,7 +9,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class BlackList(models.Model):
 
-    phone_number = PhoneNumberField(verbose_name='Номер телефона')
+    phone_number = PhoneNumberField(verbose_name='Номер телефона', region='RU')
 
     def __str__(self):
         return str(self.phone_number)
@@ -28,6 +28,9 @@ class BlackList(models.Model):
     class Meta:
         verbose_name = 'Черный список'
         verbose_name_plural = 'Черный список'
+        permissions = (
+            ('control_black_list', 'Контролирует черный список'),
+        )
 
 
 class Report(models.Model):
@@ -41,6 +44,9 @@ class Report(models.Model):
     class Meta:
         verbose_name = 'Жалоба'
         verbose_name_plural = 'Жалобы'
+        permissions = (
+            ('control_reports', 'Контролирует жалобы'),
+        )
 
 
 class FeedBack(models.Model):

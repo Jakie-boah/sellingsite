@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'handlers/message_validation.html' %}
+
+{% for i in black_list %}
+<a href="{% url 'extended_black_list_page' i.id %}">{{ i.phone_number }}</a>
+{% endfor %}
+<a href="{% url 'extended_black_list_add' %}">Добавить номер</a>
+</body>
+</html>

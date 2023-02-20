@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'handlers/message_validation.html' %}
+<h1>ВОШЕЛ</h1>
+{% for i in regions %}
+<a href="{% url 'extended_item_list' i.id %}">{{ i.alternate_names }}</a>
+{% endfor %}
+</body>
+</html>

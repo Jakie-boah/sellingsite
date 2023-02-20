@@ -31,10 +31,13 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
-                    {% for i in images %}
-                  {% if i.image %}
+{% for i in images %}
+
+                  {% if i.active %}
               <div class="carousel-inner" style="width: 35 rem; height: 40rem">
+
                   {% for i in images %}
+
                   {% if i.active %}
                 <div class="carousel-item active">
                   <img src="{{ i.image.url }}" class="d-block w-100" alt="photo" style="width: 35 rem; height: 40rem">
@@ -59,7 +62,7 @@
             </div>
             <div class="card-body obj">
               <h4 class="card-title"><b>Описание: </b></h4>
-              <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">{{ item.description }} </font></p>
+              <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">{{ item.description }}</font></p>
             </div>
             <div class="osn-c">
             <div class="container">
@@ -127,7 +130,11 @@
                                 <div class="card-subtitle">
                                     <th scope="row"> Возможность обмена</th>
                                 </div>
-                                    <td>{{ item.trade }}</td>
+                                {% if item.trade %}
+                                    <td>Да</td>
+                                {% else %}
+                                <td>Нет</td>
+                                {% endif %}
                             </tr>
                         </tbody>
                     </table>
@@ -178,7 +185,7 @@
                                 </div>
                                     <td>{{item.total_surface}} м²</td>
                             </tr>
-                            {% if item.total_floors%}
+                            {% if item.total_floors %}
                             <tr>
                                 <div class="card-subtitle">
                                     <th scope="row">Всего этажей</th>
@@ -197,45 +204,17 @@
                         </tbody>
                     </table>
                      <div class="card" style="display: flex; flex-direction: row; justify-content: start">
+<form method="POST" action="{% url 'extended_item' item.id %}">
+    {% csrf_token %}
+    <input type="submit" name="action" value="Вернуться к списку объявлений">
+    <input type="submit" name="action" value="Опубликовать">
+    <input type="submit" name="action" value="Удалить объявление">
+    <input type="submit" name="action" value="Заблокировать пользователя">
+<a href="{% url 'extended_item_list' item.region.id %}">Вернуться к списку объявлений</a>
+</form>
 
 
 
-
-                        {% if user.is_authenticated %}
-
-                        <form method="post" action="">
-                            {% csrf_token %}
-                        <div class="container overflow-hidden" style="margin: 5%">
-
-                        <div class="col col-12 mb-3">
-                        {% if check_on_fav %}
-                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled>
-                        {% else %}
-                        <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary">
-                        {% endif %}</div>
-                          <div class="col col-12 mb-3">
-                        {% if check_on_rep %}
-                        <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
-                                      Вы уже пожаловались на это объявление
-                        </button>
-                        {% else %}
-                        <div class="accordion-header" id="flush-faq1">
-
-                                <button style="margin: 5% auto" class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFaq1" aria-expanded="false" aria-controls="flush-collapseFaq1">
-                                      Пожаловаться
-                                </button>
-                            </div>
-                        {% endif %}
-
-                            <div id="flush-collapseFaq1" class="accordion-collapse collapse" aria-labelledby="flush-faq1" data-bs-parent="#accordionFaqList">
-                                <div class="accordion-body">
-                                    <textarea style="width: 40rem; margin-left: -3.5%" name="comment" class="form-control" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
-                                </div>
-                                <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
-
-                            </div>
-                          </div>
-                        </div>{% endif %}
                         </div>
                 </div>
 
@@ -249,30 +228,5 @@
 
 </section>
 <br>
-                        {% if user.is_authenticated %}
-    <div class="container-fluid" style="background-color: #FFFDF6">
-        <div class="row">
-            <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
-            <div style="margin-left: 10rem" class="col-lg-8 col-md-10 mx
-            -auto comment">
 
-
-
- {% for i in comments %}
-              <ul class="commentList" style="margin-left: 15rem">
-                <li>
-                    <div class="commentText" >
-                      <p>{{ i.text }}</p>
-                      <hr>
-                    </div>
-                </li>
-              </ul>
-                 {% endfor %}
-            </div>
-          </div>
-        <textarea name="com_text" class="form-control" id="csbmtend" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
-        <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
-    </div>
-{% endif %}
-</form>
 {%include "footer.html"%}

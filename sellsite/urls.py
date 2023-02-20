@@ -36,8 +36,17 @@ urlpatterns = [
     path('test', test, name='test'),
     path('make_one', it_url.make_one, name='make_one'),
     path('contacts', hand_url.contacts, name='contacts'),
-    path('extend_access', extend_rights.extended_page, name='extended_page'),
 
+    path('extend_access', extend_rights.extend_access, name='extended_page'),
+    path('extended_page_regions', extend_rights.extended_page_regions, name='extended_page_regions'),
+    path('extended_item_list<int:region_id>', extend_rights.extended_item_list, name='extended_item_list'),
+    path('extended_item<int:item_id>', extend_rights.extended_item, name='extended_item'),
 
+    path('extended_black_list', extend_rights.extended_black_list, name='extended_black_list'),
+    path('extended_black_list_page<int:phone_id>', extend_rights.extended_black_list_page, name='extended_black_list_page'),
+    path('extended_black_list_add', extend_rights.extended_black_list_add, name='extended_black_list_add'),
+
+    path('extended_reports', extend_rights.extended_reports, name='extended_reports'),
+    path('extended_report_page', extend_rights.extended_report_page, name='extended_report_page'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -23,7 +23,7 @@ def make_one(request):
         if postForm.is_valid() and formset.is_valid() and main_imageForm.is_valid():
             post_form = postForm.save(commit=False)
             post_form.user = request.user
-            main_imageForm = main_imageForm.save(commit=False)
+
 
             if post_form.item_type == 'flat':
                 post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
@@ -49,10 +49,13 @@ def make_one(request):
                 post_form.material = postForm.cleaned_data['com_material']
 
             post_form.save()
-            main_imageForm.post = post_form
-            main_imageForm.active = True
-            main_imageForm.index_store = True
-            main_imageForm.save()
+            logger.info(main_imageForm.cleaned_data['image'])
+            if main_imageForm.cleaned_data['image']:
+                main_imageForm = main_imageForm.save(commit=False)
+                main_imageForm.post = post_form
+                main_imageForm.active = True
+                main_imageForm.index_store = True
+                main_imageForm.save()
             c = 1
             for form in formset.cleaned_data:
 

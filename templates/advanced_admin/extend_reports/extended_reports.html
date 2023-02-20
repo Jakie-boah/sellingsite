@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% include 'handlers/message_validation.html' %}
+<h1>Список Жалоб</h1>
+{% for i in reports %}
+<a href="">{{ i.id }}</a>
+{% endfor %}
+</body>
+</html>

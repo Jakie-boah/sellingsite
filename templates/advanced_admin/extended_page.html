@@ -5,9 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<h1>ВОШЕЛ</h1>
-{% for it in items %}
-{{ it.region }}/{{ it.id }}
-{% endfor %}
+{% include 'handlers/message_validation.html' %}
+<h1>Здравствуйте</h1>
+<a href="{% url 'extended_page_regions' %}">Объявления</a>
+<a href="{% url 'extended_black_list' %}">Черный список</a>
+<a href="{% url 'extended_reports' %}">Жалобы</a>
+
+
 </body>
 </html>
