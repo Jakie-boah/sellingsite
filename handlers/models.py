@@ -7,6 +7,17 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 
+class ReportChoices(models.Model):
+    name = models.CharField(verbose_name='Причина', max_length=50)
+
+    class Meta:
+        verbose_name = 'Возможная причина репорта'
+        verbose_name_plural = 'Возможные причины репортов'
+
+    def __str__(self):
+        return str(self.name)
+
+
 class BlackList(models.Model):
 
     phone_number = PhoneNumberField(verbose_name='Номер телефона', region='RU')
@@ -34,9 +45,10 @@ class BlackList(models.Model):
 
 
 class Report(models.Model):
-    user = models.ForeignKey(UserProfile, default=None, on_delete=models.PROTECT, verbose_name='От:')
-    item = models.ForeignKey(Item, default=None, on_delete=models.PROTECT, verbose_name='Объявление')
-    report_text = models.TextField(verbose_name='Текст')
+    user = models.ForeignKey(UserProfile, default=None, on_delete=models.CASCADE, verbose_name='От:')
+    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Объявление', blank=True, null=True)
+    reason = models.ForeignKey(ReportChoices, on_delete=models.CASCADE, verbose_name='Причина', blank=True, null=True)
+    report_text = models.TextField(verbose_name='Текст', blank=True, null=True)
 
     def __str__(self):
         return str(self.item)
@@ -61,3 +73,5 @@ class FeedBack(models.Model):
     class Meta:
         verbose_name = 'Обратная связь'
         verbose_name_plural = 'Обратная связь'
+
+

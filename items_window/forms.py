@@ -1,6 +1,6 @@
 from django import forms
 from .models import Item, Images
-from items_window.handler import material_choices
+from possible_choices.models import MaterialChoices
 from django.core.exceptions import ValidationError
 
 
@@ -55,38 +55,38 @@ class ItemForm(forms.ModelForm):
                                              'min': '0',
                                              'max': '99'
                                          }))
-    flat_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+    flat_material = forms.ModelChoiceField(required=False, queryset=MaterialChoices.objects.all(), label='Материал стен',
                                     widget=forms.Select(attrs={
                                         'class': 'form-select',
                                         'placeholder': 'Материал стен',
                                         'data-select': '#sampleSelect',
                                         'data-option': 'flat',
                                         'attribute': 'hidden'
-                                    }, choices=material_choices))
-    house_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+                                    }))
+    house_material = forms.ModelChoiceField(required=False, queryset=MaterialChoices.objects.all(), label='Материал стен',
                                      widget=forms.Select(attrs={
                                          'class': 'form-select',
                                          'placeholder': 'Материал стен',
                                          'data-select': '#sampleSelect',
                                          'data-option': 'house',
                                          'attribute': 'hidden'
-                                     }, choices=material_choices))
-    garage_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+                                     }))
+    garage_material = forms.ModelChoiceField(required=False, queryset=MaterialChoices.objects.all(), label='Материал стен',
                                       widget=forms.Select(attrs={
                                           'class': 'form-select',
                                           'placeholder': 'Материал стен',
                                           'data-select': '#sampleSelect',
                                           'data-option': 'garage',
                                           'attribute': 'hidden'
-                                      }, choices=material_choices))
-    com_material = forms.CharField(required=False, max_length=50, label='Материал стен',
+                                      }))
+    com_material = forms.ModelChoiceField(required=False, queryset=MaterialChoices.objects.all(), label='Материал стен',
                                    widget=forms.Select(attrs={
                                        'class': 'form-select',
                                        'placeholder': 'Материал стен',
                                        'data-select': '#sampleSelect',
                                        'data-option': 'com',
                                        'attribute': 'hidden'
-                                   }, choices=material_choices))
+                                   }))
     flat_livin_surface = forms.FloatField(required=False, label='Жилая площадь',
                                           widget=forms.NumberInput(attrs={
                                               'class': 'form-control',

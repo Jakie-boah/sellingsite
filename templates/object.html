@@ -133,7 +133,11 @@
                                 <div class="card-subtitle">
                                     <th scope="row"> Возможность обмена</th>
                                 </div>
-                                    <td>{{ item.trade }}</td>
+                                {% if item.trade %}
+                                    <td>Да</td>
+                                {% else %}
+                                    <td>Нет</td>
+                                {% endif %}
                             </tr>
                         </tbody>
                     </table>
@@ -234,8 +238,11 @@
                         {% endif %}
 
                             <div id="flush-collapseFaq1" class="accordion-collapse collapse" aria-labelledby="flush-faq1" data-bs-parent="#accordionFaqList">
+                                <div class="row">
+                                <label>Причина:</label>
+                                {{ report_form.reason }}</div>
                                 <div class="accordion-body">
-                                    <textarea style="width: 40rem; margin-left: -3.5%" name="comment" class="form-control" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
+                                    {{ report_form.report_text }}
                                 </div>
                                 <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
 
@@ -269,6 +276,7 @@
                 <li>
                     <div class="commentText" >
                       <p>{{ i.text }}</p>
+                        <p style="font-size: 15px; margin-top: 2%;">{{ i.date }}</p>
                       <hr>
                     </div>
                 </li>
@@ -276,7 +284,7 @@
                  {% endfor %}
             </div>
           </div>
-        <textarea name="com_text" class="form-control" id="csbmtend" rows="3" v-model="comment" placeholder="Комментарий"></textarea>
+        {{ comment_form.text }}
         <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
     </div>
 {% endif %}

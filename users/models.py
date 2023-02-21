@@ -37,6 +37,7 @@ class Favourites(models.Model):
 
 
 class Comments(models.Model):
+    date = models.DateField(auto_now_add=True, blank=True, null=True, verbose_name='Дата')
     post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Объявление')
     user = models.ForeignKey(UserProfile, default=None, on_delete=models.CASCADE, verbose_name='Пользователь')
     text = models.TextField(verbose_name='Текст комментария', blank=True, null=True)

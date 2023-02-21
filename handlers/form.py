@@ -1,5 +1,5 @@
 from django import forms
-from .models import FeedBack
+from .models import FeedBack, Report
 
 
 class FeedBackForm(forms.ModelForm):
@@ -37,4 +37,28 @@ class FeedBackForm(forms.ModelForm):
             'class': 'form-control',
             'rows': '5',
             'placeholder': 'Введите текст',
+        })
+
+
+class ReportForm(forms.ModelForm):
+    class Meta:
+        model = Report
+        fields = ['reason', 'report_text']
+
+    def __init__(self, *args, **kwargs):
+        super(ReportForm, self).__init__(*args, **kwargs)
+
+        self.fields['report_text'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'placeholder': 'Комментарий',
+            'row': "3",
+            'style': 'width: 40rem; margin-left: -3.5%',
+        })
+
+        self.fields['reason'].widget.attrs \
+            .update({
+            'class': 'form-control',
+            'style': 'width: 150px; margin: 1.5%;'
+
         })

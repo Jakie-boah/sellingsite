@@ -54,8 +54,10 @@
                 </li>
             </div>
         </ul>
-    </div>
-    <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" data-original-title="" title="" autofocus="autofocus">
+   </div><div class="dropdown">
+            <p style="font-size: 15px; text-align: center;">Поиск по номеру</p>
+
+    {{ item_filter.form.phone_number }}</div>
     <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
         <i class="fa-solid fa-magnifying-glass"></i>
     </button>

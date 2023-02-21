@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from items_window.models import *
-from items_window.handler import item_type_choices
+from handlers.form import ReportForm
 from loguru import logger
 from users.models import Favourites, Comments
+from users.form import CommentForm
 from django.contrib import messages
 from handlers.models import Report
 from .filter import ListingFilter
@@ -11,8 +12,6 @@ from .filter import ListingFilter
 def index(request):
     items = Item.objects.all()
     images = Images.objects.all()
-    # logger.info(images)
-    logger.info(request.GET)
     item_filter = ListingFilter(request.GET, queryset=items)
 
     params = {
@@ -23,9 +22,13 @@ def index(request):
 
 
 def item(request, item_id):
+    params = {}
 
     item = Item.objects.filter(id=item_id).first()
     images = Images.objects.filter(post__id__exact=item_id).all()
+
+    params['item'] = item
+    params['images'] = images
 
     if request.user.is_authenticated:
 
@@ -35,10 +38,10 @@ def item(request, item_id):
                                                       item=item).first())
         check_on_rep = bool(Report.objects.filter(user=request.user,
                                                   item=item).first())
-    else:
-        comments = None
-        check_on_fav = False
-        check_on_rep = False
+
+        params['comments'] = comments
+        params['check_on_fav'] = check_on_fav
+        params['check_on_rep'] = check_on_rep
 
     if request.method == 'POST':
 
@@ -51,31 +54,31 @@ def item(request, item_id):
             return redirect('item', item_id)
 
         elif request.POST['action'] == 'Пожаловаться':
-            new_rep = Report(user=request.user,
-                             item=item,
-                             report_text=request.POST['comment'])
-            new_rep.save()
-            messages.success(request, 'Репорт отправлен')
-            logger.success('Репорт отправлен')
-            return redirect('item', item_id)
+            form = ReportForm(request.POST)
+            if form.is_valid():
+                report = form.save(commit=False)
+                report.user = request.user
+                report.item = item
+                report.save()
+                messages.success(request, 'Репорт отправлен')
+                return redirect('item', item_id)
 
         elif request.POST['action'] == 'Прокомментировать':
-            new_com = Comments(post=item,
-                               username=request.user.username,
-                               text=request.POST['com_text'])
-            new_com.save()
-            messages.success(request, 'Репорт отправлен')
-            logger.success('Ком отправлен')
-            return redirect('item', item_id)
-    params = {
-        'item': item,
-        'images': images,
-        'comments': comments,
-        'check_on_fav': check_on_fav,
-        'check_on_rep': check_on_rep
-    }
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.post = item
+                comment.user = request.user
+                comment.save()
+                messages.success(request, 'Репорт отправлен')
+                logger.success('Ком отправлен')
+                return redirect('item', item_id)
+    else:
+        report_form = ReportForm()
+        comment_form = CommentForm()
+        params['report_form'] = report_form
+        params['comment_form'] = comment_form
+
     return render(request, './object.html', params)
 
 
-def test(request):
-    return render(request, './test.html')

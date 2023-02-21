@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from .handler import *
 from geodata.models import Region, SubRegion
+from possible_choices.models import *
 
 
 class Item(models.Model):
@@ -15,7 +16,7 @@ class Item(models.Model):
     street = models.CharField(verbose_name='Улица', max_length=50)
     floor = models.IntegerField(verbose_name='Этаж', null=True, blank=True)
     total_floors = models.IntegerField(verbose_name='Этажей всего', null=True, blank=True)
-    material = models.CharField(verbose_name='Материал стен', choices=material_choices, max_length=100)
+    material = models.ForeignKey(MaterialChoices, on_delete=models.CASCADE, verbose_name='Материал стен')
     total_surface = models.FloatField(verbose_name='Площадь общая', null=True, blank=True)
     livin_surface = models.FloatField(verbose_name='Площадь жилая', null=True, blank=True)
     price = models.IntegerField(verbose_name='Стоимость', null=True, blank=True)
