@@ -11,8 +11,8 @@ from .filter import ListingFilter
 def index(request):
     items = Item.objects.all()
     images = Images.objects.all()
-    logger.info(images)
-
+    # logger.info(images)
+    logger.info(request.GET)
     item_filter = ListingFilter(request.GET, queryset=items)
 
     params = {

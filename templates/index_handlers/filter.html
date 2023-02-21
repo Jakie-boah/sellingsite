@@ -1,86 +1,62 @@
 
-<div class="input-group form-group mt-5 mx-auto searchId">
+<div class="input-group form-group mt-5 mx-auto searchId"style="width: 905px">
+
     <div class="dropdown">
-                <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop0" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
-                   м²  Площадь
+        <p style="font-size: 15px; text-align: center;">Тип объявления</p>
+        {{ item_filter.form.item_type }}
+
+    </div>
+    <div class="dropdown">
+        <p style="font-size: 15px; text-align: center;">Регион</p>
+        {{ item_filter.form.region }}
+
+    </div>
+
+    <div class="dropdown">
+        <p style="font-size: 15px; text-align: center;"><b>м²</b> Площадь</p>
+                <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop-stoim-metr" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
+
                 </a>
-                    <ul class="dropdown-menu filtrDrop0" aria-labelledby="filtrDrop0" style="height: 319px; width: 315px">
-                        <div class="row">
-                            <div class="col col-sm-6">
-                                <li class="list-item" style="margin-left: 8px; font-size: 14px">
-                                    <div class="form-check">
-                                        <label class="form-check-label">Тип недвижимости</label>
-                                        {{ item_filter.form.item_type }}
-
-                                    </div>
-                                </li>
-
+                    <ul class="dropdown-menu filtrDrop-stoim-metr" aria-labelledby="filtrDrop-stoim-metr">
+                       <div class="area-metr">
+                            <li class="list-item">
+                                <div class="input-group">
+                                    {{ item_filter.form.min_total_surface }}
+                                    <span id="basic-addon1" class="input-group-text" style="background-color: #fff;">м²</span>
                                 </div>
-                             <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            </div>
+                            </li>
+                            <li class="list-item">
+                                <div class="input-group">
+                                    {{ item_filter.form.max_total_surface }}
+                                    <span id="basic-addon2" class="input-group-text" style="background-color: #fff">м²</span>
+                                </div>
+                            </li>
+                       </div>
                     </ul>
     </div>
    <div class="dropdown">
+       <p style="font-size: 15px; text-align: center;"><i class="fa-solid fa-ruble-sign"></i> Стоимость</p>
         <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop3" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
-            <i class="fa-solid fa-ruble-sign"></i>
-            Стоимость
         </a>
-        <ul class="dropdown-menu filtrDrop3" aria-labelledby="filtrDrop3" style="height: 319px; width: 315px">
-            <div class="row">
-                <div class="col col-sm-6">
-                    <li class="list-item" style="margin-left: 8px; margin-bottom: 5px; font-size: 14px">
-                        до 1 500 000
-                    </li>
-                    <li class="list-item" style="margin-left: 8px; margin-bottom: 5px; font-size: 14px">
-                        от 1 500 000 и более
-                    </li>
-                </div>
-                <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
-            Фильтр
-        </a>
-        <ul class="dropdown-menu filtrDrop" aria-labelledby="filtrDrop" style="height: 319px; width: 315px">
-            <div class="row">
-                <div class="col col-sm-6">
-                    <div class="form-check">
-                            <label class="form-check-label">Тип недвижимости</label>
-                            {{ item_filter.form.item_type }}
+        <ul class="dropdown-menu filtrDrop-stoim-metr" aria-labelledby="filtrDrop-stoim-metr">
+            <div class="stoimost">
+                <li class="list-item">
+                    <div class="input-group">
+                        {{ item_filter.form.min_price }}
+                        <span id="stoim1" class="input-group-text" style="background-color: #fff;"><i class="fa-solid fa-ruble-sign"></i></span>
                     </div>
-                </div>
-                <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                </li>
+                <li class="list-item">
+                    <div class="input-group">
+                        {{ item_filter.form.max_price }}
+                        <span id="stoim2" class="input-group-text" style="background-color: #fff"><i class="fa-solid fa-ruble-sign"></i></span>
+                    </div>
+                </li>
             </div>
         </ul>
     </div>
-    <div class="dropdown">
-        <a class="btn dropdown-toggle fltr" href="#" role="button" id="filtrDrop2" data-bs-toggle="dropdown" aria-expanded="false" style="height:57.6px; width: 152px; padding: 14.5px; color-text: #000; background-color: #fff; border-right-color: #ced4da">
-            Район
-        </a>
-        <ul class="dropdown-menu filtrDrop2" aria-labelledby="filtrDrop2" style="height: 319px; width: 315px">
-            <div class="row">
-                <div class="col col-sm-6">
-                    <li class="list-item" style="margin-left: 8px; font-size: 14px">
-                        <div class="form-check">
-                            <label class="form-check-label">Тип недвижимости</label>
-                            {{ item_filter.form.item_type }}
-                        </div>
-                    </li>
-                </div>
-                <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
-        </ul>
-    </div>
-    <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" style="" data-original-title="" title="" autofocus="autofocus">
+    <input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..." value="" data-original-title="" title="" autofocus="autofocus">
+    <button class="btn search-submit" type="submit" style="background-color: #fff; border-left-color: #ced4da">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
 </div>

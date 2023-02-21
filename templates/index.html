@@ -2,11 +2,14 @@
 
 <main>
 
-  <div class=" py-5 container">
-
-{% include 'handlers/message_validation.html' %}
-
-
+  <div class=" py-5 container" style="margin-top: 4rem">
+    <div class="row label-com">
+        <div class="col col-lg-12 col-md-8 mx-auto">
+<!--            <div class="al-msg alert alert-danger mb-2 mt-2">-->
+<!--                <p class="mb-0">message</p>-->
+<!--            </div>-->
+        {% include 'handlers/message_validation.html' %}
+        </div>
       <div class="col-lg-6 col-md-8 mx-auto" >
         <h1 class="fw-light mb-3">Название Компании</h1>
       <div class="russich">
@@ -23,11 +26,7 @@
     {% for i in item_filter.qs %}
           {% if i.public and not i.banned %}
 
-
-            <!--МАКЕТ КАРТОЧКИ-->
         {% include 'index_handlers/index_card.html' %}
-
-
     {% endif %}{% endfor %}
     </div>
 </section>

@@ -34,6 +34,51 @@ img{
 .echo{
     width:1800px;
 }
+.filtrDrop-stoim-metr{
+    width: 310px;
+    height: 61px;
+}
+.area-metr{
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    width: 295px;
+    margin-left: 2px;
+}
+.al-msg{
+    display: flex;
+    width: 346px;
+    justify-content: center;
+    margin-left: 24rem;
+}
+.area-ot{
+    border-right-color: #fff;
+    padding-right: 5px;
+}
+.area-do{
+    border-right-color: #fff;
+}
+
+.stoimost{
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    width: 295px;
+    margin-left: 2px;
+}
+.stoim-ot{
+    border-right-color: #fff;
+    padding-right: 5px;
+}
+.stoim-do{
+    border-right-color: #fff;
+}
+
+.filter-label{
+    margin-left: 1rem;
+    display: flex;
+    justify-content: start;
+}
 
 
 .buton{
@@ -55,8 +100,15 @@ img{
 }
 
 .filtrDrop{
-    height: 319px;
-    width: 235px;
+    border-radius: 14px;
+    height: 235px;
+    width: 298px;
+}
+
+.filtrDrop-region{
+    border-radius: 14px;
+    height: 235px;
+    width: 271px;
 }
 
 .fltr{
@@ -127,10 +179,15 @@ h1 {
 .add-ch{
     display: inline;
     margin-right: 36px
-
 }
+
 hr {
     width: 217px
+}
+.object-img{
+    float: left;
+    max-width: 615px;
+    max-height: 515px;
 }
 .sub-text {
     color:#aaa;
@@ -238,7 +295,6 @@ hr {
     margin-left: 5rem;
     border-radius: 10%;
     padding: 1.7rem;
-
 }
 
 .type{
