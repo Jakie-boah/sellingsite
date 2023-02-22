@@ -22,6 +22,7 @@ def index(request):
 
 
 def item(request, item_id):
+
     params = {}
 
     item = Item.objects.filter(id=item_id).first()
