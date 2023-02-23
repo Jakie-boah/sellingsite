@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load custom_filter %}
 <div class="row" style="margin-bottom: 75px">
             <div class="col col-sm-6">
                 <div class="osnov">
@@ -61,12 +62,24 @@
                                 <p style="color: black;">{{ i.date }}</p>
                             </span>
                         </div>
-                    <div class="diff">
-                        <a href=""><i class="fa-regular fa-heart"></i></a>
-                        <a href=""><i class="fa-regular fa-circle-xmark"></i></a>
-                        <a href=""><i class="fa-regular fa-comment"></i></a>
-                    </div>
+
                 </div>
+                    {% if user.is_authenticated %}
+                    {% if not i.id|check:user %}
+
+                     <div class="diff">
+                        <a href=""></a>
+                        <a href="{% url 'add_to_favs' i.id %}" style="margin-left: 35%;"><i class="fa-regular fa-heart"></i></a>
+                        <a href=""></a>
+                    </div>
+                    {% else %}
+                    <div class="diff">
+                        <a href=""></a>
+                        <a href="{% url 'remove_from_favs' i.id %}" style="margin-left: 35%;"><i class="fa-solid fa-heart"></i></a>
+                        <a href=""></a>
+                    </div>
+                    {% endif %}{% endif %}
+
                 </div>
             </div>
         </div>
