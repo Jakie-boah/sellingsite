@@ -1,9 +1,12 @@
-<div class="row label-com" style="margin-left: 45%;">
+
+<div class="row label-com">
 {% if messages %}
     {% for message in messages %}
-<div class="alert alert-danger mb-2 mt-2">
-                <p class="mb-0">{{message}}</p>
+<div class="alert alert-danger mb-2 mt-2" style="margin: auto; justify-content: center; width: 30%;">
+
+    <p class="mb-0" style="text-align: center;">{{message}}</p>
             </div>
-    {% endfor %}
+ {% endfor %}
       {% endif %}
 </div>
+
