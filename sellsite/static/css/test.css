@@ -1,0 +1,16 @@
+@media print {
+    .container-c{display:none};
+
+    .for-pdf {
+        visibility: visible;
+    };
+}
+@page {
+
+  size: landscape;
+
+
+}
+
+
+

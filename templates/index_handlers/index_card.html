@@ -1,5 +1,6 @@
 {% load humanize %}
 {% load custom_filter %}
+<div class="shadow-text">
 <div class="row" style="margin-bottom: 75px">
             <div class="col col-sm-6">
                 <div class="osnov">
@@ -66,7 +67,6 @@
                 </div>
                     {% if user.is_authenticated %}
                     {% if not i.id|check:user %}
-
                      <div class="diff">
                         <a href=""></a>
                         <a href="{% url 'add_to_favs' i.id %}" style="margin-left: 35%;"><i class="fa-regular fa-heart"></i></a>
@@ -83,3 +83,4 @@
                 </div>
             </div>
         </div>
+    </div>

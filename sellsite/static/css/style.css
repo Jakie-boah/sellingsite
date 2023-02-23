@@ -100,3 +100,8 @@
 
 
 }
+.shadow-text:hover{
+    -webkit-box-shadow: -11px 19px 16px 7px rgba(34, 60, 80, 0.19);
+    -moz-box-shadow: -11px 19px 16px 7px rgba(34, 60, 80, 0.19);
+    box-shadow: -11px 19px 16px 7px rgba(34, 60, 80, 0.19);
+}

@@ -1,0 +1,19 @@
+@media print {
+    .clicker{display:none};
+
+    .clicker_sell-push {
+        display: flex;
+        justify-content: center;
+
+
+    }
+}
+@page {
+
+  size: landscape;
+  margin-right: 3cm;
+
+}
+
+
+

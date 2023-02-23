@@ -53,11 +53,12 @@ def make_one(request):
                 main_imageForm.post = post_form
                 main_imageForm.active = True
                 main_imageForm.index_store = True
-                main_imageForm.save()
+
             else:
                 post_form.no_pictures = True
-
             post_form.save()
+            main_imageForm.save()
+
             c = 1
             for form in formset.cleaned_data:
 
