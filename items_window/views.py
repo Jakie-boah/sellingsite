@@ -24,7 +24,6 @@ def make_one(request):
             post_form = postForm.save(commit=False)
             post_form.user = request.user
 
-
             if post_form.item_type == 'flat':
                 post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
                 post_form.floor = postForm.cleaned_data['flat_floor']
@@ -48,7 +47,6 @@ def make_one(request):
                 post_form.total_floors = postForm.cleaned_data['com_total_floor']
                 post_form.material = postForm.cleaned_data['com_material']
 
-            post_form.save()
             logger.info(main_imageForm.cleaned_data['image'])
             if main_imageForm.cleaned_data['image']:
                 main_imageForm = main_imageForm.save(commit=False)
@@ -56,6 +54,10 @@ def make_one(request):
                 main_imageForm.active = True
                 main_imageForm.index_store = True
                 main_imageForm.save()
+            else:
+                post_form.no_pictures = True
+
+            post_form.save()
             c = 1
             for form in formset.cleaned_data:
 

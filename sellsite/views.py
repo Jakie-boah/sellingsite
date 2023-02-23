@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from items_window.models import *
 from handlers.form import ReportForm
@@ -22,7 +23,6 @@ def index(request):
 
 
 def item(request, item_id):
-
     params = {}
 
     item = Item.objects.filter(id=item_id).first()
@@ -32,7 +32,6 @@ def item(request, item_id):
     params['images'] = images
 
     if request.user.is_authenticated:
-
         comments = Comments.objects.filter(post__id__exact=item_id,
                                            user__id__exact=request.user.id).all()
         check_on_fav = bool(Favourites.objects.filter(user=request.user,
@@ -74,6 +73,7 @@ def item(request, item_id):
                 messages.success(request, 'Репорт отправлен')
                 logger.success('Ком отправлен')
                 return redirect('item', item_id)
+
     else:
         report_form = ReportForm()
         comment_form = CommentForm()
@@ -81,5 +81,4 @@ def item(request, item_id):
         params['comment_form'] = comment_form
 
     return render(request, './object.html', params)
-
 

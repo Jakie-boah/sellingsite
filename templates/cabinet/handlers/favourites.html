@@ -1,55 +1,85 @@
-<p class="izbr" style="padding-top: 3rem">Текст пользователя</p>
-                        <section class="sell-push" style="margin-top: 1.4rem">
+      {% load humanize %}
+<section class="sell-push" style="margin-top: 1.4rem">
                             <div class="container">
+                                {% for i in items %}
                                 <div class="row">
                                     <div class="col col-sm-6">
                                         <div class="osnov">
+                                            {% if not i.item.no_pictures %}
                                             <div class="block_img">
+                                                {% for j in images %}
+                                                    {% if i.id == j.post.id %}
+                                                    {% if j.index_store %}
                                                 <div class="img_box box1">
                                                     <div class="img_box_osnov">
-                                                        <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="">
+                                                        <img src="{{ j.image.url }}" alt="">
                                                     </div>
                                                 </div>
+                                                {% endif %}
+                                                {% if j.index_store_2 %}
                                                 <div class="img_box box2">
-                                                    <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="">
+                                                    <img src="{{ j.image.url }}" alt="">
                                                 </div>
+                                                {% endif %}
+                                                {% if j.index_store_3 %}
                                                 <div class="img_box box3">
-                                                    <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="">
+                                                    <img src="{{ j.image.url }}" alt="">
                                                 </div>
-                                            </div>
+                                                {% endif %}
+                                                {% endif %}{% endfor %}
+                                            </div>{% endif %}
+
                                             <div class="text">
-                                                <a href="">Продам 3-к квартиру</a>
-                                                <div class="describe">
-                                                    <p>Красноярск, ул. Грунтовая 5/9 этаж</p>
-                                                    <span class="sub-text">Остекленный балконб встроенная техника раздельный с/y</span>
-                                                </div>
+                                                <a href="{% url 'item' i.item.id %}">{{ i.item.name }}</a>
+                                               <div class="describe">
+                                                {% if i.item.floor and i.item.total_floors %}
+                                                <p>{{ i.item.city }}, ул. {{i.item.street}} {{ i.item.floor }}/{{ i.item.total_floors }} этаж</p>
+                                                {% else %}
+                                                <p>{{ i.item.city }}, ул. {{i.item.street}}</p>
+                                                {% endif %}
+
+
+                                                <span class="sub-text">{{ i.item.description | truncatechars:"80" }}</span>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col col-sm-5">
+                                    <div class="col col-md-6">
                                         <div class="house-push">
                                             <div class="center-push">
                                                 <div class="area-push">
-                                                    <p>13м²</p>
+                                                    <p>{{ i.item.total_surface }}м²</p>
                                                 </div>
+                                                 {% if i.item.floor %}
                                                 <div class="floor-push">
-                                                    <span class="sub-text">1 этаж</span>
+                                                    <span class="sub-text">{{ i.item.floor }} этаж</span>
                                                 </div>
+                                                {% endif %}
                                             </div>
-                                        <div class="sub-push">
-                                            <h5>Стоимость</h5>
-                                                <div class="date-push">
-                                                    <span class="sub-text">Дата размещения объявления:</span>
-                                                </div>
-                                            <div class="diff">
-                                                <a href=""><i class="fa-regular fa-heart"></i></a>
-                                                <a href=""><i class="fa-regular fa-circle-xmark"></i></a>
-                                                <a href=""><i class="fa-regular fa-comment"></i></a>
-                                            </div>
+                                        <div class="zametki-pols-push">
+                                            <div class="zametki">
+                                                {% for com in comments %}
+                                                {% if i.id == com.post.id %}
+                                                <p>{{ com.text }}</p>
+                                                {% endif %}
+                                                {% empty %}
+                                                    <p>Пока нет комментариев</p>
+                                                {% endfor %}
+                                                <div>
                                         </div>
                                     </div>
                                 </div>
+                                            <div class="diff">
+<!--                        <a href=""><i class="fa-regular fa-heart"></i></a>-->
+                        <a href=""><i class="fa-regular fa-circle-xmark"></i></a>
+
+                    </div>
                             </div>
-                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                                    <p>Избранное пока пустое</p>
+                                                {% endfor %}
+                            </div>
                     </section>

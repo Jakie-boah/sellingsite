@@ -25,6 +25,7 @@ class Item(models.Model):
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     public = models.BooleanField(verbose_name='Опубликовать?', default=False, null=True, blank=True)
     banned = models.BooleanField(verbose_name='Заблокирован', default=False, null=True, blank=True, editable=False)
+    no_pictures = models.BooleanField(verbose_name='Объявление без фотографий', default=False, null=True, blank=True, editable=False)
 
     def __str__(self):
         return str(self.pk)

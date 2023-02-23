@@ -16,7 +16,7 @@
     display: flex;
     flex-position: row;
     margin-bottom: 50px;
-    width: 905px;
+    width: 1005px;
     font-size: 32px;
     border-radius: 4px;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -131,6 +131,9 @@ img{
 .search-submit{
     background-color: #fff;
     border-left-color: #000;
+    height: 57.6px;
+    padding: 14.5px;
+    margin-top: 38px;
 }
 .container_1 {
     width: 400px;
@@ -351,7 +354,7 @@ hr {
     position: absolute;
     margin-top: inherit;
     margin-left: 75px;
-    width: 800px;
+    width: 930px;
     height: 450px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -363,7 +366,7 @@ hr {
     position: absolute;
     margin-top: -64px;
     margin-left: 75px;
-    width: 1050px;
+    width: 930px;
     height: 450px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -376,7 +379,7 @@ hr {
     position: absolute;
     margin-top: -128px;
     margin-left: 75px;
-    width: 800px;
+    width: 930px;
     height: 450px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
