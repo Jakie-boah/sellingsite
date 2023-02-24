@@ -13,12 +13,10 @@ from .card_urls import add_to_favs, remove_from_favs, remove_from_favs_pp
 
 def index(request):
     items = Item.objects.all()
-    images = Images.objects.all()
     item_filter = ListingFilter(request.GET, queryset=items)
 
     params = {
         'item_filter': item_filter,
-        'images': images
     }
     return render(request, './index.html', params)
 

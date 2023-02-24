@@ -1,0 +1,26 @@
+          {% if user.is_authenticated %}
+    <div class="container-fluid" style="background-color: #FFFDF6">
+        <div class="row">
+            <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
+            <div style="margin-left: 10rem" class="col-lg-8 col-md-10 mx
+            -auto comment">
+
+
+
+ {% for i in comments %}
+              <ul class="commentList" style="margin-left: 15rem">
+                <li>
+                    <div class="commentText" >
+                      <p>{{ i.text }}</p>
+                        <p style="font-size: 15px; margin-top: 2%;">{{ i.date }}</p>
+                      <hr>
+                    </div>
+                </li>
+              </ul>
+                 {% endfor %}
+            </div>
+          </div>
+        {{ comment_form.text }}
+        <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
+    </div>
+{% endif %}

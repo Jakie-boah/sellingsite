@@ -6,8 +6,9 @@
                 <div class="osnov">
                     {% if not i.no_pictures %}
                     <div class="block_img">
-                        {% for j in images %}
-                        {% if i.id == j.post.id %}
+
+                        {% for j in i.id|imagefilter %}
+
                         {% if j.index_store %}
                         <div class="img_box box1">
                             <div class="img_box_osnov">
@@ -24,7 +25,7 @@
                         <div class="img_box box3">
                             <img src="{{ j.image.url }}" alt="">
                         </div>
-                        {% endif %}
+
                         {% endif %}{% endfor %}
                     </div>{% endif %}
 

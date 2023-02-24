@@ -1,0 +1,56 @@
+<div class="card-body">
+                    <h3 class="card-title" style="margin-bottom: 3rem">Подробная информация</h3>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Тип</th>
+                                </div>
+                                   {% include 'handlers/validation_on_type.html' %}
+                            </tr>
+                            {% if item.material %}
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Материал стен</th>
+                                </div>
+                                    <td>{{item.material}}</td>
+                            </tr>
+                            {% endif %}
+                            {% if item.floor %}
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Этаж</th>
+                                </div>
+                                    <td>{{item.floor}}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row"> Площадь общая</th>
+                                </div>
+                                    <td>{{item.total_surface}} м²</td>
+                            </tr>
+                            {% if item.total_floors%}
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Всего этажей</th>
+                                </div>
+                                    <td>{{ item.total_floors }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if item.livin_surface %}
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Жилая площадь</th>
+                                </div>
+                                    <td>{{item.livin_surface}} м²</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+
+                            <!--ОПЦИИ ПОЛЬЗОВАТЕЛЯ-->
+               {% include "index_handlers/card_components/user_options.html" %}
+
+
+                </div>

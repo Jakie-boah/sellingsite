@@ -30,38 +30,8 @@
 
         <div class="card shadow" style="width: 50rem; margin-left: 7rem; height: 53">
 
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-touch="false" data-bs-interval="false"->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            {% for i in images %}
-                  {% if i.image %}
-            <div class="carousel-inner">
-                {% for i in images %}
-                  {% if i.active %}
-                    <div class="carousel-item active">
-                        <img src="{{ i.image.url }}" class="object-img img-thumbnail d-block w-100" alt="photo" >
-                    </div>
-                    {% else %}
-                    <div class="carousel-item">
-                        <img src="{{ i.image.url }}"  class="object-img img-thumbnail d-block w-100" alt="photo">
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>{% endif %}
-                    {% endfor %}
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+            <!--КАРУСЕЛЬ-->
+    {% include "index_handlers/card_components/carousel.html" %}
 
             <div class="card-body obj">
               <h4 class="card-title"><b>Описание: </b></h4>
@@ -101,48 +71,9 @@
     <div class="echo">
         <div class="container">
             <div class="card" style="width: 50rem; margin-left: 7rem">
-                <div class="card-body">
-                    <h3 class="card-title" style="margin-bottom: 3rem">Общая информация</h3>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Регион</th>
-                                </div>
-                                    <td>{{item.region}}</td>
-                            </tr>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Город</th>
-                                </div>
-                                    <td>{{item.city}}</td>
-                            </tr>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Улица</th>
-                                </div>
-                                    <td>{{item.street}}</td>
-                            </tr>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Стоимость</th>
-                                </div>
-                                    <td>{{ item.price|intcomma }} р.</td>
-                            </tr>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row"> Возможность обмена</th>
-                                </div>
-                                {% if item.trade %}
-                                    <td>Да</td>
-                                {% else %}
-                                    <td>Нет</td>
-                                {% endif %}
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                </div>
+
+                <!--ОБЩАЯ ИНФОРМАЦИЯ-->
+               {% include "index_handlers/card_components/total_info.html" %}
 
             </div>
         </div>
@@ -156,101 +87,9 @@
     <div class="echo">
         <div class="container">
             <div class="card" style="width: 50rem; margin-left: 7rem">
-                <div class="card-body">
-                    <h3 class="card-title" style="margin-bottom: 3rem">Подробная информация</h3>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Тип</th>
-                                </div>
-                                   {% include 'handlers/validation_on_type.html' %}
-                            </tr>
-                            {% if item.material %}
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Материал стен</th>
-                                </div>
-                                    <td>{{item.material}}</td>
-                            </tr>
-                            {% endif %}
-                            {% if item.floor %}
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Этаж</th>
-                                </div>
-                                    <td>{{item.floor}}</td>
-                            </tr>
-                            {% endif %}
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row"> Площадь общая</th>
-                                </div>
-                                    <td>{{item.total_surface}} м²</td>
-                            </tr>
-                            {% if item.total_floors%}
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Всего этажей</th>
-                                </div>
-                                    <td>{{ item.total_floors }}</td>
-                            </tr>
-                            {% endif %}
-                            {% if item.livin_surface %}
-                            <tr>
-                                <div class="card-subtitle">
-                                    <th scope="row">Жилая площадь</th>
-                                </div>
-                                    <td>{{item.livin_surface}} м²</td>
-                            </tr>
-                        {% endif %}
-                        </tbody>
-                    </table>
-                     <div class="card" style="display: flex; flex-direction: row; justify-content: start">
 
-
-
-
-                        {% if user.is_authenticated %}
-
-                        <form method="post" action="">
-                            {% csrf_token %}
-                        <div class="container overflow-hidden" style="margin: 5%">
-
-                        <div class="col col-12 mb-3">
-                        {% if check_on_fav %}
-                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled>
-                        {% else %}
-                        <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary">
-                        {% endif %}</div>
-                          <div class="col col-12 mb-3">
-                        {% if check_on_rep %}
-                        <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
-                                      Вы уже пожаловались на это объявление
-                        </button>
-                        {% else %}
-                        <div class="accordion-header" id="flush-faq1">
-
-                                <button style="margin: 5% auto" class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFaq1" aria-expanded="false" aria-controls="flush-collapseFaq1">
-                                      Пожаловаться
-                                </button>
-                            </div>
-                        {% endif %}
-
-                            <div id="flush-collapseFaq1" class="accordion-collapse collapse" aria-labelledby="flush-faq1" data-bs-parent="#accordionFaqList">
-                                <div class="row">
-                                <label>Причина:</label>
-                                {{ report_form.reason }}</div>
-                                <div class="accordion-body">
-                                    {{ report_form.report_text }}
-                                </div>
-                                <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
-
-                            </div>
-                          </div>
-                        </div>{% endif %}
-                        </div>
-                </div>
+                <!--ПОДРОБНАЯ ИНФОРМАЦИЯ-->
+               {% include "index_handlers/card_components/detailed_info.html" %}
 
                 </div>
 
@@ -262,32 +101,8 @@
 
 </section>
 <br>
-                        {% if user.is_authenticated %}
-    <div class="container-fluid" style="background-color: #FFFDF6">
-        <div class="row">
-            <h2 style="margin-left: 650px"><b>Комментарии</b></h2>
-            <div style="margin-left: 10rem" class="col-lg-8 col-md-10 mx
-            -auto comment">
-
-
-
- {% for i in comments %}
-              <ul class="commentList" style="margin-left: 15rem">
-                <li>
-                    <div class="commentText" >
-                      <p>{{ i.text }}</p>
-                        <p style="font-size: 15px; margin-top: 2%;">{{ i.date }}</p>
-                      <hr>
-                    </div>
-                </li>
-              </ul>
-                 {% endfor %}
-            </div>
-          </div>
-        {{ comment_form.text }}
-        <input type="submit" name='action' id="sbtend" value="Прокомментировать" class="btn btn-sm btn-outline-secondary">
-    </div>
-{% endif %}
+                <!--ЗАМЕТКИ ПОЛЬЗОВАТЕЛЯ-->
+               {% include "index_handlers/card_components/comments.html" %}
 </form>
 
 

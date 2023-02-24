@@ -1,0 +1,41 @@
+<div class="card" style="display: flex; flex-direction: row; justify-content: start">
+
+                        {% if user.is_authenticated %}
+
+                        <form method="post" action="">
+                            {% csrf_token %}
+                        <div class="container overflow-hidden" style="margin: 5%">
+
+                        <div class="col col-12 mb-3">
+                        {% if check_on_fav %}
+                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" disabled>
+                        {% else %}
+                        <input type="submit" name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary">
+                        {% endif %}</div>
+                          <div class="col col-12 mb-3">
+                        {% if check_on_rep %}
+                        <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
+                                      Вы уже пожаловались на это объявление
+                        </button>
+                        {% else %}
+                        <div class="accordion-header" id="flush-faq1">
+
+                                <button style="margin: 5% auto" class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFaq1" aria-expanded="false" aria-controls="flush-collapseFaq1">
+                                      Пожаловаться
+                                </button>
+                            </div>
+                        {% endif %}
+
+                            <div id="flush-collapseFaq1" class="accordion-collapse collapse" aria-labelledby="flush-faq1" data-bs-parent="#accordionFaqList">
+                                <div class="row">
+                                <label>Причина:</label>
+                                {{ report_form.reason }}</div>
+                                <div class="accordion-body">
+                                    {{ report_form.report_text }}
+                                </div>
+                                <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
+
+                            </div>
+                          </div>
+                        </div>{% endif %}
+                        </div>

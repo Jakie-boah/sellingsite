@@ -1,5 +1,5 @@
 from django import template
-from ..views import Favourites
+from ..views import Favourites, Images
 register = template.Library()
 from loguru import logger
 
@@ -12,8 +12,13 @@ def spaced_format(value):
 
 
 @register.filter(name='check')
-def favs_filter(item_id, user):
+def fav_filter(item_id, user):
     check_on_fav = bool(Favourites.objects.filter(user=user,
                                                   item__id__exact=item_id).first())
     return check_on_fav
 
+
+@register.filter(name='imagefilter')
+def imagefilter(post_id):
+    images = Images.objects.filter(post__id__exact=post_id).all()
+    return images

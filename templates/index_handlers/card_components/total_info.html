@@ -1,0 +1,43 @@
+{% load humanize %}
+<div class="card-body">
+                    <h3 class="card-title" style="margin-bottom: 3rem">Общая информация</h3>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Регион</th>
+                                </div>
+                                    <td>{{item.region}}</td>
+                            </tr>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Город</th>
+                                </div>
+                                    <td>{{item.city}}</td>
+                            </tr>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Улица</th>
+                                </div>
+                                    <td>{{item.street}}</td>
+                            </tr>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row">Стоимость</th>
+                                </div>
+                                    <td>{{ item.price|intcomma }} р.</td>
+                            </tr>
+                            <tr>
+                                <div class="card-subtitle">
+                                    <th scope="row"> Возможность обмена</th>
+                                </div>
+                                {% if item.trade %}
+                                    <td>Да</td>
+                                {% else %}
+                                    <td>Нет</td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
