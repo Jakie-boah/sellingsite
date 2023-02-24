@@ -26,9 +26,6 @@ def delete_fun(request, item_id):
 
 def remove_from_favs(request, item_id):
     delete_fun(request, item_id)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def remove_from_favs_pp(request, item_id):
-    delete_fun(request, item_id)
-    return redirect('account')

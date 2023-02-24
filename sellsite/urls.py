@@ -37,7 +37,6 @@ urlpatterns = [
     path('contacts', hand_url.contacts, name='contacts'),
     path('add_to_favs<int:item_id>', add_to_favs, name='add_to_favs'),
     path('remove_from_favs<int:item_id>', remove_from_favs, name='remove_from_favs'),
-    path('remove_from_favs_pp<int:item_id>', remove_from_favs_pp, name='remove_from_favs_pp'),
 
     path('extend_access', extend_rights.extend_access, name='extended_page'),
     path('extended_page_regions', extend_rights.extended_page_regions, name='extended_page_regions'),

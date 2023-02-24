@@ -8,7 +8,7 @@ from users.form import CommentForm
 from django.contrib import messages
 from handlers.models import Report
 from .filter import ListingFilter
-from .card_urls import add_to_favs, remove_from_favs, remove_from_favs_pp
+from .card_urls import add_to_favs, remove_from_favs
 
 
 def index(request):
