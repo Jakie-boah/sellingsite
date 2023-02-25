@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% include 'handlers/message_validation.html' %}
+{%include 'header_ex.html'%}
 
-{% for i in black_list %}
-<a href="{% url 'extended_black_list_page' i.id %}">{{ i.phone_number }}</a>
-{% endfor %}
-<a href="{% url 'extended_black_list_add' %}">Добавить номер</a>
-</body>
-</html>
+{% include 'handlers/message_validation.html' %}
+<h1>Все заблокированные номера</h1>
+<a href="{% url 'extended_page' %}">Вернуться назад</a>
+<a class="cnopka-bl" href="{% url 'extended_black_list_add' %}">Добавить номер</a>
+<div class="regions-bl-cnopki">
+    {% for i in black_list %}
+        <div class="cnopka-reg-bl">
+            <div class="bordyr">
+               <a href="{% url 'extended_black_list_page' i.id %}">{{ i.phone_number }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{%include 'footer.html'%}

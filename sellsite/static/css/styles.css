@@ -354,8 +354,8 @@ hr {
     position: absolute;
     margin-top: inherit;
     margin-left: 75px;
-    width: 930px;
-    height: 450px;
+    width: 1005px;
+    height: 480px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -363,14 +363,15 @@ hr {
 
 #div2{
     display: inline-block;
+    overflow-y: auto;
     position: absolute;
     margin-top: -64px;
     margin-left: 75px;
-    width: 930px;
-    height: 450px;
+    width: 1005px;
+    height: 480px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    overflow: auto;
+
 
 }
 
@@ -379,8 +380,8 @@ hr {
     position: absolute;
     margin-top: -128px;
     margin-left: 75px;
-    width: 930px;
-    height: 450px;
+    width: 1005px;
+    height: 480px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -478,6 +479,61 @@ hr {
     font-size: 17px;
     border-bottom: 3px solid;
     background-position: 100%;
+}
 
+/*расширенный доступ*/
+
+.cnopki{
+    border-right: 2px solid grey;
+    padding: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    outline: none;
+
+}
+.cnopki:first-child{
+    border-left: 2px solid grey;
+}
+.cnopka-bl{
+    display: inline;
+    margin-top: 10%;
+    margin-left: 5%;
+    font-size: 18px;
+
+}
+.cnopki-all{
+    margin: 5%;
+}
+
+.regions-bl-cnopki{
+    width: 1400px;
+    border: 1px solid #fff;
+    padding: 2rem;
+    margin: 5%;
+}
+.bordyr{
+    border-right: 2px solid grey;
+    padding: 7px;
+    font-size: 18px;
+    text-decoration: none;
+    outline: none;
+}
+.cnopka-reg-bl{
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.cnopka-bl{
+    display: inline-block;
+    margin-top: 25px;
+
+}
+
+.d-bl{
+    margin: 10%;
+    border: 1px solid grey;
+    padding: 25px;
+    width: 400px;
+    height: 200px;
 
 }

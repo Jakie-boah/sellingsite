@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ number.phone_number }}
-<form method="POST" action="">
-    {% csrf_token %}
-    <input name="action" type="submit" value="Удалить номер телефона">
-</form>
+{%include 'header_ex.html'%}
+<h1>Чтобы удалить номер телефона</h1>
+<div class="d-bl" style="text-align: center;">
+    <label class="form-label" style="margin-top:5%;" for="phone">{{ number.phone_number }}</label>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input name="action" id="phone" class="input-file-btn" type="submit" value="Удалить номер телефона">
+    </form>
+</div>
 
-</body>
-</html>
+{%include 'footer.html'%}

@@ -6,7 +6,7 @@
 </head>
 <body>
 <h5>Жалоба от пользователя {{ report.user.name }}</h5>
-<h5>На объявление <a href="{% url 'object' report.item.id %}"> {{ report.item.name }}</a></h5>
+<h5>На объявление <a href="{% url 'item' report.item.id %}"> {{ report.item.name }}</a></h5>
 <h5>Текст жалобы {{ report.report_text }}</h5>
 
 <form method="POST" action="">

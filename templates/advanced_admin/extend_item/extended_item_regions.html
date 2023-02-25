@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%include 'header_ex.html'%}
 {% include 'handlers/message_validation.html' %}
 <h1>ВОШЕЛ</h1>
-{% for i in regions %}
-<a href="{% url 'extended_item_list' i.id %}">{{ i.alternate_names }}</a>
-{% endfor %}
-</body>
-</html>
+<a href="{% url 'extended_page' %}">Вернуться назад</a>
+
+<div class="regions-bl-cnopki">
+    {% for i in regions %}
+        <div class="cnopka-reg-bl">
+            <a class="bordyr" href="{% url 'extended_item_list' i.id %}">{{ i.alternate_names }}</a>
+        </div>
+
+
+    {% endfor %}
+</div>
+
+{%include 'footer.html'%}

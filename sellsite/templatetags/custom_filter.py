@@ -1,5 +1,5 @@
 from django import template
-from ..views import Favourites, Images
+from ..views import Favourites, Images, Comments
 register = template.Library()
 from loguru import logger
 
@@ -22,3 +22,10 @@ def fav_filter(item_id, user):
 def imagefilter(post_id):
     images = Images.objects.filter(post__id__exact=post_id).all()
     return images
+
+
+@register.filter(name='commentsfilter')
+def commentsfilter(user_id, item_id):
+    comments = Comments.objects.filter(user__id__exact=user_id,
+                                       post__id__exact=item_id).all()
+    return comments

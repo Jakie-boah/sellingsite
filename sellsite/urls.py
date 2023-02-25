@@ -48,6 +48,6 @@ urlpatterns = [
     path('extended_black_list_add', extend_rights.extended_black_list_add, name='extended_black_list_add'),
 
     path('extended_reports', extend_rights.extended_reports, name='extended_reports'),
-    path('extended_report_page', extend_rights.extended_report_page, name='extended_report_page'),
+    path('extended_report_page<int:report_id>', extend_rights.extended_report_page, name='extended_report_page'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
