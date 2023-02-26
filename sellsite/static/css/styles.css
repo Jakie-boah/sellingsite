@@ -513,7 +513,7 @@ hr {
 }
 .bordyr{
     border-right: 2px solid grey;
-    padding: 7px;
+    padding: 10px;
     font-size: 18px;
     text-decoration: none;
     outline: none;
@@ -534,6 +534,30 @@ hr {
     border: 1px solid grey;
     padding: 25px;
     width: 400px;
-    height: 200px;
+    height: 250px;
+}
+.cnopka_back{
+    margin-left: 20px;
+    text-decoration: none;
+    outline: none;
+}
+.cnopka-rep{
+    text-decoration: none;
+    outline: none;
 
+}
+.d-rep{
+    margin: 8%;
+    border: 1px solid white;
+    padding: 25px;
+    width: 600px;
+    height: 350px;
+}
+
+.report-text{
+    width: 600px;
+    height: 250px;
+    padding: 6%;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }

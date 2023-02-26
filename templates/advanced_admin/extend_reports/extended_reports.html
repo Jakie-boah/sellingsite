@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% include 'header_ex.html' %}
 {% include 'handlers/message_validation.html' %}
-<h1>Список Жалоб</h1>
-<a href="{% url 'extended_page' %}">Вернуться назад</a>
+<a class="cnopka_back" href="{% url 'extended_page' %}">Вернуться назад</a>
+<h1 style="margin-top: 35px">Список Жалоб</h1>
+<div class="regions-bl-cnopki">
+    {% for i in reports %}
+    <div class="cnopka-reg-bl">
+            <div class="bordyr">
+                <a class="cnopka-rep" href="{% url 'extended_report_page' i.id %}">{{ i.id }}</a>
+            </div>
+        </div>
 
-{% for i in reports %}
-<a href="{% url 'extended_report_page' i.id %}">{{ i.id }}</a>
-{% endfor %}
-</body>
-</html>
+    {% endfor %}
+</div>
+
+{%include 'footer.html'%}

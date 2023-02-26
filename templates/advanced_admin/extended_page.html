@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%include 'header_ex.html'%}
 {% include 'handlers/message_validation.html' %}
-<h1>Здравствуйте</h1>
-<a href="{% url 'extended_page_regions' %}">Объявления</a>
-<a href="{% url 'extended_black_list' %}">Черный список</a>
-<a href="{% url 'extended_reports' %}">Жалобы</a>
-
-
-</body>
-</html>
+{% if user.is_authenticated %}
+<h1>Здравствуйте, {{ user.username }}</h1>
+{% endif %}
+<div class="cnopki-all">
+    <a class="cnopki" href="{% url 'extended_page_regions' %}">Объявления</a>
+    <a class="cnopki" href="{% url 'extended_black_list' %}">Черный список</a>
+    <a class="cnopki" href="{% url 'extended_reports' %}">Жалобы</a>
+</div>
+{%include 'footer.html'%}
