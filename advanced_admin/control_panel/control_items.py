@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import permission_required
 from ..models import AdminsRegions, UserProfile
 from loguru import logger
+from handlers.models import BlackList
 from django.contrib import messages
 from items_window.models import Item, Images
 from django.core.exceptions import ObjectDoesNotExist
@@ -47,6 +48,18 @@ def extended_item(request, item_id):
             item.public = True
             item.save()
             messages.info(request, 'Объявление одобрено и опубликовано')
+            return redirect('extended_item_list', item.region.id)
+
+        elif request.POST['action'] == 'Удалить объявление':
+            region_id = item.region.id
+            item.delete()
+            messages.info(request, 'Объявление удалено')
+            return redirect('extended_item_list', region_id)
+
+        elif request.POST['action'] == 'Заблокировать пользователя':
+            new_number = BlackList(phone_number=item.phone_number)
+            new_number.save()
+            messages.info(request, 'Пользователь заблокирован. Объявления скрыты')
             return redirect('extended_item_list', item.region.id)
 
     params = {

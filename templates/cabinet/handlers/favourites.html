@@ -91,7 +91,8 @@
 
                         {% empty %}
                         <p>Избранное пока пустое</p>
-                        {% endfor %}
+
+                        {% endfor %} <a role="button" href="{% url 'favs_for_print' %}">Распечатать список</a>
 
 
                    </section>

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import permission_required
 from ..form import AddForm
 from django.contrib import messages
 from handlers.models import BlackList
+from items_window.models import Item
 # Create your views here.
 
 
@@ -18,6 +19,9 @@ def extended_black_list_page(request, phone_id):
     if request.method == 'POST':
 
         if request.POST['action'] == 'Удалить номер телефона':
+            # all_items = Item.objects.filter(phone_number=number.phone_number).all()
+            # for i in all_items:
+            #     i.banned = False
             number.delete()
             messages.info(request, 'Номер удален из черного списка')
             return redirect('extended_black_list')

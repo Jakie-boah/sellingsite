@@ -10,9 +10,6 @@ from loguru import logger
 def account(request):
 
     items = Favourites.objects.filter(user=request.user).all()
-    logger.info(items)
-    for i in items:
-        logger.info(i.item.name)
     comments = Comments.objects.filter(user__id__exact=request.user.id).all()
     images = Images.objects.all()
     params = {
@@ -24,3 +21,7 @@ def account(request):
     return render(request, './cabinet/cabinet.html', params)
 
 
+@login_required(login_url='login')
+def favs_for_print(request):
+    items = Favourites.objects.filter(user=request.user).all()
+    return render(request, './cabinet/handlers/favourites_for_pdf.html', {'items': items})

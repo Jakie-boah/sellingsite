@@ -1,16 +1,16 @@
-{% load humanize %}
-<section class="for-pdf" style="display: none;">
-
+{% include 'header_ex.html' %}
+     {% load humanize %}
+         {% load custom_filter %}
+<section class="sell-push_fav" style="margin-top: 2.5rem">
+                            {% for i in items %}
                             <div class="container">
-                                {% for i in items %}
                                 <div class="shadow-text">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 45px; height: 190px">
                                     <div class="col col-sm-6">
                                         <div class="osnov">
                                             {% if not i.item.no_pictures %}
                                             <div class="block_img">
-                                                {% for j in images %}
-                                                    {% if i.id == j.post.id %}
+                                              {% for j in i.item.id|imagefilter %}
                                                     {% if j.index_store %}
                                                 <div class="img_box box1">
                                                     <div class="img_box_osnov">
@@ -28,7 +28,7 @@
                                                     <img src="{{ j.image.url }}" alt="">
                                                 </div>
                                                 {% endif %}
-                                                {% endif %}{% endfor %}
+                                                {% endfor %}
                                             </div>{% endif %}
 
                                             <div class="text">
@@ -42,14 +42,18 @@
 
 
                                                 <span class="sub-text">{{ i.item.description | truncatechars:"80" }}</span>
+
                                             </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col col-md-6">
-                                        <div class="house-push">
+                                        <div class="house-push" style="width:400px">
                                             <div class="center-push">
+                                                <div class="price-push">
+                                                    <p>{{ i.item.price|intcomma }} р.</p>
+                                                </div>
                                                 <div class="area-push">
                                                     <p>{{ i.item.total_surface }}м²</p>
                                                 </div>
@@ -61,10 +65,11 @@
                                             </div>
                                         <div class="zametki-pols-push">
                                             <div class="zametki">
-                                                {% for com in comments %}
-                                                {% if i.id == com.post.id %}
+
+                                                {% for com in user.id|commentsfilter:i.item.id %}
+
                                                 <p>{{ com.text }}</p>
-                                                {% endif %}
+
                                                 {% empty %}
                                                     <p>Пока нет комментариев</p>
                                                 {% endfor %}
@@ -72,16 +77,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                            <div class="diff">
+                                <div class="diff">
 <!--                        <a href=""><i class="fa-regular fa-heart"></i></a>-->
-                        <a href="{% url 'remove_from_favs' i.item.id %}"><i class="fa-regular fa-circle-xmark"></i></a>
+                                    <a href="{% url 'remove_from_favs' i.item.id %}"><i class="fa-regular fa-circle-xmark"></i></a>
 
-                    </div>
-                            </div>
-                                    </div>
                                 </div>
-                                {% empty %}
-                                                    <p>Избранное пока пустое</p>
-                                                {% endfor %}
                             </div>
-                  </div>  </section>
+                            </div>
+                            </div>
+                          </div>
+                          <hr style="margin-top: -1rem">
+                         </div>
+
+
+                        {% empty %}
+                        <p>Избранное пока пустое</p>
+
+                        {% endfor %} <button class="noPrint" onclick="window.print()">Распечатать</button>
+
+                   </section>
