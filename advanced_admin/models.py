@@ -9,7 +9,7 @@ class AdminsRegions(models.Model):
     region = models.ManyToManyField(Region, verbose_name='Регион/ы')
 
     def __str__(self):
-        return f'Админ {self.admin.username} в регионе {self.region}'
+        return f'Регионы админа {self.admin.username}'
 
     class Meta:
         verbose_name = 'Админы по регионам'
