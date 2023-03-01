@@ -1,87 +1,46 @@
-{% load humanize %}
-{% load custom_filter %}
+
 <div class="shadow-text">
-<div class="row" style="margin-bottom: 75px; height: 190px; width: 955px">
-            <div class="col col-sm-6">
-                <div class="osnov">
-                    {% if not i.no_pictures %}
-                    <div class="block_img" style="padding: 15px">
 
-                        {% for j in i.id|imagefilter %}
+<div class="row" style="margin-bottom: 75px; height: 190px; width: 955px; padding: 2%;">
 
-                        {% if j.index_store %}
-                        <div style="max-height: 100px" class="img_box box1">
-                            <div class="img_box_osnov">
-                                <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if j.index_store_2 %}
-                        <div style="max-height: 120px" class="img_box box2">
-                            <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                        </div>
-                        {% endif %}
-                        {% if j.index_store_3 %}
-                        <div style="max-height: 120px" class="img_box box3">
-                            <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                        </div>
+    <div class="col">
 
-                        {% endif %}{% endfor %}
-                    </div>{% endif %}
+                    <!--КАРУСЕЛЬ-->
+    {% include "index_handlers/index_card_components/index_carousel.html" %}
 
-                    <div class="text">
-                        <a href="{% url 'item' i.id %}">{{ i.name }}</a>
-                        <div class="describe">
-                            {% if i.floor and i.total_floors %}
-                            <p>{{ i.city }}, ул. {{i.street}} {{ i.floor }}/{{ i.total_floors }} этаж</p>
-                            {% else %}
-                            <p>{{ i.city }}, ул. {{i.street}}</p>
-                            {% endif %}
-
-
-                            <span class="sub-text">{{ i.description | truncatechars:"80" }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col col-sm-5">
-                <div class="house-push">
-                    <div class="center-push">
-                        <div class="area-push">
-                            <p>{{ i.total_surface }}м²</p>
-                        </div>
-                        {% if i.floor %}
-                        <div class="floor-push">
-                            <span class="sub-text">{{ i.floor }} этаж</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                <div class="sub-push">
-                    <h5>Стоимость {{ i.price|intcomma }} р.</h5>
-                        <div class="date-push">
-                            <span class="sub-text">Дата размещения объявления:
-                                <p style="color: black;">{{ i.date }}</p>
-                            </span>
-                        </div>
-
-                </div>
-                    {% if user.is_authenticated %}
-                    {% if not i.id|check:user %}
-                     <div class="diff2">
-                        <a href=""></a>
-                        <a href="{% url 'add_to_favs' i.id %}" style="margin-left: 35%;"><i class="fa-regular fa-heart"></i></a>
-                        <a href=""></a>
-                    </div>
-                    {% else %}
-                    <div class="diff2">
-                        <a href=""></a>
-                        <a href="{% url 'remove_from_favs' i.id %}" style="margin-left: 35%;"><i class="fa-solid fa-heart"></i></a>
-                        <a href=""></a>
-                    </div>
-                    {% endif %}{% endif %}
-
-                </div>
-            </div>
-        </div>
     </div>
+
+    <div class="col">
+
+        <!--Локация/Краткое описание-->
+        {% include "index_handlers/index_card_components/location.html" %}
+
+    </div>
+
+    <div class="col">
+
+        <!--Общая инфа-->
+        {% include "index_handlers/index_card_components/item_data.html" %}
+
+    </div>
+
+    <div class="col">
+
+        <div class="row">
+        <div class="col">
+
+                <!--Детали-->
+                {% include "index_handlers/index_card_components/item_details.html" %}
+
+        </div>
+        <div class="col">
+
+                <!--Добавить/Удалить-->
+                {% include "index_handlers/index_card_components/add-delete.html" %}
+
+        </div>
+        </div>
+
+    </div>
+</div>
+</div>

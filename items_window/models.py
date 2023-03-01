@@ -41,13 +41,13 @@ class Item(models.Model):
 
 
 class Images(models.Model):
+    url_height = models.PositiveIntegerField(default=1077, blank=True, null=True)
+    url_width = models.PositiveIntegerField(default=1600, blank=True, null=True)
     post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='items_img/',
-                              verbose_name='Image')
+                              verbose_name='Image', height_field='url_height', width_field='url_width')
+
     active = models.BooleanField(editable=False, default=False, blank=True, null=True)
-    index_store = models.BooleanField(editable=False, default=False, blank=True, null=True)
-    index_store_2 = models.BooleanField(editable=False, default=False, blank=True, null=True)
-    index_store_3 = models.BooleanField(editable=False, default=False, blank=True, null=True)
 
     def __str__(self):
         return str(self.post)

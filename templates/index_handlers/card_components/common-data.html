@@ -1,0 +1,18 @@
+{% load humanize %}
+<div class="container">
+                <div class="card" style="display: flex; flex-direction: row; justify-content: flex-start">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.total_surface }} м²</h5>
+                        <h6 class="card-subtitle" style="vertical-align: inherit">Общая площадь </h6>
+                    </div>
+                    {% if item.floor %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.floor}}</h5>
+                        <h6 class="card-subtitle" style="vertical-align: inherit">Этаж</h6>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.price|intcomma }} р.</h5>
+                        <h6 class="card-subtitle" style="vertical-align: inherit">Стоимость</h6>
+                    </div>
+                </div>

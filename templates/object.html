@@ -1,5 +1,5 @@
-{% load static %}
-{% load humanize %}
+
+
 {% include "header.html" %}
 <br>
 <section class="description">
@@ -38,23 +38,11 @@
               <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">{{ item.description }} </font></font></p>
             </div>
             <div class="osn-c">
-            <div class="container">
-                <div class="card" style="display: flex; flex-direction: row; justify-content: flex-start">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.total_surface }} м²</h5>
-                        <h6 class="card-subtitle" style="vertical-align: inherit">Общая площадь </h6>
-                    </div>
-                    {% if item.floor %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.floor}}</h5>
-                        <h6 class="card-subtitle" style="vertical-align: inherit">Этаж</h6>
-                    </div>
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.price|intcomma }} р.</h5>
-                        <h6 class="card-subtitle" style="vertical-align: inherit">Стоимость</h6>
-                    </div>
-                </div>
+
+            <!--ОБЩАЯ ИНФОРМАЦИЯ-->
+               {% include "index_handlers/card_components/common-data.html" %}
+
+
             </div>
             </div>
           </div>

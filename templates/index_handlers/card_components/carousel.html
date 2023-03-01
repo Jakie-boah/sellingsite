@@ -1,15 +1,15 @@
  <div id="carouselExampleIndicators" class="carousel slide" data-bs-touch="false" data-bs-interval="false"->
 
              {% if not i.no_pictures %}
-            <div class="carousel-inner">
+            <div style="max-height: 900px" class="carousel-inner">
                 {% for i in images %}
                   {% if i.active %}
                     <div class="carousel-item active">
-                        <img src="{{ i.image.url }}" class="object-img img-thumbnail d-block w-100" alt="photo" >
+                        <img style="max-height: 20%; height: auto; width: auto;" src="{{ i.image.url }}" class="object-img img-thumbnail d-block w-100" alt="photo" >
                     </div>
                     {% else %}
                     <div class="carousel-item">
-                        <img src="{{ i.image.url }}"  class="object-img img-thumbnail d-block w-100" alt="photo">
+                        <img style="max-height: 20%; height: auto; width: auto;" src="{{ i.image.url }}"  class="object-img img-thumbnail d-block w-100" alt="photo">
                     </div>
                     {% endif %}
                     {% endfor %}

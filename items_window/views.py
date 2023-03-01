@@ -8,7 +8,7 @@ from loguru import logger
 
 
 def test(request):
-    return render(request, './index3.html')
+    return render(request, './test.html')
 
 
 def make_one(request):
@@ -47,34 +47,21 @@ def make_one(request):
                 post_form.total_floors = postForm.cleaned_data['com_total_floor']
                 post_form.material = postForm.cleaned_data['com_material']
 
-            logger.info(main_imageForm.cleaned_data['image'])
             if main_imageForm.cleaned_data['image']:
                 main_imageForm = main_imageForm.save(commit=False)
                 main_imageForm.post = post_form
                 main_imageForm.active = True
-                main_imageForm.index_store = True
                 post_form.save()
                 main_imageForm.save()
             else:
                 post_form.no_pictures = True
                 post_form.save()
 
-
-            c = 1
             for form in formset.cleaned_data:
 
                 if form:
-                    if c == 1:
-
-                        image = form['image']
-                        photo = Images(post=post_form, image=image, index_store_2=True)
-                        c += 1
-
-                    elif c == 2:
-                        photo = Images(post=post_form, image=image, index_store_3=True)
-
-                    else:
-                        photo = Images(post=post_form, image=image)
+                    image = form['image']
+                    photo = Images(post=post_form, image=image)
 
                     photo.save()
 
