@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 
 
 class UserForm(forms.ModelForm):
-
     phone_number = PhoneNumberField(required=False, label='Номер телефона',
                                     widget=forms.TextInput(attrs={'placeholder': '+7()..',
                                                                   'class': 'form-control regist-input',
@@ -22,7 +21,7 @@ class UserForm(forms.ModelForm):
                              widget=forms.EmailInput(attrs={'placeholder': 'Адрес почты',
                                                             'class': 'form-control regist-input'}))
 
-    phone_number.error_messages['invalid'] = 'некорректно'
+    phone_number.error_messages['invalid'] = 'Некорректно введен номер телефона'
 
     class Meta:
         model = UserProfile
@@ -54,14 +53,15 @@ class UserForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    login = forms.CharField(max_length=150, required=False, label='Логин',
-                            widget=forms.TextInput(attrs={'placeholder': '+7()..',
-                                                          'class': 'form-control regist-input',
-                                                          'maxlength': "12"}))
-    password = forms.CharField(max_length=150, required=False,
+    login = PhoneNumberField(required=False, label='Номер телефона',
+                             widget=forms.TextInput(attrs={'placeholder': '+7()..',
+                                                           'class': 'form-control regist-input',
+                                                           'maxlength': "12"}))
+    password = forms.CharField(required=False,
                                widget=forms.PasswordInput(attrs={'placeholder': 'Пароль',
                                                                  'class': 'form-control regist-input',
                                                                  'maxlength': "7"}))
+
     def clean_login(self):
         login = self.cleaned_data.get('login')
         if not login:
@@ -90,9 +90,3 @@ class CommentForm(forms.ModelForm):
             'row': '3',
             'id': 'csbmtend'
         })
-
-
-
-
-
-

@@ -26,7 +26,7 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', 'True'))
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
 ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, '127.0.0.1']
-
+ALLOWED_UPLOAD_IMAGES = ('gif', 'bmp', 'jpeg', 'jpg', 'png')
 
 # Application definition
 AUTH_USER_MODEL = 'users.UserProfile'

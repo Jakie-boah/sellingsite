@@ -10,20 +10,20 @@
                         {% for j in i.id|imagefilter %}
 
                         {% if j.index_store %}
-                        <div class="img_box box1">
+                        <div style="max-height: 100px" class="img_box box1">
                             <div class="img_box_osnov">
-                                <img src="{{ j.image.url }}" alt="">
+                                <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
                             </div>
                         </div>
                         {% endif %}
                         {% if j.index_store_2 %}
-                        <div class="img_box box2">
-                            <img src="{{ j.image.url }}" alt="">
+                        <div style="max-height: 120px" class="img_box box2">
+                            <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
                         </div>
                         {% endif %}
                         {% if j.index_store_3 %}
-                        <div class="img_box box3">
-                            <img src="{{ j.image.url }}" alt="">
+                        <div style="max-height: 120px" class="img_box box3">
+                            <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
                         </div>
 
                         {% endif %}{% endfor %}

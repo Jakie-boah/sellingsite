@@ -12,9 +12,12 @@ class ItemForm(forms.ModelForm):
                                        'data-select': '#sampleSelect',
                                        'data-option': 'com',
                                        'attribute': 'hidden',
+                                       'onKeyDown': 'if(this.value.length==2) return false',
                                        'min': '0',
-                                       'max': '99'
-                                   }))
+                                       'max': '99',
+                                        'maxlength': '12',
+
+    }))
     flat_floor = forms.IntegerField(required=False, label='Этаж',
                                     widget=forms.NumberInput(attrs={
                                         'class': 'form-control',
@@ -22,6 +25,7 @@ class ItemForm(forms.ModelForm):
                                         'data-select': '#sampleSelect',
                                         'data-option': 'flat',
                                         'attribute': 'hidden',
+                                        'onKeyDown': 'if(this.value.length==2) return false',
                                         'min': '0',
                                         'max': '99'
                                     }))
@@ -32,6 +36,7 @@ class ItemForm(forms.ModelForm):
                                               'data-select': '#sampleSelect',
                                               'data-option': 'flat',
                                               'attribute': 'hidden',
+                                              'onKeyDown': 'if(this.value.length==2) return false',
                                               'min': '0',
                                               'max': '99'
                                           }))
@@ -42,6 +47,7 @@ class ItemForm(forms.ModelForm):
                                                'data-select': '#sampleSelect',
                                                'data-option': 'house',
                                                'attribute': 'hidden',
+                                               'onKeyDown': 'if(this.value.length==2) return false',
                                                'min': '0',
                                                'max': '99'
                                            }))
@@ -52,6 +58,7 @@ class ItemForm(forms.ModelForm):
                                              'data-select': '#sampleSelect',
                                              'data-option': 'com',
                                              'attribute': 'hidden',
+                                             'onKeyDown': 'if(this.value.length==2) return false',
                                              'min': '0',
                                              'max': '99'
                                          }))

@@ -23,7 +23,6 @@ from users import views as auth_url
 from items_window import views as it_url
 from handlers import views as hand_url
 from advanced_admin import views as extend_rights
-
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -38,6 +37,7 @@ urlpatterns = [
     path('add_to_favs<int:item_id>', add_to_favs, name='add_to_favs'),
     path('remove_from_favs<int:item_id>', remove_from_favs, name='remove_from_favs'),
     path('favs_for_print', auth_url.favs_for_print, name='favs_for_print'),
+
     path('extend_access', extend_rights.extend_access, name='extended_page'),
     path('extended_page_regions', extend_rights.extended_page_regions, name='extended_page_regions'),
     path('extended_item_list<int:region_id>', extend_rights.extended_item_list, name='extended_item_list'),
