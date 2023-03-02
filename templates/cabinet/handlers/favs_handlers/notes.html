@@ -1,0 +1,13 @@
+ {% load custom_filter %}
+<div class="zametki-pols-push">
+                <div class="zametki">
+
+                    {% for com in user.id|commentsfilter:i.item.id %}
+
+                    <p>{{ com.text }}</p>
+
+                    {% empty %}
+                    <p>Пока нет комментариев</p>
+                    {% endfor %}
+                </div>
+            </div>

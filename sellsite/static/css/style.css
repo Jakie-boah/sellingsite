@@ -87,9 +87,8 @@
 .zametki-pols-push{
     overflow: auto;
     display: inline;
-    width: 320px;
+    width: 158px;
     height: 120px;
-    margin-left: 2rem;
     border: 2px solid #000;
     display: flex;
     padding: 5px 16px;
@@ -100,6 +99,7 @@
 .zametki{
     margin-top: 1rem;
     font-size: 16px;
+    padding-left: 4.5%;
 }
 .shadow-text:hover{
     -webkit-box-shadow: -11px 19px 16px 7px rgba(34, 60, 80, 0.19);

@@ -1,98 +1,57 @@
-         {% load humanize %}
-         {% load custom_filter %}
+
 <section class="sell-push_fav" style="margin-top: 2.5rem">
-                            {% for i in items %}
-                            <div class="container">
-                                <div class="shadow-text">
-                                <div class="row" style="margin-bottom: 45px; height: 190px">
-                                    <div class="col col-sm-6">
-                                        <div class="osnov">
-                                            {% if not i.item.no_pictures %}
-                                            <div style="max-height: 100px" class="block_img">
-                                              {% for j in i.item.id|imagefilter %}
-                                                    {% if j.index_store %}
-                                                <div class="img_box box1">
-                                                    <div class="img_box_osnov">
-                                                        <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                                                    </div>
-                                                </div>
-                                                {% endif %}
-                                                {% if j.index_store_2 %}
-                                                <div style="max-height: 120px" class="img_box box2">
-                                                    <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                                                </div>
-                                                {% endif %}
-                                                {% if j.index_store_3 %}
-                                                <div style="max-height: 120px" class="img_box box3">
-                                                    <img style="max-width: 100%; height: auto; width: auto;" src="{{ j.image.url }}" alt="">
-                                                </div>
-                                                {% endif %}
-                                                {% endfor %}
-                                            </div>{% endif %}
 
-                                            <div class="text">
-                                                <a href="{% url 'item' i.item.id %}">{{ i.item.name }}</a>
-                                               <div class="describe">
-                                                {% if i.item.floor and i.item.total_floors %}
-                                                <p>{{ i.item.city }}, ул. {{i.item.street}} {{ i.item.floor }}/{{ i.item.total_floors }} этаж</p>
-                                                {% else %}
-                                                <p>{{ i.item.city }}, ул. {{i.item.street}}</p>
-                                                {% endif %}
+    <div class="container">
+        {% for i in items %}
+
+<div class="shadow-text">
+
+<div class="row" style="margin-bottom: 75px; height: 190px; width: 955px; padding: 2%;">
+
+    <div class="col">
+
+                    <!--КАРУСЕЛЬ-->
+    {% include "cabinet/handlers/favs_handlers/fav_carousel.html" %}
+
+    </div>
+
+    <div class="col">
+
+        <!--Локация/Краткое описание-->
+        {% include "cabinet/handlers/favs_handlers/loc-some-info.html" %}
+
+    </div>
+
+    <div class="col">
+
+        <!--Детали-->
+        {% include "cabinet/handlers/favs_handlers/details.html" %}
 
 
-                                                <span class="sub-text">{{ i.item.description | truncatechars:"80" }}</span>
+    </div>
 
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="col">
+        <div class="row">
+        <div class="col">
 
-                                    <div class="col col-md-6">
-                                        <div class="house-push" style="width:400px">
-                                            <div class="center-push">
-                                                <div class="price-push">
-                                                    <p>{{ i.item.price|intcomma }} р.</p>
-                                                </div>
-                                                <div class="area-push">
-                                                    <p>{{ i.item.total_surface }}м²</p>
-                                                </div>
-                                                 {% if i.item.floor %}
-                                                <div class="floor-push">
-                                                    <span class="sub-text">{{ i.item.floor }} этаж</span>
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                        <div class="zametki-pols-push">
-                                            <div class="zametki">
-
-                                                {% for com in user.id|commentsfilter:i.item.id %}
-
-                                                <p>{{ com.text }}</p>
-
-                                                {% empty %}
-                                                    <p>Пока нет комментариев</p>
-                                                {% endfor %}
-                                                <div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="diff">
-<!--                        <a href=""><i class="fa-regular fa-heart"></i></a>-->
-                                    <a href="{% url 'remove_from_favs' i.item.id %}"><i class="fa-regular fa-circle-xmark"></i></a>
-
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                          </div>
-                          <hr style="margin-top: -1rem">
-                         </div>
+            <!--Заметки-->
+        {% include "cabinet/handlers/favs_handlers/notes.html" %}
 
 
-                        {% empty %}
-                        <p>Избранное пока пустое</p>
+        </div>
 
-                        {% endfor %} <a role="button" href="{% url 'favs_for_print' %}">Распечатать список</a>
+    <div class="col">
+
+         <!--Удалить-->
+        {% include "cabinet/handlers/favs_handlers/delete.html" %}
 
 
-                   </section>
+</div>
+        </div>
+
+        </div>
+
+   </div> </div>{% endfor %}
+</div>
+    <a role="button" href="{% url 'favs_for_print' %}">Распечатать список</a>
+</section>

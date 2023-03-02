@@ -1,0 +1,14 @@
+ {% load humanize %}
+<div class="center-push" style="margin-left: 20%;">
+                                                <div class="price-push">
+                                                    <p>{{ i.item.price|intcomma }} р.</p>
+                                                </div>
+                                                <div class="area-push">
+                                                    <p>{{ i.item.total_surface }}м²</p>
+                                                </div>
+                                                 {% if i.item.floor %}
+                                                <div class="floor-push">
+                                                    <span class="sub-text">{{ i.item.floor }} этаж</span>
+                                                </div>
+                                                {% endif %}
+                                            </div>

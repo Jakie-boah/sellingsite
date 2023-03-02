@@ -47,6 +47,9 @@ def make_one(request):
                 post_form.total_floors = postForm.cleaned_data['com_total_floor']
                 post_form.material = postForm.cleaned_data['com_material']
 
+            if post_form.item_type == 'land':
+                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
+
             if main_imageForm.cleaned_data['image']:
                 main_imageForm = main_imageForm.save(commit=False)
                 main_imageForm.post = post_form

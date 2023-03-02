@@ -16,7 +16,7 @@ class Item(models.Model):
     street = models.CharField(verbose_name='Улица', max_length=50)
     floor = models.IntegerField(verbose_name='Этаж', null=True, blank=True)
     total_floors = models.IntegerField(verbose_name='Этажей всего', null=True, blank=True)
-    material = models.ForeignKey(MaterialChoices, on_delete=models.CASCADE, verbose_name='Материал стен')
+    material = models.ForeignKey(MaterialChoices, on_delete=models.CASCADE, verbose_name='Материал стен', null=True, blank=True)
     total_surface = models.FloatField(verbose_name='Площадь общая', null=True, blank=True)
     livin_surface = models.FloatField(verbose_name='Площадь жилая', null=True, blank=True)
     price = models.IntegerField(verbose_name='Стоимость', null=True, blank=True)

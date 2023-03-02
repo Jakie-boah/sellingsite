@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div class="text">
+                                                <a href="{% url 'item' i.item.id %}">{{ i.item.name }}</a>
+                                               <div class="describe">
+                                                {% if i.item.floor and i.item.total_floors %}
+                                                <p>{{ i.item.city }}, ул. {{i.item.street}} {{ i.item.floor }}/{{ i.item.total_floors }} этаж</p>
+                                                {% else %}
+                                                <p>{{ i.item.city }}, ул. {{i.item.street}}</p>
+                                                {% endif %}
+
+
+                                                <span class="sub-text">{{ i.item.description | truncatechars:"50" }}</span>
+
+                                            </div>
+                                            </div>
