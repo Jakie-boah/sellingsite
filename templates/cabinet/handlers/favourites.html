@@ -1,3 +1,4 @@
+{% load custom_filter %}
 
 <section class="sell-push_fav" style="margin-top: 2.5rem">
 
@@ -51,7 +52,13 @@
 
         </div>
 
-   </div> </div>{% endfor %}
+   </div> </div>
+        {% empty %}
+        <h5>Избранное пока пустое</h5>
+
+        {% endfor %}
 </div>
-    <a role="button" href="{% url 'favs_for_print' %}">Распечатать список</a>
+    {% if user|isfavs %}
+    <a style="margin-left: 3%; margin-bottom: 2%;" role="link" href="{% url 'favs_for_print' %}" class="btn btn-dark">Распечатать список</a>
+    {% endif %}
 </section>

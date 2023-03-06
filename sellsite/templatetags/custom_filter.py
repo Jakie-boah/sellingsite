@@ -29,3 +29,9 @@ def commentsfilter(user_id, item_id):
     comments = Comments.objects.filter(user__id__exact=user_id,
                                        post__id__exact=item_id).all()
     return comments
+
+
+@register.filter(name='isfavs')
+def fav_control(user):
+    check = bool(Favourites.objects.filter(user=user).first())
+    return check

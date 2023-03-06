@@ -20,7 +20,7 @@ def register(request):
                 user.save(update_fields=['password'])
                 login(request, user)
                 logger.info('Зареган новый пользователь')
-                messages.success(request, 'Зареган новый пользователь')
+                messages.success(request, 'Зарегистрирован новый пользователь')
                 return redirect('index')
             else:
                 logger.error('Ошибка')
