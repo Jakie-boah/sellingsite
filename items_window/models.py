@@ -41,8 +41,8 @@ class Item(models.Model):
 
 
 class Images(models.Model):
-    url_height = models.PositiveIntegerField(default=1077, blank=True, null=True)
-    url_width = models.PositiveIntegerField(default=1600, blank=True, null=True)
+    url_height = models.PositiveIntegerField(default=560, blank=True, null=True)
+    url_width = models.PositiveIntegerField(default=400, blank=True, null=True)
     post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='items_img/',
                               verbose_name='Image', height_field='url_height', width_field='url_width')

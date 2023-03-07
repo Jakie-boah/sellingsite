@@ -4,6 +4,7 @@
 <br>
 <section class="description">
 
+
     <div class="echo">
          {% if messages %}
 <ul class="messages">
@@ -25,6 +26,7 @@
 </ul>
 {% endif %}
       <div class="container">
+
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2" style="margin-top: 3rem">
         <div class="col">
 
@@ -34,6 +36,7 @@
     {% include "index_handlers/card_components/carousel.html" %}
 
             <div class="card-body obj">
+                <p style="color: gray; font-size: 12px;" class="card-title"><b>Номер объявления: {{ item.id }}</b></p>
               <h4 class="card-title"><b>Описание: </b></h4>
               <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; max-width: 100px;">{{ item.description }} </font></font></p>
             </div>

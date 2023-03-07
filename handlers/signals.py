@@ -10,4 +10,5 @@ def unban_objects(sender, instance, using, **kwargs):
     all_items = Item.objects.filter(phone_number=instance.phone_number).all()
     for i in all_items:
         i.banned = False
+        i.save()
 

@@ -19,9 +19,9 @@ class ListingFilter(django_filters.FilterSet):
         model = Item
         fields = {'item_type': ['exact'],
                   'region': ['exact'],
-                  'phone_number': ['exact'],
                   'price': ['exact'],
-                  'total_surface': ['exact']
+                  'total_surface': ['exact'],
+                  'id': ['exact'],
                   }
 
     def __init__(self, *args, **kwargs):
@@ -70,10 +70,10 @@ class ListingFilter(django_filters.FilterSet):
             'step': "0.01"
 
         })
-        self.filters['phone_number'].field.widget.attrs \
+        self.filters['id'].field.widget.attrs \
             .update({
             'class': 'form-control cfe-nav mt-0 py-3',
-            'placeholder': 'Номер телефона +7',
+            'placeholder': 'Номер объявления',
             'maxlength': "12"
 
         })
