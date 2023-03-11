@@ -57,7 +57,21 @@
 </section>
 
 <br>
+  {% if user.is_authenticated %}
+<section class="table-descript">
+    <div class="echo">
+        <div class="container">
+            <div class="card" style="width: 50rem; margin-left: 7rem">
 
+                <!--ОБЩАЯ ИНФОРМАЦИЯ-->
+               {% include "index_handlers/card_components/contacts.html" %}
+
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endif %}
 <section class="table-descript">
     <div class="echo">
         <div class="container">
