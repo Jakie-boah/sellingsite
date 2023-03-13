@@ -33,8 +33,8 @@ def item(request, item_id):
     if request.user.is_authenticated:
         comments = Comments.objects.filter(post__id__exact=item_id,
                                            user__id__exact=request.user.id).all()
-        check_on_fav = bool(Favourites.objects.filter(user=request.user,
-                                                      item=item).first())
+        check_on_fav = (Favourites.objects.filter(user=request.user,
+                                                  item=item).first())
         check_on_rep = bool(Report.objects.filter(user=request.user,
                                                   item=item).first())
 
@@ -44,12 +44,22 @@ def item(request, item_id):
 
     if request.method == 'POST':
 
-        if request.POST['action'] == 'Объявление в избранное':
+        if request.POST['action'] == 'Добавить в избранное':
             new_fav = Favourites(user=request.user,
+                                 name=request.POST['fav_type'],
                                  item=item)
             new_fav.save()
             messages.success(request, 'Объявление успешно добавлено в избранное')
             logger.success('Объявление успешно добавлено в избранное')
+            return redirect('item', item_id)
+
+        elif request.POST['action'] == 'Изменить':
+            fav = Favourites.objects.filter(user=request.user,
+                                            item=item).first()
+            fav.name = request.POST['new_type']
+            fav.save()
+            messages.success(request, 'Избранное успешно изменено')
+            logger.success('Избранное успешно изменено')
             return redirect('item', item_id)
 
         elif request.POST['action'] == 'Пожаловаться':
