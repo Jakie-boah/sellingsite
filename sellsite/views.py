@@ -4,7 +4,7 @@ from items_window.models import *
 from handlers.form import ReportForm
 from loguru import logger
 from users.models import Favourites, Comments
-from users.form import CommentForm
+from users.form import CommentForm, FavouriteForm
 from django.contrib import messages
 from handlers.models import Report
 from .filter import ListingFilter
@@ -45,13 +45,15 @@ def item(request, item_id):
     if request.method == 'POST':
 
         if request.POST['action'] == 'Добавить в избранное':
-            new_fav = Favourites(user=request.user,
-                                 name=request.POST['fav_type'],
-                                 item=item)
-            new_fav.save()
-            messages.success(request, 'Объявление успешно добавлено в избранное')
-            logger.success('Объявление успешно добавлено в избранное')
-            return redirect('item', item_id)
+            form = FavouriteForm(request.POST)
+            if form.is_valid():
+                new_fav = form.save(commit=False)
+                new_fav.user = request.user
+                new_fav.item = item
+                new_fav.save()
+                messages.success(request, 'Объявление успешно добавлено в избранное')
+                logger.success('Объявление успешно добавлено в избранное')
+                return redirect('item', item_id)
 
         elif request.POST['action'] == 'Изменить':
             fav = Favourites.objects.filter(user=request.user,
@@ -86,6 +88,8 @@ def item(request, item_id):
     else:
         report_form = ReportForm()
         comment_form = CommentForm()
+        favourite_form = FavouriteForm()
+        params['favourite_form'] = favourite_form
         params['report_form'] = report_form
         params['comment_form'] = comment_form
 

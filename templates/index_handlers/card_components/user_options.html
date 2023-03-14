@@ -8,26 +8,17 @@
 
                         <div class="col col-12 mb-3">
                         {% if check_on_fav %}
-                        <input type="button" value="Объявление уже в избранном" class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#flush-collapseFaq3" aria-expanded="false" aria-controls="flush-collapseFaq3">
-                        <div id="flush-collapseFaq3" class="accordion-collapse collapse" data-bs-parent="#accordionFaqList">
 
-                                <div class="accordion-body">
-                                    <textarea name="new_type" rows="3" style="margin-left: -3%; width: 20rem;" placeholder="Охарактеризуйте тип этого объявления (можно оставить пустым)">{{ check_on_fav.name }}</textarea>
-                                </div>
-                                <input type="submit" name='action' value="Изменить" class="btn btn-sm btn-outline-secondary">
+                                <!--УЖЕ В ИЗБРАННОМ-->
+                            {% include "index_handlers/card_components/user_options_handler/already_in_favs.html" %}
 
-                            </div>
                             {% else %}
-                        <input name='action' value="Объявление в избранное" class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFaq2" aria-expanded="false" aria-controls="flush-collapseFaq2">
-                         <div id="flush-collapseFaq2" class="accordion-collapse collapse" data-bs-parent="#accordionFaqList">
 
-                                <div class="accordion-body">
-                                    <textarea name="fav_type" rows="3" style="margin-left: -3%; width: 20rem;" placeholder="Охарактеризуйте тип этого объявления (можно оставить пустым)"></textarea>
-                                </div>
-                                <input type="submit" name='action' value="Добавить в избранное" class="btn btn-sm btn-outline-secondary">
+                             <!--ДОБАВИТЬ В ИЗБРАННОЕ-->
+                            {% include "index_handlers/card_components/user_options_handler/add_in_favs.html" %}
 
-                            </div>
-                            {% endif %}</div>
+                            {% endif %}
+                        </div>
                           <div class="col col-12 mb-3">
                         {% if check_on_rep %}
                         <button style="" class="btn btn-sm btn-outline-secondary" type="button" disabled>
@@ -42,16 +33,9 @@
                             </div>
                         {% endif %}
 
-                            <div id="flush-collapseFaq1" class="accordion-collapse collapse" aria-labelledby="flush-faq1" data-bs-parent="#accordionFaqList">
-                                <div class="row">
-                                <label>Причина:</label>
-                                {{ report_form.reason }}</div>
-                                <div class="accordion-body">
-                                    {{ report_form.report_text }}
-                                </div>
-                                <input type="submit" name='action' value="Пожаловаться" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-triangle-exclamation"></i>
+                                <!--СОЗДАТЬ РЕПОРТ-->
+                           {% include "index_handlers/card_components/user_options_handler/create_report.html" %}
 
-                            </div>
                           </div>
                         </div>{% endif %}
                         </div>

@@ -3,7 +3,7 @@ datetime_now=`date +'%Y-%m-%d %H:%M:%S'`
 git config --global user.name 'NAME'
 git config --global user.email 'VanoGalen@yandex.ru'
 git add *
-git commit -m "add dynamic type of favs"
+git commit -m "small part of code refactoring"
 git branch -M main
 git remote add origin https://github.com/Jakie-boah/sellingsite.git
 git push -u origin main

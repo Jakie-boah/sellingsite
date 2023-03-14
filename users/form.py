@@ -1,4 +1,4 @@
-from .models import UserProfile, Comments
+from .models import UserProfile, Comments, Favourites
 from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 from django.core.exceptions import ValidationError
@@ -89,4 +89,20 @@ class CommentForm(forms.ModelForm):
             'placeholder': 'Комментарий',
             'row': '3',
             'id': 'csbmtend'
+        })
+
+
+class FavouriteForm(forms.ModelForm):
+    class Meta:
+        model = Favourites
+        fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        super(FavouriteForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs \
+            .update({
+            'name': 'fav_type',
+            'placeholder': 'Охарактеризуйте тип этого объявления (можно оставить пустым)',
+            'rows': '3',
+            'style': 'margin-left: -3%; width: 20rem;'
         })

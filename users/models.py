@@ -26,7 +26,7 @@ class UserProfile(AbstractUser):
 
 class Favourites(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='Пользователь')
-    name = models.CharField(max_length=80, verbose_name='Название', blank=True, null=True, default='Охарактеризуйте тип этого объявления')
+    name = models.TextField(verbose_name='Название', blank=True, null=True, default=None)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name='Объявление')
 
     def __str__(self):
