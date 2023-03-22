@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+
+
+<main class="form-signin w-100 m-auto">
+    <div class="container_1">
+  <form action="" method="post">
+                {% csrf_token %}
+
+      <h1 class="h3 mb-3 fw-normal">Подтверждение почты</h1>
+
+ {% include 'handlers/message_validation.html' %}
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ error|escape }}</p>
+            </div>
+
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger mb-2 mt-2">
+                <p class="mb-0">{{ error|escape }}</p>
+            </div>
+    {% endfor %}
+{% endif %}
+
+
+     <div class="form-floating">
+         {{ form.password }}
+      <label>Пароль</label>
+    </div>
+      <input type="submit" name='action' value="Войти" class="w-100 btn btn-lg btn-dark">
+
+  </form>
+    </div>
+</main>
+
+{%include "footer.html"%}

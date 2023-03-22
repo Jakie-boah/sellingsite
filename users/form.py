@@ -52,6 +52,19 @@ class UserForm(forms.ModelForm):
         return email
 
 
+class RegisterConfirm(forms.Form):
+    password = forms.CharField(required=False,
+                               widget=forms.PasswordInput(attrs={'placeholder': 'Пароль',
+                                                                 'class': 'form-control regist-input',
+                                                                 'maxlength': "7"}))
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not password:
+            raise ValidationError('Вы должны заполнить поля!')
+        return password
+
+
 class LoginForm(forms.Form):
     login = PhoneNumberField(required=False, label='Номер телефона',
                              widget=forms.TextInput(attrs={'placeholder': '+7()..',

@@ -30,12 +30,15 @@ ALLOWED_UPLOAD_IMAGES = ('gif', 'bmp', 'jpeg', 'jpg', 'png')
 
 # Application definition
 AUTH_USER_MODEL = 'users.UserProfile'
-# CITIES_LIGHT_TRANSLATION_LANGUAGES = ['fr', 'en']
-# CITIES_LIGHT_INCLUDE_COUNTRIES = ['FR']
-# CITIES_LIGHT_INCLUDE_CITY_TYPES = ['ADMD']
+
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['ru']
 CITIES_LIGHT_INCLUDE_COUNTRIES = ['RU']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['ADMD']
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'users.handlers.backends.HashedPasswordAuthBackend',
+]
 
 INSTALLED_APPS = [
     'possible_choices.apps.PossibleChoicesConfig',

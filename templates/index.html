@@ -1,8 +1,8 @@
 {% include 'header.html' %}
 
-<main>
 
-  <div class=" py-5 container" style="margin-top: 4rem">
+
+  <div class="py-5 container noPrint" style="margin-top: 4rem">
     <div class="row label-com">
         <div class="col col-lg-12 col-md-8 mx-auto">
 
@@ -17,10 +17,15 @@
       </div>
       </div>
 
-  </div></div>
+  </div>
+ </div>
 
 <section class="sell-push">
     <div class="container" style="margin-top: 10rem; margin-left: auto; width: 985px">
+        <div class="container" style="margin-left: 96%; padding-bottom: 2.5%;">
+            <a href="" onclick="window.print()"> <i style="color: black;" class="fa-solid fa-print"></i></a>
+        </div>
+
     {% for i in item_filter.qs %}
           {% if i.public and not i.banned %}
 
@@ -30,6 +35,6 @@
     </div>
 </section>
 
-</main>
+
 <script src="static/js/filter.js"></script>
 {%include "footer.html"%}

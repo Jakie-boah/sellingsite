@@ -29,6 +29,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('item<int:item_id>', item, name='item'),
     path('register', auth_url.register, name='register'),
+    path('register_confirm<int:user_id>', auth_url.register_confirm, name='register_confirm'),
     path('login', auth_url.log_in, name='login'),
     path('logout', auth_url.log_out, name='logout'),
     path('account', auth_url.account, name='account'),
