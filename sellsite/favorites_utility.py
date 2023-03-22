@@ -6,26 +6,32 @@ from items_window.models import Item
 
 class FavouritesHandler:
 
-    """ Добавляете объявления в избранное и удаляет их от туда (Карточка объекта на главном экране и в ЛК)"""
+    """ Добавляет объявления в избранное и удаляет их от туда (Карточка объекта на главном экране и в ЛК)"""
 
     def __init__(self, request, item_id):
-        self.request = request
-        self.item_id = item_id
+        self._request = request
+        self._item_id = item_id
 
     def add_to_favs(self):
-        item = Item.objects.get(id=self.item_id)
-        new_fav = Favourites(user=self.request.user,
+        """ Метод добавить в избранное """
+
+        item = Item.objects.get(id=self._item_id)
+        new_fav = Favourites(user=self._request.user,
                              item=item)
         new_fav.save()
-        logger.info('Add')
-        messages.info(self.request, 'Добавлено в избранное')
-
-    def delete_fun(self):
-        cur_fav = Favourites.objects.filter(item__id__exact=self.item_id,
-                                            user=self.request.user)
-        cur_fav.delete()
-        logger.info('Deleted')
-        messages.info(self.request, 'Удалено из избранного')
+        messages.info(self._request, 'Добавлено в избранное')
 
     def remove_from_favs(self):
-        return self.delete_fun()
+        """ Метод удалить из избранного """
+
+        return self._delete_fun()
+
+    def _delete_fun(self):
+        """ Функция удаления """
+
+        cur_fav = Favourites.objects.filter(item__id__exact=self._item_id,
+                                            user=self._request.user)
+        cur_fav.delete()
+        messages.info(self._request, 'Удалено из избранного')
+
+

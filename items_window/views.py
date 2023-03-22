@@ -5,10 +5,7 @@ from django.http import HttpResponseRedirect
 from .forms import ImageForm, ItemForm
 from .models import Images
 from loguru import logger
-
-
-def test(request):
-    return render(request, './test.html')
+from create_item_handler.post_handler import Post, PostMainImage, PostImages
 
 
 def make_one(request):
@@ -22,51 +19,19 @@ def make_one(request):
 
         if postForm.is_valid() and formset.is_valid() and main_imageForm.is_valid():
             post_form = postForm.save(commit=False)
-            post_form.user = request.user
 
-            if post_form.item_type == 'flat':
-                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
-                post_form.floor = postForm.cleaned_data['flat_floor']
-                post_form.total_floors = postForm.cleaned_data['flat_total_floor']
-                post_form.material = postForm.cleaned_data['flat_material']
-                post_form.livin_surface = postForm.cleaned_data['flat_livin_surface']
+            # Создание объявления
+            new_post = Post(post_form.item_type, post_form, postForm)
+            current_type = new_post.get_item_class()
+            current_type.create()
 
-            if post_form.item_type == 'house':
-                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
-                post_form.total_floors = postForm.cleaned_data['house_total_floor']
-                post_form.material = postForm.cleaned_data['house_material']
-                post_form.livin_surface = postForm.cleaned_data['house_livin_surface']
+            # Установка основного изображения
+            main_image = PostMainImage(main_imageForm, post_form)
+            main_image.set_main_image()
 
-            if post_form.item_type == 'garage':
-                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
-                post_form.material = postForm.cleaned_data['garage_material']
-
-            if post_form.item_type == 'com':
-                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
-                post_form.floor = postForm.cleaned_data['com_floor']
-                post_form.total_floors = postForm.cleaned_data['com_total_floor']
-                post_form.material = postForm.cleaned_data['com_material']
-
-            if post_form.item_type == 'land':
-                post_form.price = int(postForm.cleaned_data[f'{post_form.type}_price'].replace(' ', ''))
-
-            if main_imageForm.cleaned_data['image']:
-                main_imageForm = main_imageForm.save(commit=False)
-                main_imageForm.post = post_form
-                main_imageForm.active = True
-                post_form.save()
-                main_imageForm.save()
-            else:
-                post_form.no_pictures = True
-                post_form.save()
-
-            for form in formset.cleaned_data:
-
-                if form:
-                    image = form['image']
-                    photo = Images(post=post_form, image=image)
-
-                    photo.save()
+            # Установка остальных изображений
+            setup = PostImages(formset.cleaned_data, post_form)
+            setup.set_rest_images()
 
             messages.success(request,
                              "Объявление создано. Отправлено модератору на подтверждение.")
